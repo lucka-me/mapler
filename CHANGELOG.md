@@ -1,5 +1,14 @@
 # Changelog
 ```markdown
+## [0.2.2] - 2018-07-22
+### Changed
+- Disable Set once the map is loaded
+
+### Known Issue
+- Bound of output image is different from the selected
+```
+
+```markdown
 ## [0.2.1] - 2018-07-22
 ### Fixed
 - Set size doesn't work
