@@ -1,5 +1,11 @@
 # Changelog
 ```markdown
+## [0.2.1] - 2018-07-22
+### Fixed
+- Set size doesn't work
+```
+
+```markdown
 ## [0.2] - 2018-07-22
 ### Finished
 - Save image
