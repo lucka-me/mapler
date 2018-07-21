@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <meta charset="utf-8" />
+    <head>
+        <title>Wallmapper</title>
+        <meta name="viewport" content="width=device-width, initial-scale=0.8"/>
+        <!-- Stylesheet -->
+        <link type="text/css" rel="stylesheet" href="./css/common.css"/>
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Monda|Lobster"
+        />
+        <link rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.0.9/css/all.css"
+            integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1"
+            crossorigin="anonymous"
+        />
+    </head>
+    <body>
+        <div class="flex-box bg-primary flex-just-c a-c">
+            <div class="flex-box frame-16">
+                <h1 class="textwhite">Wallmapper</h1>
+            </div>
+        </div>
+        <div class="main-box">
+            <div class="fullwidth">
+                <div class="flex-box flex-dir-col frame-16">
+                    <div class="fullwidth flex-box flex-dir-col">
+                        <div class="flex-box text-nowarp a-baseline flex-just-c">
+                            <input type="text" id="imgWidth" value="2160"></input>
+                            ×
+                            <input type="text" id="imgHeight" value="1080"></input>
+                            px
+                            <button type="button" onclick="resizeMap()">Set</button>
+                            <button type="button" onclick="savePNG()">Save</button>
+                        </div>
+                        <div class="map bw-2 bd-primary" id="map"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="fullwidth">
+                <div class="flex-box flex-dir-col frame-16">
+
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="flex-box text-nowarp a-baseline">
+                <a class="footer-item" href="https://github.com/lucka-me/Wallmapper/blob/master/CHANGELOG.md" title="Changelog">0.1</a>
+                <a class="footer-item" href="https://github.com/lucka-me/Wallmapper" title="GitHub">
+                    <i class="fab fa-github fa-lg"></i>
+                </a>
+                <a class="footer-item" href="https://lucka.moe" title="Blog" >Lucka</a>
+            </div>
+        </div>
+
+        <!--Scripts-->
+        <script src="./lib/main.js"></script>
+        <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA65NNso2dHyVgLBZm2RxUIT6ZqdOobrBs&callback=initMap">
+        </script>
+    </body>
+</html>
