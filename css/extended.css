@@ -1,6 +1,11 @@
 /* Map */
-.map {
-    height: 0;
+.map-box {
+    height: 0px;
     padding-top: 50%;
-    margin: 0px;
+    position: relative;
+}
+
+#map {
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
 }
