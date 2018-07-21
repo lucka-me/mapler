@@ -1,5 +1,11 @@
 # Changelog
 ```markdown
+## [0.1.2] - 2018-07-21
+### Changed
+- Trying to finish Save but get lots of trouble with Google Maps API
+```
+
+```markdown
 ## [0.1.1] - 2018-07-21
 ### Changed
 - Using toolkit/Web/CSS/common.css
