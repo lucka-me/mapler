@@ -1,5 +1,12 @@
 # Changelog
 ```markdown
+## [0.3.3] - 2018-07-22
+### Added
+- Select map style
+- A new Blueprint style from @amyleew and @jingsam for demo
+```
+
+```markdown
 ## [0.3.2] - 2018-07-22
 ### Fixed
 - `toBlob` unsupported issue in some browsers
