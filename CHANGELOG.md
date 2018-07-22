@@ -1,5 +1,17 @@
 # Changelog
 ```markdown
+## [0.3] - 2018-07-22
+### Changed
+- Switch Leaflet to Mapbox GL JS
+
+### Fixed
+- Boundary of output image is different from the displayed
+
+### Known Issue
+- Download in Chrome may be broken for unknown reason
+```
+
+```markdown
 ## [0.2.3] - 2018-07-22
 ### Changed
 - The size can be set at any time

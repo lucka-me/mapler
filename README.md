@@ -1,12 +1,12 @@
 <h1 align=center>Wallmapper</h1>
 
 <p align=center>
-  <a href="./CHANGELOG.md"><img alt="Version" src="https://img.shields.io/badge/version-0.2.2-brightgreen.svg"/></a>
+  <a href="./CHANGELOG.md"><img alt="Version" src="https://img.shields.io/badge/version-0.3-brightgreen.svg"/></a>
   <a href="https://lucka.moe/Wallmapper"><img alt="Demo" src="https://img.shields.io/badge/demo-available-brightgreen.svg"/></a>
   <a href="https://lucka.moe"><img alt="Author" src="https://img.shields.io/badge/author-Lucka-2578B5.svg"/></a>
   <a href="./LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-A31F34.svg"/></a><br>
   <img alt="Safari Support" src="https://img.shields.io/badge/safari-support-brightgreen.svg"/>
-  <img alt="Chrome Support" src="https://img.shields.io/badge/chrome-support-brightgreen.svg"/>
+  <img alt="Chrome Support" src="https://img.shields.io/badge/chrome-broken-red.svg"/>
 
 </p>
 
@@ -20,15 +20,18 @@ Under development<br/>
   Provides basic stylesheet for the page.
 - [Mapbox](https://www.mapbox.com/)  
   Provides style of the map and also map data from [OpenStreetMap](https://www.openstreetmap.org/)
-- [Leaflet](https://leafletjs.com/examples/quick-start/)  
+- [Leaflet](https://leafletjs.com/examples/quick-start/)<sup>`0.2.x`</sup>  
   Provides way to display the map
-- [leaflet-image](https://github.com/mapbox/leaflet-image)  
+- [leaflet-image](https://github.com/mapbox/leaflet-image)<sup>`0.2.x`</sup>  
   Provides way to convert map to image
+- [Mapbox GL JS](https://www.mapbox.com/help/how-web-apps-work/#mapbox-gl-js-1)<sup>`0.3+`</sup>  
+  Provides way to display the map
 
 ## To-Do
-- [ ] Fix the boundary of output image to the displayed
+- [x] Fix the boundary of output image to the displayed
 - [ ] More map styles
 - [ ] Set center and zoom level
+- [ ] Fix download issue in Chrome
 
 ## Changelog
 See [CHANGELOG.md](./CHANGELOG.md).
