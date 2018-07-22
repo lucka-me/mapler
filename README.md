@@ -8,7 +8,7 @@
   <img alt="Safari Support" src="https://img.shields.io/badge/safari-support-brightgreen.svg"/>
   <img alt="Chrome Support" src="https://img.shields.io/badge/chrome-support-brightgreen.svg"/>
   <img alt="Firefox Support" src="https://img.shields.io/badge/firefox-broken-red.svg"/>
-  <img alt="Edge Support" src="https://img.shields.io/badge/chrome-broken-red.svg"/>
+  <img alt="Edge Support" src="https://img.shields.io/badge/chrome-support-brightgreen.svg"/>
   <img alt="IE Support" src="https://img.shields.io/badge/ie-broken-red.svg"/>
 
 </p>
@@ -35,7 +35,7 @@ Under development<br/>
 - [ ] More map styles
 - [ ] Set center and zoom level
 - [x] Fix download issue in Chrome
-- [ ] Fix `toBlob` unsupported issue in Edge and IE
+- [x] Fix `toBlob` unsupported issue in Edge and IE
 
 ## Changelog
 See [CHANGELOG.md](./CHANGELOG.md).

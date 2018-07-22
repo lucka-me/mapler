@@ -1,5 +1,14 @@
 # Changelog
 ```markdown
+## [0.3.2] - 2018-07-22
+### Fixed
+- `toBlob` unsupported issue in some browsers
+
+### Known Issue
+- Download in IE is still unavailable
+```
+
+```markdown
 ## [0.3.1] - 2018-07-22
 ### Fixed
 - Output image size wrong in HiDPI devices
