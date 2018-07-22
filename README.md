@@ -25,6 +25,11 @@ Under development<br/>
 - [leaflet-image](https://github.com/mapbox/leaflet-image)  
   Provides way to convert map to image
 
+## To-Do
+- [ ] Fix the boundary of output image to the displayed
+- [ ] More map styles
+- [ ] Set center and zoom level
+
 ## Changelog
 See [CHANGELOG.md](./CHANGELOG.md).
 

@@ -1,5 +1,11 @@
 # Changelog
 ```markdown
+## [0.2.3] - 2018-07-22
+### Changed
+- The size can be set at any time
+```
+
+```markdown
 ## [0.2.2] - 2018-07-22
 ### Changed
 - Disable Set once the map is loaded
