@@ -1,5 +1,12 @@
 # Changelog
 ```markdown
+## [0.3.1] - 2018-07-22
+### Fixed
+- Output image size wrong in HiDPI devices
+- Chrome download issue
+```
+
+```markdown
 ## [0.3] - 2018-07-22
 ### Changed
 - Switch Leaflet to Mapbox GL JS
