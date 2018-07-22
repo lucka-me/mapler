@@ -1,4 +1,4 @@
-<h1 align=center>Wallmapper</h1>
+<h1 align=center><img src="./Resource/Banner.png"></img></h1>
 
 <p align=center>
   <a href="./CHANGELOG.md"><img alt="Version" src="https://img.shields.io/badge/version-0.3.3-brightgreen.svg"/></a>
@@ -7,9 +7,9 @@
   <a href="./LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-A31F34.svg"/></a><br>
   <img alt="Safari Support" src="https://img.shields.io/badge/safari-support-brightgreen.svg"/>
   <img alt="Chrome Support" src="https://img.shields.io/badge/chrome-support-brightgreen.svg"/>
-  <img alt="Firefox Support" src="https://img.shields.io/badge/firefox-broken-red.svg"/>
-  <img alt="Edge Support" src="https://img.shields.io/badge/chrome-support-brightgreen.svg"/>
-  <img alt="IE Support" src="https://img.shields.io/badge/ie-broken-red.svg"/>
+  <img alt="Firefox Broken" src="https://img.shields.io/badge/firefox-broken-red.svg"/>
+  <img alt="Edge Support" src="https://img.shields.io/badge/edge-support-brightgreen.svg"/>
+  <img alt="IE Broken" src="https://img.shields.io/badge/ie-broken-red.svg"/>
 
 </p>
 
