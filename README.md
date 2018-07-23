@@ -18,6 +18,11 @@ Generate wallpaper from map<br/>
 Under development<br/>
 </p>
 
+---
+
+Finally I can change my wallpaper again, after two years.  
+[Read more](https://lucka.moe/2018/07/23/wallmapper/ "Wallmapper | Lucka")<sup>Chinese</sup>
+
 ## Requirement
 - [Lucka's CSS](https://github.com/lucka-me/toolkit/tree/master/Web/CSS)  
   Provides basic stylesheet for the page.
