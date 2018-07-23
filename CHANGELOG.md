@@ -1,5 +1,15 @@
 # Changelog
 ```markdown
+## [0.3.4] - 2018-07-24
+### Added
+- Display and Set center and zoom level
+- Navigation control
+
+### Changed
+- UI improved
+```
+
+```markdown
 ## [0.3.3] - 2018-07-22
 ### Added
 - Select map style

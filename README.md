@@ -1,7 +1,7 @@
 <h1 align=center><img src="./Resource/Banner.png"></img></h1>
 
 <p align=center>
-  <a href="./CHANGELOG.md"><img alt="Version" src="https://img.shields.io/badge/version-0.3.3-brightgreen.svg"/></a>
+  <a href="./CHANGELOG.md"><img alt="Version" src="https://img.shields.io/badge/version-0.3.4-brightgreen.svg"/></a>
   <a href="https://lucka.moe/Wallmapper"><img alt="Demo" src="https://img.shields.io/badge/demo-available-brightgreen.svg"/></a>
   <a href="https://lucka.moe"><img alt="Author" src="https://img.shields.io/badge/author-Lucka-2578B5.svg"/></a>
   <a href="./LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-A31F34.svg"/></a><br>
@@ -33,7 +33,7 @@ Under development<br/>
 ## To-Do
 - [x] Fix the boundary of output image to the displayed
 - [x] More map styles
-- [ ] Set center and zoom level
+- [x] Set center and zoom level
 - [x] Fix download issue in Chrome
 - [x] Fix `toBlob` unsupported issue in Edge and IE
 
