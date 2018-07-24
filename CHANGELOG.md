@@ -1,5 +1,14 @@
 # Changelog
 ```markdown
+## [0.3.6] - 2018-07-24
+### Added
+- A new map style "Hack" by lucka-me
+
+### Deleted
+- Style "Blueprint"
+```
+
+```markdown
 ## [0.3.5] - 2018-07-24
 ### Added
 - Detect the device resolution when load the page

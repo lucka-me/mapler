@@ -1,7 +1,7 @@
 <h1 align=center><img src="./Resource/Banner.png"></img></h1>
 
 <p align=center>
-  <a href="./CHANGELOG.md"><img alt="Version" src="https://img.shields.io/badge/version-0.3.5-brightgreen.svg"/></a>
+  <a href="./CHANGELOG.md"><img alt="Version" src="https://img.shields.io/badge/version-0.3.6-brightgreen.svg"/></a>
   <a href="https://lucka.moe/Wallmapper"><img alt="Demo" src="https://img.shields.io/badge/demo-available-brightgreen.svg"/></a>
   <a href="https://lucka.moe"><img alt="Author" src="https://img.shields.io/badge/author-Lucka-2578B5.svg"/></a>
   <a href="./LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-A31F34.svg"/></a><br>
@@ -18,10 +18,17 @@ Generate wallpaper from map<br/>
 Under development<br/>
 </p>
 
----
-
+## Description
 Finally I can change my wallpaper again, after two years.  
 [Read more](https://lucka.moe/2018/07/23/wallmapper/ "Wallmapper | Lucka")<sup>Chinese</sup>
+
+A web application to create wallpaper from map, in some special map styles.
+
+### Style List
+- [Dark](https://api.mapbox.com/styles/v1/lucka-me/cjjzm06vz0cwl2rnnzgdgkf7j.html?fresh=true&title=true&access_token=pk.eyJ1IjoibHVja2EtbWUiLCJhIjoiY2pqdnNuY3YxMTZpMTNwbzZzMnU5d2JiNyJ9.VdhTKpnaA-1uzkfM2pUPLg) by [@lucka-me](https://github.com/lucka-me)  
+  Black ground, white roads, deep gray water, and nothing else. Suitable for AMOLED.
+- [Hack](https://api.mapbox.com/styles/v1/lucka-me/cjjzm06vz0cwl2rnnzgdgkf7j.html?fresh=true&title=true&access_token=pk.eyJ1IjoibHVja2EtbWUiLCJhIjoiY2pqdnNuY3YxMTZpMTNwbzZzMnU5d2JiNyJ9.VdhTKpnaA-1uzkfM2pUPLg) by [@lucka-me](https://github.com/lucka-me)  
+  Map in terminal way: background in black, roads and annotation in light green.
 
 ## Requirement
 - [Lucka's CSS](https://github.com/lucka-me/toolkit/tree/master/Web/CSS)  
@@ -37,7 +44,8 @@ Finally I can change my wallpaper again, after two years.
 
 ## To-Do
 - [x] Fix the boundary of output image to the displayed
-- [x] More map styles
+- [x] Select map style
+- [ ] More map styles
 - [x] Set center and zoom level
 - [x] Fix download issue in Chrome
 - [x] Fix `toBlob` unsupported issue in Edge and IE
