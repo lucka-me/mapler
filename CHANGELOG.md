@@ -1,5 +1,11 @@
 # Changelog
 ```markdown
+## [0.3.5] - 2018-07-24
+### Added
+- Detect the device resolution when load the page
+```
+
+```markdown
 ## [0.3.4] - 2018-07-24
 ### Added
 - Display and Set center and zoom level
