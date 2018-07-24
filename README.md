@@ -25,7 +25,7 @@ Finally I can change my wallpaper again, after two years.
 A web application to create wallpaper from map, in some special map styles.
 
 ### Style List
-- [Dark](https://api.mapbox.com/styles/v1/lucka-me/cjjzm06vz0cwl2rnnzgdgkf7j.html?fresh=true&title=true&access_token=pk.eyJ1IjoibHVja2EtbWUiLCJhIjoiY2pqdnNuY3YxMTZpMTNwbzZzMnU5d2JiNyJ9.VdhTKpnaA-1uzkfM2pUPLg) by [@lucka-me](https://github.com/lucka-me)  
+- [Dark](https://api.mapbox.com/styles/v1/lucka-me/cjjvmr0mn5csl2rmx5cbgmb0y.html?fresh=true&title=true&access_token=pk.eyJ1IjoibHVja2EtbWUiLCJhIjoiY2pqdnNuY3YxMTZpMTNwbzZzMnU5d2JiNyJ9.VdhTKpnaA-1uzkfM2pUPLg) by [@lucka-me](https://github.com/lucka-me)  
   Black ground, white roads, deep gray water, and nothing else. Suitable for AMOLED.
 - [Hack](https://api.mapbox.com/styles/v1/lucka-me/cjjzm06vz0cwl2rnnzgdgkf7j.html?fresh=true&title=true&access_token=pk.eyJ1IjoibHVja2EtbWUiLCJhIjoiY2pqdnNuY3YxMTZpMTNwbzZzMnU5d2JiNyJ9.VdhTKpnaA-1uzkfM2pUPLg) by [@lucka-me](https://github.com/lucka-me)  
   Map in terminal way: background in black, roads and annotation in light green.
