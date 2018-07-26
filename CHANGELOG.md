@@ -1,5 +1,11 @@
 # Changelog
 ```markdown
+## [0.4.1] - 2018-07-26
+### Fixed
+- CSS file path
+```
+
+```markdown
 ## [0.4] - 2018-07-26
 ### Added
 - A new map style "Color" by @lucka-me
