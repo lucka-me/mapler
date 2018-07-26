@@ -1,7 +1,7 @@
 <h1 align=center><img src="./Resource/Banner.png"></img></h1>
 
 <p align=center>
-  <a href="./CHANGELOG.md"><img alt="Version" src="https://img.shields.io/badge/version-0.3.6-brightgreen.svg"/></a>
+  <a href="./CHANGELOG.md"><img alt="Version" src="https://img.shields.io/badge/version-0.3.7-brightgreen.svg"/></a>
   <a href="https://lucka.moe/Wallmapper"><img alt="Demo" src="https://img.shields.io/badge/demo-available-brightgreen.svg"/></a>
   <a href="https://lucka.moe"><img alt="Author" src="https://img.shields.io/badge/author-Lucka-2578B5.svg"/></a>
   <a href="./LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-A31F34.svg"/></a><br>
@@ -29,6 +29,8 @@ A web application to create wallpaper from map, in some special map styles.
   Black ground, white roads, deep gray water, and nothing else. Suitable for AMOLED.
 - [Hack](https://api.mapbox.com/styles/v1/lucka-me/cjjzm06vz0cwl2rnnzgdgkf7j.html?fresh=true&title=true&access_token=pk.eyJ1IjoibHVja2EtbWUiLCJhIjoiY2pqdnNuY3YxMTZpMTNwbzZzMnU5d2JiNyJ9.VdhTKpnaA-1uzkfM2pUPLg) by [@lucka-me](https://github.com/lucka-me)  
   Map in terminal way: background in black, roads and annotation in light green.
+- [Standard](https://api.mapbox.com/styles/v1/lucka-me/cjk2hmfmi3soj2rqfgr140hqp.html?fresh=true&title=true&access_token=pk.eyJ1IjoibHVja2EtbWUiLCJhIjoiY2pqdnNuY3YxMTZpMTNwbzZzMnU5d2JiNyJ9.VdhTKpnaA-1uzkfM2pUPLg) by [@samanpwbb](https://github.com/samanpwbb)  
+  A style from [Mapbox designers](https://www.mapbox.com/designer-maps/), inspired by early 20th century Standard Oil Company road maps.
 
 ## Requirement
 - [Lucka's CSS](https://github.com/lucka-me/toolkit/tree/master/Web/CSS)  

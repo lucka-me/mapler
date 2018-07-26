@@ -1,8 +1,14 @@
 # Changelog
 ```markdown
+## [0.3.7]
+### Added
+- A new map style "Standard" by @samanpwbb
+```
+
+```markdown
 ## [0.3.6] - 2018-07-24
 ### Added
-- A new map style "Hack" by lucka-me
+- A new map style "Hack" by @lucka-me
 
 ### Deleted
 - Style "Blueprint"
