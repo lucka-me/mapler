@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <!-- Stylesheet -->
         <link type="text/css" rel="stylesheet" href="https://lucka.moe/toolkit/css/common.css" />
-        <link type="text/css" rel="stylesheet" href="./css/extended.css"/>
+        <link type="text/css" rel="stylesheet" href="./res/css/extended.css"/>
         <link rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Monda|Lobster"
         />
@@ -30,6 +30,7 @@
                     <div class="fullwidth flex-box flex-dir-col">
                         <div class="flex-box text-nowarp a-baseline flex-just-c">
                             <select id="mapStyleSelect" onchange="changeMapStyle()">
+                                <option value="Color">Color</option>
                                 <option value="Dark" selected>Dark</option>
                                 <option value="Hack">Hack</option>
                                 <option value="Standard">Standard</option>
@@ -40,9 +41,32 @@
                             <button type="button" id="setSizeButton" onclick="resizeMap()">Set</button>
                             <button type="button" onclick="savePNG()">Save</button>
                         </div>
+                        <div class="flex-box a-baseline flex-just-c" id="colorPanel" style="display: none;">
+                            <div class="flex-box a-baseline flex-warp flex-just-c">
+                                <div class="flex-box text-nowarp a-baseline">
+                                    Land: #
+                                    <input class="at-c" id="colorLand" value="ECE9DF"></input>
+                                </div>
+                                <div class="flex-box text-nowarp a-baseline">
+                                    Water: #
+                                    <input class="at-c" id="colorWater" value="A5CDFD"></input>
+                                </div>
+                                <div class="flex-box text-nowarp a-baseline">
+                                    City: #
+                                    <input class="at-c" id="colorCity" value="F1E0C9"></input>
+                                </div>
+                                <div class="flex-box text-nowarp a-baseline">
+                                    Roads: #
+                                    <input class="at-c" id="colorRoads" value="FFF"></input>
+                                </div>
+                            </div>
+                            <div class="flex-box a-baseline flex-just-c">
+                                <button type="button" id="setColorButton" onclick="setColor()">Set</button>
+                            </div>
+                        </div>
                         <div class="flex-box text-nowarp a-baseline flex-just-c">
                             <i class="fas fa-map-marker-alt td-primary"></i>
-                            <input type="num" class="at-c" id="centerLng" onchange="setCenter()" value="108.9435278"></input>
+                            <input type="text" class="at-c" id="centerLng" onchange="setCenter()" value="108.9435278"></input>
                             ,
                             <input type="text" class="at-c" id="centerLat" onchange="setCenter()" value="34.2651799"></input>
                             <i class="fas fa-search td-primary"></i>
@@ -57,7 +81,7 @@
         </div>
         <div class="footer">
             <div class="flex-box text-nowarp a-baseline">
-                <a class="footer-item" href="https://github.com/lucka-me/Wallmapper/blob/master/CHANGELOG.md" title="Changelog">0.3.7</a>
+                <a class="footer-item" href="https://github.com/lucka-me/Wallmapper/blob/master/CHANGELOG.md" title="Changelog">0.4</a>
                 <a class="footer-item" href="https://github.com/lucka-me/Wallmapper" title="GitHub">
                     <i class="fab fa-github fa-lg"></i>
                 </a>

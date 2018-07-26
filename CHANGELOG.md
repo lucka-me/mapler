@@ -1,6 +1,14 @@
 # Changelog
 ```markdown
-## [0.3.7]
+## [0.4] - 2018-07-26
+### Added
+- A new map style "Color" by @lucka-me
+- A color panel for style "Color"
+- Warining when set invalid image size
+```
+
+```markdown
+## [0.3.7] - 2018-07-26
 ### Added
 - A new map style "Standard" by @samanpwbb
 ```

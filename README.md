@@ -1,7 +1,7 @@
 <h1 align=center><img src="./Resource/Banner.png"></img></h1>
 
 <p align=center>
-  <a href="./CHANGELOG.md"><img alt="Version" src="https://img.shields.io/badge/version-0.3.7-brightgreen.svg"/></a>
+  <a href="./CHANGELOG.md"><img alt="Version" src="https://img.shields.io/badge/version-0.4-brightgreen.svg"/></a>
   <a href="https://lucka.moe/Wallmapper"><img alt="Demo" src="https://img.shields.io/badge/demo-available-brightgreen.svg"/></a>
   <a href="https://lucka.moe"><img alt="Author" src="https://img.shields.io/badge/author-Lucka-2578B5.svg"/></a>
   <a href="./LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-A31F34.svg"/></a><br>
@@ -19,17 +19,19 @@ Under development<br/>
 </p>
 
 ## Description
+A web application to create wallpaper from map, in some special map styles.
+
 Finally I can change my wallpaper again, after two years.  
 [Read more](https://lucka.moe/2018/07/23/wallmapper/ "Wallmapper | Lucka")<sup>Chinese</sup>
 
-A web application to create wallpaper from map, in some special map styles.
-
 ### Style List
-- [Dark](https://api.mapbox.com/styles/v1/lucka-me/cjjvmr0mn5csl2rmx5cbgmb0y.html?fresh=true&title=true&access_token=pk.eyJ1IjoibHVja2EtbWUiLCJhIjoiY2pqdnNuY3YxMTZpMTNwbzZzMnU5d2JiNyJ9.VdhTKpnaA-1uzkfM2pUPLg) by [@lucka-me](https://github.com/lucka-me)  
-  Black ground, white roads, deep gray water, and nothing else. Suitable for AMOLED.
-- [Hack](https://api.mapbox.com/styles/v1/lucka-me/cjjzm06vz0cwl2rnnzgdgkf7j.html?fresh=true&title=true&access_token=pk.eyJ1IjoibHVja2EtbWUiLCJhIjoiY2pqdnNuY3YxMTZpMTNwbzZzMnU5d2JiNyJ9.VdhTKpnaA-1uzkfM2pUPLg) by [@lucka-me](https://github.com/lucka-me)  
+- [Color](https://api.mapbox.com/styles/v1/lucka-me/cjk2n7ybobuuk2smu9zwlugy9.html?fresh=true&title=true&access_token=pk.eyJ1IjoibHVja2EtbWUiLCJhIjoiY2poa2xyN3J4MGJ0bTM3bjV5bjdvNDh3ZSJ9.QztckHrHyEuKp5_pVXmpIw) by [@lucka-me](https://github.com/lucka-me)  
+  A new style that allows users to set their own colors for land, water, city and roads with Color Panel.
+- [Dark](https://api.mapbox.com/styles/v1/lucka-me/cjjvmr0mn5csl2rmx5cbgmb0y.html?fresh=true&title=true&access_token=pk.eyJ1IjoibHVja2EtbWUiLCJhIjoiY2poa2xyN3J4MGJ0bTM3bjV5bjdvNDh3ZSJ9.QztckHrHyEuKp5_pVXmpIw) (Default) by [@lucka-me](https://github.com/lucka-me)  
+  First style. Black ground, white roads, deep gray water, and nothing else. Suitable for AMOLED.
+- [Hack](https://api.mapbox.com/styles/v1/lucka-me/cjjzm06vz0cwl2rnnzgdgkf7j.html?fresh=true&title=true&access_token=pk.eyJ1IjoibHVja2EtbWUiLCJhIjoiY2poa2xyN3J4MGJ0bTM3bjV5bjdvNDh3ZSJ9.QztckHrHyEuKp5_pVXmpIw) by [@lucka-me](https://github.com/lucka-me)  
   Map in terminal way: background in black, roads and annotation in light green.
-- [Standard](https://api.mapbox.com/styles/v1/lucka-me/cjk2hmfmi3soj2rqfgr140hqp.html?fresh=true&title=true&access_token=pk.eyJ1IjoibHVja2EtbWUiLCJhIjoiY2pqdnNuY3YxMTZpMTNwbzZzMnU5d2JiNyJ9.VdhTKpnaA-1uzkfM2pUPLg) by [@samanpwbb](https://github.com/samanpwbb)  
+- [Standard](https://api.mapbox.com/styles/v1/lucka-me/cjk2hmfmi3soj2rqfgr140hqp.html?fresh=true&title=true&access_token=pk.eyJ1IjoibHVja2EtbWUiLCJhIjoiY2poa2xyN3J4MGJ0bTM3bjV5bjdvNDh3ZSJ9.QztckHrHyEuKp5_pVXmpIw) by [@samanpwbb](https://github.com/samanpwbb)  
   A style from [Mapbox designers](https://www.mapbox.com/designer-maps/), inspired by early 20th century Standard Oil Company road maps.
 
 ## Requirement
