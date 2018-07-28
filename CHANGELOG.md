@@ -1,5 +1,11 @@
 # Changelog
 ```markdown
+## [0.4.2] - 2018-07-28
+### Fixed
+- Download doesn't work in Firefox
+```
+
+```markdown
 ## [0.4.1] - 2018-07-26
 ### Fixed
 - CSS file path

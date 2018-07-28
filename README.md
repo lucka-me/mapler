@@ -1,13 +1,13 @@
 <h1 align=center><img src="./Resource/Banner.png"></img></h1>
 
 <p align=center>
-  <a href="./CHANGELOG.md"><img alt="Version" src="https://img.shields.io/badge/version-0.4.1-brightgreen.svg"/></a>
+  <a href="./CHANGELOG.md"><img alt="Version" src="https://img.shields.io/badge/version-0.4.2-brightgreen.svg"/></a>
   <a href="https://lucka.moe/Wallmapper"><img alt="Demo" src="https://img.shields.io/badge/demo-available-brightgreen.svg"/></a>
   <a href="https://lucka.moe"><img alt="Author" src="https://img.shields.io/badge/author-Lucka-2578B5.svg"/></a>
   <a href="./LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-A31F34.svg"/></a><br>
   <a href="https://www.apple.com/safari/"><img alt="Safari Support" src="https://img.shields.io/badge/safari-support-brightgreen.svg"/></a>
   <a href="https://www.google.com/chrome/"><img alt="Chrome Support" src="https://img.shields.io/badge/chrome-support-brightgreen.svg"/></a>
-  <a href="https://www.mozilla.org/firefox/"><img alt="Firefox Broken" src="https://img.shields.io/badge/firefox-broken-red.svg"/></a>
+  <a href="https://www.mozilla.org/firefox/"><img alt="Firefox Support" src="https://img.shields.io/badge/firefox-support-brightgreen.svg"/></a>
   <a href="https://www.microsoft.com/windows/microsoft-edge"><img alt="Edge Support" src="https://img.shields.io/badge/edge-support-brightgreen.svg"/></a>
   <a href="http://microsoft.com/ie"><img alt="IE Broken" src="https://img.shields.io/badge/ie-broken-red.svg"/></a>
   <a href="https://www.opera.com/"><img alt="Opera Support" src="https://img.shields.io/badge/opera-support-brightgreen.svg"/></a>
@@ -48,7 +48,7 @@ Finally I can change my wallpaper again, after two years.
   Provides way to display the map
 
 ## Known Issues
-- In IE and Firefox, Download is unavailable
+- In IE, Download is unavailable
 
 ## To-Do
 - [x] Fix the boundary of output image to the displayed
