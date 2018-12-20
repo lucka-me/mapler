@@ -1,5 +1,11 @@
 # Changelog
 ```markdown
+## [0.4.3] - 2018-12-20
+### Fixed
+- In Color style, the set color won't apply to the generated image
+```
+
+```markdown
 ## [0.4.2] - 2018-07-28
 ### Fixed
 - Download doesn't work in Firefox
