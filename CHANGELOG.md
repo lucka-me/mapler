@@ -1,5 +1,14 @@
 # Changelog
 ```markdown
+## [0.4.4] - 2018-12-21
+### Changed
+- Upgrade API to v0.52.0
+
+### Fixed
+- The annotations disappear in the generated image
+```
+
+```markdown
 ## [0.4.3] - 2018-12-20
 ### Fixed
 - In Color style, the set color won't apply to the generated image
