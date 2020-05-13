@@ -1,4 +1,21 @@
 # Changelog
+
+```markdown
+## [0.5.0] - 2020-TBA
+### Changed
+- Update to Mapler
+
+### Added
+- Various new styles
+
+### Changed
+- Rename to Mapler
+- Re-design UI with MDC-web
+
+### Removed
+- Color style
+```
+
 ```markdown
 ## [0.4.4] - 2018-12-21
 ### Changed
