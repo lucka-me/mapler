@@ -1,97 +1,134 @@
 <!DOCTYPE html>
 <html>
-    <meta charset="utf-8" />
-    <head>
-        <title>Wallmapper</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <!-- Stylesheet -->
-        <link type="text/css" rel="stylesheet" href="https://lucka.moe/toolkit/css/common.css" />
-        <link type="text/css" rel="stylesheet" href="./css/extended.css"/>
-        <link rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Monda|Lobster"
-        />
-        <link rel="stylesheet"
-            href="https://use.fontawesome.com/releases/v5.0.9/css/all.css"
-            integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1"
-            crossorigin="anonymous"
-        />
-        <link rel="stylesheet"
-            href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.47.0/mapbox-gl.css"/>
-    </head>
-    <body>
-        <div class="flex-box bg-primary flex-just-c a-c">
-            <div class="flex-box frame-16">
-                <h1 class="textwhite">Wallmapper</h1>
-            </div>
-        </div>
-        <div class="main-box">
-            <div class="fullwidth">
-                <div class="flex-box flex-dir-col frame-16">
-                    <div class="fullwidth flex-box flex-dir-col">
-                        <div class="flex-box text-nowarp a-baseline flex-just-c">
-                            <select id="mapStyleSelect" onchange="changeMapStyle()">
-                                <option value="Color">Color</option>
-                                <option value="Dark" selected>Dark</option>
-                                <option value="Hack">Hack</option>
-                                <option value="Standard">Standard</option>
-                            </select>
-                            <input type="text" class="at-c" id="imgWidth"></input>
-                            ×
-                            <input type="text" class="at-c" id="imgHeight"></input>
-                            <button type="button" id="setSizeButton" onclick="resizeMap()">Set</button>
-                            <button type="button" onclick="savePNG()">Save</button>
-                        </div>
-                        <div class="flex-box a-baseline flex-just-c" id="colorPanel" style="display: none;">
-                            <div class="flex-box a-baseline flex-warp flex-just-c">
-                                <div class="flex-box text-nowarp a-baseline">
-                                    Land: #
-                                    <input class="at-c" id="colorLand" value="ECE9DF"></input>
-                                </div>
-                                <div class="flex-box text-nowarp a-baseline">
-                                    Water: #
-                                    <input class="at-c" id="colorWater" value="A5CDFD"></input>
-                                </div>
-                                <div class="flex-box text-nowarp a-baseline">
-                                    City: #
-                                    <input class="at-c" id="colorCity" value="F1E0C9"></input>
-                                </div>
-                                <div class="flex-box text-nowarp a-baseline">
-                                    Roads: #
-                                    <input class="at-c" id="colorRoads" value="FFF"></input>
-                                </div>
-                            </div>
-                            <div class="flex-box a-baseline flex-just-c">
-                                <button type="button" id="setColorButton" onclick="setColor()">Set</button>
-                            </div>
-                        </div>
-                        <div class="flex-box text-nowarp a-baseline flex-just-c">
-                            <i class="fas fa-map-marker-alt td-primary"></i>
-                            <input type="text" class="at-c" id="centerLng" onchange="setCenter()" value="108.9435278"></input>
-                            ,
-                            <input type="text" class="at-c" id="centerLat" onchange="setCenter()" value="34.2651799"></input>
-                            <i class="fas fa-search td-primary"></i>
-                            <input type="text" class="at-c" id="zoomLevel" onchange="setZoom()" value="12"></input>
-                        </div>
-                        <div class="map-box bw-2 bd-primary" id="mapBox">
-                            <div id="map"></div>
-                        </div>
+<meta charset="utf-8" />
+
+<head>
+    <title>Mapler</title>
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name=”theme-color” content="#29b6f6" />
+    <!-- Stylesheet -->
+    <link type="text/css" rel="stylesheet" href="./css/extended.css" />
+    <link type="text/css" rel="stylesheet" href="./css/dark.css" />
+    <!-- MDC -->
+    <link rel="stylesheet" href="https://unpkg.com/material-components-web@5.1.0/dist/material-components-web.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500|Material+Icons|Lobster" />
+    <!-- Mapbox -->
+    <link rel="stylesheet" href="https://api.tiles.mapbox.com/mapbox-gl-js/v1.9.0/mapbox-gl.css" />
+    <!-- Scripts -->
+    <script defer src="https://unpkg.com/material-components-web@5.1.0/dist/material-components-web.min.js"></script>
+    <script defer type="text/javascript" src="./lib/main.js" onload="ui.init()"></script>
+    <script defer src="https://api.tiles.mapbox.com/mapbox-gl-js/v1.9.0/mapbox-gl.js" onload="ui.map.load()"></script>
+</head>
+
+<body class="mdc-typography fullheight flex-box-col">
+    <header class="mdc-top-app-bar">
+        <div class="mdc-top-app-bar__row">
+            <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+                <span class="mdc-top-app-bar__title">Mapler</span>
+            </section>
+            <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end">
+                <button class="mdc-icon-button material-icons" title="Preference" id="button-appBar-preference">settings</button>
+                <button class="mdc-button mdc-button--unelevated" id="button-appBar-style">
+                    <span class="mdc-button__label" id="label-button-appBar-style">Style</span>
+                </button>
+                <div class="mdc-menu-surface--anchor">
+                    <div class="mdc-menu mdc-menu-surface" id="menu-style">
+                        <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical"></ul>
                     </div>
                 </div>
+            </section>
+        </div>
+    </header>
+
+    <div class="mdc-top-app-bar--fixed-adjust"></div>
+
+    <div class="main-box">
+        <div id="map-main"></div>
+    </div>
+
+    <button class="mdc-fab mdc-fab--extended" id="fab-snapshot">
+        <div class="mdc-fab__ripple"></div>
+        <span class="material-icons mdc-fab__icon">camera</span>
+        <span class="mdc-fab__label">Snapshot</span>
+    </button>
+
+    <!-- Dialogs -->
+    <!-- Preference -->
+    <div class="mdc-dialog mdc-dialog--scrollable" role="dialog" aria-modal="true" id="dialog-preference">
+        <div class="mdc-dialog__container">
+            <div class="mdc-dialog__surface">
+                <h2 class="mdc-dialog__title">Preference</h2>
+                <div class="mdc-dialog__content flex-box-col">
+
+                    <span class="mdc-typography--headline6">Size</span>
+                    <div class="flex-box-row--wrap">
+                        <div class="flex-box-row--nowrap flex-align-items--baseline">
+                            <div class="mdc-text-field mdc-text-field--outlined margin-v--8 margin-h--4" id="field-pref-size-width">
+                                <input type="number" pattern="[0-9]*" class="mdc-text-field__input" id="input-pref-size-width">
+                                <div class="mdc-notched-outline">
+                                    <div class="mdc-notched-outline__leading"></div>
+                                    <div class="mdc-notched-outline__notch">
+                                        <label for="input-pref-size-width" class="mdc-floating-label">Width</label>
+                                    </div>
+                                    <div class="mdc-notched-outline__trailing"></div>
+                                </div>
+                            </div>
+                            ×
+                            <div class="mdc-text-field mdc-text-field--outlined margin-v--8 margin-h--4" id="field-pref-size-height">
+                                <input type="number" pattern="[0-9]*" class="mdc-text-field__input" id="input-pref-size-height">
+                                <div class="mdc-notched-outline">
+                                    <div class="mdc-notched-outline__leading"></div>
+                                    <div class="mdc-notched-outline__notch">
+                                        <label for="input-pref-size-height" class="mdc-floating-label">Height</label>
+                                    </div>
+                                    <div class="mdc-notched-outline__trailing"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mdc-text-field mdc-text-field--outlined margin-v--8 margin-h--4" id="field-pref-size-pixelRadio">
+                            <input type="number" pattern="[0-9]*" class="mdc-text-field__input" id="input-pref-size-pixelRadio">
+                            <div class="mdc-notched-outline">
+                                <div class="mdc-notched-outline__leading"></div>
+                                <div class="mdc-notched-outline__notch">
+                                    <label for="input-pref-size-pixelRadio" class="mdc-floating-label">Pixel Radio</label>
+                                </div>
+                                <div class="mdc-notched-outline__trailing"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <span class="mdc-typography--headline6">Display</span>
+                    <div class="mdc-switch-box">
+                        <div class="mdc-switch mdc-switch--checked" id="switch-pref-display-labels">
+                            <div class="mdc-switch__track"></div>
+                            <div class="mdc-switch__thumb-underlay">
+                                <div class="mdc-switch__thumb">
+                                    <input type="checkbox" class="mdc-switch__native-control" id="input-pref-display-labels" role="switch">
+                                </div>
+                            </div>
+                        </div>
+                        <label for="input-pref-display-labels">Labels</label>
+                    </div>
+
+                    <span class="mdc-typography--headline6">About</span>
+                    <span class="mdc-typography--body2">
+                        <a href="https://github.com/lucka-me/Wallmapper" target="_blank" rel="noopener" title="GitHub">GitHub Repo</a>
+                    </span>
+                    <span class="mdc-typography--body2">
+                        <a href="https://github.com/lucka-me/Wallmapper/blob/master/CHANGELOG.md" target="_blank" title="Changelog" id="link-version"></a> by <a href="https://lucka.moe" target="_blank" rel="noopener" title="Blog">Lucka</a></span>
+                </div>
+                <footer class="mdc-dialog__actions">
+                    <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="close" data-mdc-dialog-initial-focus>
+                        <span class="mdc-button__label">Close</span>
+                    </button>
+                </footer>
             </div>
         </div>
-        <div class="footer">
-            <div class="flex-box text-nowarp a-baseline">
-                <a class="footer-item" href="https://github.com/lucka-me/Wallmapper/blob/master/CHANGELOG.md" title="Changelog">0.4.4</a>
-                <a class="footer-item" href="https://github.com/lucka-me/Wallmapper" title="GitHub">
-                    <i class="fab fa-github fa-lg"></i>
-                </a>
-                <a class="footer-item" href="https://lucka.moe" title="Blog" >Lucka</a>
-            </div>
-        </div>
-        <!--Scripts-->
-        <script type="text/javascript" src="./lib/main.js"></script>
-        <script async defer
-            src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.52.0/mapbox-gl.js"
-            onload="initMap()"></script>
-    </body>
+        <div class="mdc-dialog__scrim"></div>
+    </div>
+
+</body>
+
 </html>
