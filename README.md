@@ -5,7 +5,7 @@
 
 Web app to make map as wallpaper, under development. Android app is [here](https://github.com/lucka-me/mapler-android).
 
-Finally I can change my wallpaper again, after two years, [Read more](https://lucka.moe/2018/07/23/wallmapper/ "Wallmapper | Lucka") (Chinese).
+Finally I can change my wallpaper again, after two years, [read more](https://lucka.moe/2018/07/23/wallmapper/ "Wallmapper | Lucka") (Chinese).
 
 ## Features
 - Generate image from map in any size, with styles created with [Mapbox Studio](https://www.mapbox.com/mapbox-studio/).

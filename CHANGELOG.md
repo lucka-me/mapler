@@ -1,19 +1,21 @@
 # Changelog
 
 ```markdown
-## [0.5.0] - 2020-TBA
-### Changed
-- Update to Mapler
-
+## [0.5.0] - 2020-05-13
 ### Added
-- Various new styles
+- Set bearing and tilt
+- Hide / show labels
+- Basic support for PWA
+- Various new styles from Mapbox
 
 ### Changed
 - Rename to Mapler
+- Re-construct code
 - Re-design UI with MDC-web
+- Save preferences in browser
 
 ### Removed
-- Color style
+- Style: Color
 ```
 
 ```markdown
