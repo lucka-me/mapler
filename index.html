@@ -65,13 +65,52 @@
         <div class="mdc-dialog__container">
             <div class="mdc-dialog__surface">
                 <h2 class="mdc-dialog__title">Preference</h2>
-                <div class="mdc-dialog__content flex-box-col">
+                <div class="mdc-dialog__content flex-box-col scrollable">
+
+                    <span class="mdc-typography--headline6">Location</span>
+                    <div class="flex-box-row--wrap flex-align-items--center">
+                        <div class="flex-box-row--nowrap flex-align-items--baseline">
+                            <div class="mdc-text-field mdc-text-field--outlined margin-v--8 margin-h--4" id="field-pref-location-lon">
+                                <input type="text" inputmode="decimal" class="mdc-text-field__input" id="input-pref-location-lon">
+                                <div class="mdc-notched-outline">
+                                    <div class="mdc-notched-outline__leading"></div>
+                                    <div class="mdc-notched-outline__notch">
+                                        <label for="input-pref-location-lon" class="mdc-floating-label">Longitude</label>
+                                    </div>
+                                    <div class="mdc-notched-outline__trailing"></div>
+                                </div>
+                            </div>
+                            <div class="mdc-text-field mdc-text-field--outlined margin-v--8 margin-h--4" id="field-pref-location-lat">
+                                <input type="text" inputmode="decimal" class="mdc-text-field__input" id="input-pref-location-lat">
+                                <div class="mdc-notched-outline">
+                                    <div class="mdc-notched-outline__leading"></div>
+                                    <div class="mdc-notched-outline__notch">
+                                        <label for="input-pref-location-lat" class="mdc-floating-label">Latitude</label>
+                                    </div>
+                                    <div class="mdc-notched-outline__trailing"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mdc-text-field mdc-text-field--outlined margin-v--8 margin-h--4" id="field-pref-location-zoom">
+                            <input type="text" inputmode="decimal" class="mdc-text-field__input" id="input-pref-location-zoom">
+                            <div class="mdc-notched-outline">
+                                <div class="mdc-notched-outline__leading"></div>
+                                <div class="mdc-notched-outline__notch">
+                                    <label for="input-pref-location-zoom" class="mdc-floating-label">Zoom</label>
+                                </div>
+                                <div class="mdc-notched-outline__trailing"></div>
+                            </div>
+                        </div>
+                        <button class="mdc-button mdc-button--unelevated margin-v--8 margin-h--4" id="button-pref-location-set">
+                            <span class="mdc-button__label">Set</span>
+                        </button>
+                    </div>
 
                     <span class="mdc-typography--headline6">Size</span>
                     <div class="flex-box-row--wrap">
                         <div class="flex-box-row--nowrap flex-align-items--baseline">
                             <div class="mdc-text-field mdc-text-field--outlined margin-v--8 margin-h--4" id="field-pref-size-width">
-                                <input type="number" pattern="[0-9]*" class="mdc-text-field__input" id="input-pref-size-width">
+                                <input type="number" inputmode="numeric" class="mdc-text-field__input" id="input-pref-size-width">
                                 <div class="mdc-notched-outline">
                                     <div class="mdc-notched-outline__leading"></div>
                                     <div class="mdc-notched-outline__notch">
@@ -82,7 +121,7 @@
                             </div>
                             ×
                             <div class="mdc-text-field mdc-text-field--outlined margin-v--8 margin-h--4" id="field-pref-size-height">
-                                <input type="number" pattern="[0-9]*" class="mdc-text-field__input" id="input-pref-size-height">
+                                <input type="number" inputmode="numeric" class="mdc-text-field__input" id="input-pref-size-height">
                                 <div class="mdc-notched-outline">
                                     <div class="mdc-notched-outline__leading"></div>
                                     <div class="mdc-notched-outline__notch">
@@ -93,7 +132,7 @@
                             </div>
                         </div>
                         <div class="mdc-text-field mdc-text-field--outlined margin-v--8 margin-h--4" id="field-pref-size-pixelRadio">
-                            <input type="number" pattern="[0-9]*" class="mdc-text-field__input" id="input-pref-size-pixelRadio">
+                            <input type="number" inputmode="numeric" class="mdc-text-field__input" id="input-pref-size-pixelRadio">
                             <div class="mdc-notched-outline">
                                 <div class="mdc-notched-outline__leading"></div>
                                 <div class="mdc-notched-outline__notch">

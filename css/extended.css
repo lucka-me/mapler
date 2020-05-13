@@ -31,6 +31,12 @@
 .flex-shrink--1 { flex-shrink: 1; }
 .flex-shrink--2 { flex-shrink: 1; }
 
+.scrollable { overflow-y: scroll !important; }
+.scrollable > * {
+    flex-shrink: 0;
+    flex-basis: auto;
+}
+
 /* Contents */
 html {
     height: 100%;
