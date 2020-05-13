@@ -1,10 +1,90 @@
-/* Map */
-.map-box {
-    height: 0px;
-    position: relative;
+:root {
+    --mdc-theme-primary: #29b6f6 !important;
+    --mdc-theme-secondary: #8bc34a !important;
 }
 
-#map {
-    position: absolute;
-    top: 0; left: 0; bottom: 0; right: 0;
+[hidden]{ display:none !important; }
+.fullwidth { width: 100%; }
+
+.margin-l--4 { margin-left: 4px; }
+.margin-l--8 { margin-left: 8px; }
+.margin-h--4 { margin-left: 4px; margin-right: 4px; }
+.margin-v--8 { margin-top: 8px; margin-bottom: 8px; }
+
+.padding--16 { padding: 16px; }
+
+/* Flexbox */
+.flex-box { display: flex; }
+.flex-box-row--wrap   { display: flex; flex-flow: row      wrap; }
+.flex-box-row--nowrap { display: flex; flex-flow: row    nowrap; }
+.flex-box-col         { display: flex; flex-flow: column nowrap; }
+/* Main Axis */
+.flex-justify-content--start   { justify-content: flex-start; }
+.flex-justify-content--between { justify-content: space-between; }
+.flex-justify-content--around  { justify-content: space-around; }
+/* Cross Axis */
+.flex-align-items--start    { align-items: flex-start; }
+.flex-align-items--center   { align-items: center; }
+.flex-align-items--baseline { align-items: baseline; }
+/* Item */
+.flex-grow--1 { flex-grow: 1; }
+.flex-shrink--1 { flex-shrink: 1; }
+.flex-shrink--2 { flex-shrink: 1; }
+
+/* Contents */
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    background-color: var(--mdc-theme-background) !important;
+}
+
+body.fullheight {
+    height: 100%;
+    min-height: 100%;
+    max-height: 100%;
+}
+
+a { color: var(--mdc-theme-text-primary-on-light); }
+
+.mdc-top-app-bar__title {
+    font-family: 'Lobster', var(--mdc-typography-headline6-font-family, var(--mdc-typography-font-family, Roboto, sans-serif)) !important;
+}
+
+.main-box {
+    flex: 1;
+    display: flex;
+    min-height: 0%;
+    flex-flow: row wrap;
+}
+
+/* Map */
+#map-main {
+    flex: 2;
+    height: 100%;
+    min-width: 300px;
+}
+
+/* FAB */
+#fab-snapshot {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+}
+
+/* Switch */
+.mdc-switch-box {
+    padding: 4px 0px;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+
+.mdc-switch-box > label {
+    margin-left: 1em;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
 }
