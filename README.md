@@ -8,7 +8,7 @@ Web app to make map as wallpaper, under development. Android app is open sourced
 Finally I can change my wallpaper again, after two years, [Read more](https://lucka.moe/2018/07/23/wallmapper/ "Wallmapper | Lucka") (Chinese).
 
 ## Features
-- Generate image from map in any size, with styles created with [Mapbox Studio](https://www.mapbox.com/mapbox-studio/)
+- Generate image from map in any size, with styles created with [Mapbox Studio](https://www.mapbox.com/mapbox-studio/).
 
 ## Dependencies
 - [Mapbox GL JS](https://www.mapbox.com/help/how-web-apps-work/#mapbox-gl-js-1)<sup>`0.3.0~`</sup>  
@@ -18,12 +18,14 @@ Finally I can change my wallpaper again, after two years, [Read more](https://lu
 
 <details><summary>Previous</summary>
 <p>
+
 - [Lucka's CSS](https://github.com/lucka-me/toolkit/tree/master/Web/CSS)<sup>`~0.4.x`</sup>    
   Provides basic stylesheet for the page.
 - [Leaflet](https://leafletjs.com/examples/quick-start/)<sup>`0.2.x`</sup>  
   Provides way to display the map
 - [leaflet-image](https://github.com/mapbox/leaflet-image)<sup>`0.2.x`</sup>  
   Provides way to convert map to image
+
 </p>
 </details>
 
