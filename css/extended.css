@@ -71,7 +71,8 @@ a { color: var(--mdc-theme-text-primary-on-light); }
 #fab-snapshot {
     position: fixed;
     bottom: 2rem;
-    right: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 /* Switch */
