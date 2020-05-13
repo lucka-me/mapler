@@ -11,7 +11,7 @@ Finally I can change my wallpaper again, after two years, [Read more](https://lu
 - Generate image from map in any size, with styles created with [Mapbox Studio](https://www.mapbox.com/mapbox-studio/).
 
 ## Dependencies
-- [Mapbox GL JS](https://www.mapbox.com/help/how-web-apps-work/#mapbox-gl-js-1)<sup>`0.3.0~`</sup>  
+- [Mapbox GL JS](https://docs.mapbox.com/mapbox-gl-js/overview/)<sup>`0.3.0~`</sup>  
   Provides way to display the map
 - [Material Components Web](https://github.com/material-components/material-components-web)<sup>`0.5.0~`</sup>  
   Provides Material Design UI.
