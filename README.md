@@ -30,7 +30,6 @@ Finally I can change my wallpaper again, after two years, [Read more](https://lu
 </details>
 
 ## To-Do
-- [ ] Set coordinates and zoom
 - [ ] Add new styles from URI
 
 ## Changelog
