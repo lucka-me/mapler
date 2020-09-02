@@ -1,11 +1,12 @@
-<h1 align=center><img src="./src/banner.svg" link="#"></img></h1>
+# ![](./assets/banner.svg)
 
-[![Release](https://img.shields.io/github/v/release/lucka-me/mapler?include_prereleases)](https://github.com/lucka-me/mapler/releases/latest "Last release") [![Author](https://img.shields.io/website?down_message=offline&up_message=online&url=https%3A%2F%2Flucka.moe%2Fmapler)](https://lucka.moe/mapler "Demo") [![](https://img.shields.io/badge/author-Lucka-2578B5.svg)](https://lucka.moe "Author") [![License](https://img.shields.io/github/license/lucka-me/mapler)](./LICENSE "License")  
-![](https://img.shields.io/badge/safari-support-brightgreen.svg) ![](https://img.shields.io/badge/chrome-support-brightgreen.svg) ![](https://img.shields.io/badge/firefox-support-brightgreen.svg)<!-- ![](https://img.shields.io/badge/edge-support-brightgreen.svg) ![](https://img.shields.io/badge/ie-broken-red.svg) ![](https://img.shields.io/badge/opera-support-brightgreen.svg)-->
+[![Release](https://img.shields.io/github/v/release/lucka-me/mapler)](https://github.com/lucka-me/mapler/releases/latest "Last release") [![Author](https://img.shields.io/website?url=https%3A%2F%2Flucka.moe%2Fmapler)](https://lucka.moe/mapler "Website") [![License](https://img.shields.io/github/license/lucka-me/mapler)](./LICENSE "License")
 
-Web app to make map as wallpaper, under development. Android app is [here](https://github.com/lucka-me/mapler-android).
+Web app to make map as wallpaper, under development. Native Android app is [available](https://github.com/lucka-me/mapler-android).
 
 Finally I can change my wallpaper again, after two years, [read more](https://lucka.moe/2018/07/23/wallmapper/ "Wallmapper | Lucka") (Chinese).
+
+We are working on migrating to Webpack and TypeScript, the website and old code are available in `legacy` branch.
 
 ## Features
 - Generate image from map in any size, with styles created with [Mapbox Studio](https://www.mapbox.com/mapbox-studio/).
