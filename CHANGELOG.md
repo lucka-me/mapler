@@ -1,6 +1,17 @@
 # Changelog
 
 ```markdown
+## [0.6.0] - 2020-TBA
+
+### Added
+- Styles: Blueprint and Frank
+
+### Changed
+- Build with Webpack
+- Migrate to TypeScript
+```
+
+```markdown
 ## [0.5.0] - 2020-05-13
 ### Added
 - Set bearing and tilt

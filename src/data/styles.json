@@ -17,6 +17,8 @@
     { "uri": "mapbox://styles/mapbox/cj3kbeqzo00022smj7akz3o1e"   , "title": "Moonlight" },
     { "uri": "mapbox://styles/mapbox/cjtep62gq54l21frr1whf27ak"   , "title": "Mineral" },
     { "uri": "mapbox://styles/mapbox/cj4k8wmwy5lbt2smsigkbh18e"   , "title": "Standard" },
+    { "uri": "mapbox://styles/mapbox-map-design/ck40ed2go56yr1cp7bbsalr1c"   , "title": "Blueprint" },
+    { "uri": "mapbox://styles/mapbox-map-design/ck3zxbv499umj1cscx9sbymev"   , "title": "Frank" },
 
     { "uri": "mapbox://styles/lucka-me/cjjvmr0mn5csl2rmx5cbgmb0y" , "title": "Dark" },
     { "uri": "mapbox://styles/lucka-me/cjjzm06vz0cwl2rnnzgdgkf7j" , "title": "Hack" }
