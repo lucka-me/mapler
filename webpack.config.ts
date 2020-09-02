@@ -117,6 +117,11 @@ module.exports = {
           style:  'mapbox-gl.min.css',
         },
         {
+          name:   'material-components-web',
+          cssOnly:  true,
+          style:  'material-components-web.min.css',
+        },
+        {
           name:     '@fortawesome/fontawesome-free',
           cdn:      'font-awesome',
           cssOnly:  true,

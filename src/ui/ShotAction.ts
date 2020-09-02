@@ -16,13 +16,20 @@ export default class ShotAction extends UIKitPrototype {
 
     render() {
         const element = Eli.build('button', {
-            classText: 'mdc-fab mdc-fab--extended'
+            className: 'mdc-fab mdc-fab--extended',
+            cssText: [
+                'position: fixed',
+                'bottom: 2rem',
+                'left: 50%',
+                'transform: translateX(-50%)'
+            ].join(';'),
         }, [
-            Eli.build('div', { classText: 'mdc-fab__ripple' }),
-            Eli.build('span', { classText: 'mdc-fab__icon fa fa-fw' }, [ '&#xf030' ]),
-            Eli.build('span', { classText: 'mdc-fab__label' }, [ 'Snapshot' ] ),
+            Eli.build('div', { className: 'mdc-fab__ripple' }),
+            Eli.build('span', { className: 'mdc-fab__icon fa', innerHTML: '&#xf030' }),
+            Eli.build('span', { className: 'mdc-fab__label' }, [ 'Snapshot' ] ),
         ]);
         this.parent.append(element);
+        console.log(element);
         this.ctrl = new MDCRipple(element);
     }
 }

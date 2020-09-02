@@ -1,6 +1,6 @@
 import ShotAction from "./ShotAction";
 
-class UIKit {
+export default class UIKit {
 
     shotAction = new ShotAction();
     

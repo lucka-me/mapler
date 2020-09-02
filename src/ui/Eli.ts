@@ -5,7 +5,7 @@ export default class Eli {
     /**
      * Build a HTML element
      * @param tag Element tag
-     * @param options Options, like cssText, dataset
+     * @param options Options, like className, cssText, dataset
      * @param children List of children or text string
      * @returns The element
      */
