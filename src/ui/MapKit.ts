@@ -15,21 +15,11 @@ export default class MapKit extends UIKitPrototype {
     }
 
     render() {
-        const mapContainer = Eli.build('div', {
-            cssText: 'flex: 2; height: 100%; min-width: 300px;'
-        });
-        const element = Eli.build('div', {
-            cssText: [
-                'flex: 1',
-                'display: flex',
-                'min-height: 0%',
-                'flex-flow: row wrap'
-            ].join(';'),
-        }, [ mapContainer ]);
+        const element = Eli.build('div', { cssText: 'flex: 1' });
         this.parent.append(element);
 
         this.ctrl = new mapboxgl.Map({
-            container: mapContainer,
+            container: element,
         });
         this.ctrl.addControl(new mapboxgl.NavigationControl());
         this.ctrl.addControl(
