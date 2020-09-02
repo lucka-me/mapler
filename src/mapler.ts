@@ -30,46 +30,6 @@ const value = {
 };
 
 const ui = {
-    appBar: {
-        style: {
-            menu: null,
-            label: document.getElementById("label-button-appBar-style"),
-            init: () => {
-                ui.appBar.style.label.innerHTML = ui.map.getStyleFromPreference().title;
-                const menuElement = document.querySelector("#menu-style");
-                const menuList = menuElement.querySelector("ul");
-                for (const index in value.string.mapbox.style) {
-                    const menuItem = document.createElement("ul");
-                    menuItem.className = "mdc-list-item";
-                    menuItem.setAttribute("role", "menuitem");
-                    menuItem.dataset.code = index;
-                    const menuLabel = document.createElement("span");
-                    menuLabel.className = "mdc-list-item__text";
-                    menuLabel.innerHTML = value.string.mapbox.style[index].title;
-                    menuItem.appendChild(menuLabel);
-                    menuList.appendChild(menuItem);
-                }
-                ui.appBar.style.menu = new mdc.menu.MDCMenu(menuElement);
-                ui.appBar.style.menu.listen("MDCMenu:selected", ui.appBar.style.onSelected);
-                const menuButton = new mdc.ripple.MDCRipple(document.querySelector("#button-appBar-style"));
-                menuButton.listen("click", () => ui.appBar.style.menu.open = true );
-            },
-            onSelected: (event) => {
-                const index = event.detail.item.dataset.code;
-                preference.set(value.preference.misc.selectedStyle, index);
-                ui.appBar.style.label.innerHTML = value.string.mapbox.style[index].title;
-                ui.map.setStyle(value.string.mapbox.style[index].uri);
-            },
-        },
-        init: () => {
-            ui.appBar.style.init();
-
-            const buttonElementPref = document.querySelector('#button-appBar-preference');
-            const buttonPref = new mdc.ripple.MDCRipple(buttonElementPref);
-            buttonPref.unbounded = true;
-            buttonPref.listen('click', () => ui.dialog.preference.ctrl.open());
-        },
-    },
     dialog: {
         preference: {
             ctrl: new mdc.dialog.MDCDialog(document.querySelector('#dialog-preference')),
