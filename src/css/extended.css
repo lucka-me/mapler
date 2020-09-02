@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:wght@300;400;500&display=swap');
 @import url('./dark.css');
 
 :root {
@@ -48,9 +48,7 @@ html {
 body {
     margin: 0;
     background-color: var(--mdc-theme-background) !important;
-}
 
-body.fullheight {
     height: 100%;
     min-height: 100%;
     max-height: 100%;
