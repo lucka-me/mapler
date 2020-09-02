@@ -62,28 +62,6 @@ a { color: var(--mdc-theme-text-primary-on-light); }
     font-family: 'Lobster', var(--mdc-typography-headline6-font-family, var(--mdc-typography-font-family, Roboto, sans-serif)) !important;
 }
 
-.main-box {
-    flex: 1;
-    display: flex;
-    min-height: 0%;
-    flex-flow: row wrap;
-}
-
-/* Map */
-#map-main {
-    flex: 2;
-    height: 100%;
-    min-width: 300px;
-}
-
-/* FAB */
-#fab-snapshot {
-    position: fixed;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
 /* Switch */
 .mdc-switch-box {
     padding: 4px 0px;

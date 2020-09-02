@@ -11,9 +11,6 @@ const value = {
         github: {
             releaseUrl: 'https://api.github.com/repos/lucka-me/mapler/releases/latest',
         },
-        mapbox: {
-            accessToken: 'pk.eyJ1IjoibHVja2EtbWUiLCJhIjoiY2poa2xyN3J4MGJ0bTM3bjV5bjdvNDh3ZSJ9.QztckHrHyEuKp5_pVXmpIw',
-        },
     },
     preference: {
         location: {
@@ -176,7 +173,6 @@ const ui = {
     map: {
         ctrl: null,
         init: () => {
-            mapboxgl.accessToken = value.string.mapbox.accessToken;
             ui.map.ctrl = new mapboxgl.Map({ 
                 container: 'map-main',
                 style: ui.map.getStyleFromPreference().uri,
@@ -194,13 +190,6 @@ const ui = {
                 }
                 ui.map.ctrl.resize();
             });
-            ui.map.ctrl.addControl(new mapboxgl.NavigationControl());
-            ui.map.ctrl.addControl(
-                new mapboxgl.GeolocateControl({
-                    positionOptions: { enableHighAccuracy: true },
-                    showUserLocation: false
-                })
-            );
             ui.map.ctrl.on('idle', _ => ui.map.onIdle() );
         },
         onIdle: () => {
