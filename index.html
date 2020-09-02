@@ -1,33 +1,27 @@
 <!DOCTYPE html>
-<html>
-<meta charset="utf-8" />
+<html lang="en-US">
 
 <head>
+    <meta charset="utf-8" />
     <title>Mapler</title>
-    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <meta name=”theme-color” content="#29b6f6" />
-    <link rel="apple-touch-icon" sizes="120x120" href="./src/icon-120.png" />
-    <link rel="apple-touch-icon" sizes="152x152" href="./src/icon-152.png" />
-    <link rel="apple-touch-icon" sizes="167x167" href="./src/icon-167.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="./src/icon-180.png" />
+    <% for (const [name, content] of Object.entries(htmlWebpackPlugin.options.meta)) { %>
+    <meta name="<%= name %>" content="<%= content %>"/>
+    <% } %>
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/icon-180.png" />
     <link rel="manifest" href="./manifest.json" />
-    <!-- Stylesheet -->
-    <link type="text/css" rel="stylesheet" href="./css/extended.css" />
-    <link type="text/css" rel="stylesheet" href="./css/dark.css" />
-    <!-- MDC -->
-    <link rel="stylesheet" href="https://unpkg.com/material-components-web@5.1.0/dist/material-components-web.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500|Material+Icons|Lobster" />
-    <!-- Mapbox -->
-    <link rel="stylesheet" href="https://api.tiles.mapbox.com/mapbox-gl-js/v1.9.0/mapbox-gl.css" />
+    
+    <!-- CSS -->
+    <% for (const css of htmlWebpackPlugin.files.css) { %>
+    <link href="<%= css %>" rel="stylesheet">
+    <% } %>
     <!-- Scripts -->
-    <script defer src="https://unpkg.com/material-components-web@5.1.0/dist/material-components-web.min.js"></script>
-    <script defer type="text/javascript" src="./lib/main.js" onload="ui.init()"></script>
-    <script defer src="https://api.tiles.mapbox.com/mapbox-gl-js/v1.9.0/mapbox-gl.js" onload="ui.map.init()"></script>
+    <% for (const js of htmlWebpackPlugin.files.js) { %>
+    <script defer src="<%= js %>"></script>
+    <% } %>
 </head>
 
 <body class="mdc-typography fullheight flex-box-col">
+    <noscript>Mapler requires JavaScript.</noscript>
     <header class="mdc-top-app-bar">
         <div class="mdc-top-app-bar__row">
             <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
