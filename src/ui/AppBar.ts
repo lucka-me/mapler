@@ -5,10 +5,22 @@ import { MDCTopAppBar } from "@material/top-app-bar";
 import UIKitPrototype, { Eli } from './prototype';
 
 /**
+ * Events for {@link StyleMenu}
+ */
+interface StyleMenuEvents {
+    selectStyle: (index: number, title: string) => void,
+}
+
+/**
  * The style menu component
  */
 class StyleMenu extends UIKitPrototype {
+
     ctrl: MDCMenu = null;
+
+    events: StyleMenuEvents = {
+        selectStyle: () => { },
+    };
 
     init(parent: HTMLElement) {
         super.init(parent);
@@ -27,7 +39,7 @@ class StyleMenu extends UIKitPrototype {
             const element = Eli.build('li', {
                 className: 'mdc-list-item',
                 role: 'menuitem',
-                //dataset: { code : value.key },
+                //dataset: { code : index },
                 hidden: true,
             }, [
                 Eli.build('span', {
@@ -50,7 +62,7 @@ class StyleMenu extends UIKitPrototype {
         this.ctrl.listen(
             'MDCMenu:selected',
             (event: CustomEvent) => {
-                event.detail.item.dataset.code;
+                const index = event.detail.item.dataset.code;
             }
         );
     }
@@ -61,13 +73,18 @@ class StyleMenu extends UIKitPrototype {
 }
 
 /**
- * Events for AppBar
+ * Events for {@link AppBar}
  */
 interface AppBarEvent {
     /**
      * Triggered when click the preference button
      */
     openPreference: () => void,
+    /**
+     * Triggered when style selected
+     * @param index The index of selected style
+     */
+    selectStyle: (index: number) => void,
 }
 
 /**
@@ -79,6 +96,7 @@ export default class AppBar extends UIKitPrototype {
 
     events: AppBarEvent = {
         openPreference: () => { },
+        selectStyle:    () => { },
     };
 
     init(parent: HTMLElement) {
@@ -106,18 +124,21 @@ export default class AppBar extends UIKitPrototype {
         ripplePreference.listen('click', () => this.events.openPreference());
 
         // Button: Style
+        const elementMenuLabel = Eli.build('span', {
+            className: 'mdc-button__label', innerHTML: 'Style'
+        });
         const elementMenu = Eli.build('button', {
             className: 'mdc-button mdc-button--unelevated',
-        }, [
-            Eli.build('span', {
-                className: 'mdc-button__label', innerHTML: 'Style'
-            }),
-        ]);
+        }, [ elementMenuLabel ]);
         sectionActions.append(elementMenu);
         const rippleMenu = new MDCRipple(elementMenu);
 
         // StyleMenu
         this.menu.init(sectionActions);
+        this.menu.events.selectStyle = (index, title) => {
+            elementMenuLabel.innerHTML = title;
+            this.events.selectStyle(index);
+        };
         rippleMenu.listen('click', () => this.menu.open() );
 
         // App bar
