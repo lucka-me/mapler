@@ -1,4 +1,14 @@
-class Eli {
+/**
+ * A toolkit to build HTML elements
+ */
+export default class Eli {
+    /**
+     * Build a HTML element
+     * @param tag Element tag
+     * @param options Options, like cssText, dataset
+     * @param children List of children or text string
+     * @returns The element
+     */
     static build<K extends keyof HTMLElementTagNameMap>(
         tag: K, options: any, children?: Array<HTMLElement | string>
     ): HTMLElementTagNameMap[K] {
@@ -22,5 +32,3 @@ class Eli {
         return element;
     }
 };
-
-export default Eli;
