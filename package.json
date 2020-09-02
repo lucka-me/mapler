@@ -1,0 +1,18 @@
+{
+  "name": "mapler",
+  "version": "0.6.0",
+  "description": "Make map as wallpaper",
+  "main": ".",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "start": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:lucka-me/mapler.git"
+  },
+  "author": "lucka-me",
+  "license": "MIT"
+}

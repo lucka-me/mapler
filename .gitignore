@@ -1,0 +1,4 @@
+/node_modules
+/dist
+/src/locales/index.ts
+.DS_Store
