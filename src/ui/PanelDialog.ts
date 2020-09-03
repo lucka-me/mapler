@@ -250,22 +250,22 @@ export default class PanelDialog extends UIKitPrototype {
         let height  = pixelRatio * window.screen.height;
 
         if (this.ctrl) {
-            width = parseInt(this.panelCtrl.size.width.value);
-            if (isNaN(width)) {
-                width = window.screen.width;
-                this.panelCtrl.size.width.value = `${width}`;
-            }
-
-            height = parseInt(this.panelCtrl.size.height.value);
-            if (isNaN(height)) {
-                height = window.screen.height;
-                this.panelCtrl.size.height.value = `${height}`;
-            }
-
             pixelRatio = parseFloat(this.panelCtrl.size.pixelRatio.value);
             if (isNaN(pixelRatio)) {
                 pixelRatio = window.devicePixelRatio;
                 this.panelCtrl.size.pixelRatio.value = `${pixelRatio}`;
+            }
+
+            width = parseInt(this.panelCtrl.size.width.value);
+            if (isNaN(width) || width < 1) {
+                width = pixelRatio * window.screen.width;
+                this.panelCtrl.size.width.value = `${width}`;
+            }
+
+            height = parseInt(this.panelCtrl.size.height.value);
+            if (isNaN(height) || height < 1) {
+                height = pixelRatio * window.screen.height;
+                this.panelCtrl.size.height.value = `${height}`;
             }
         }
 
