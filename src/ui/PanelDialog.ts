@@ -245,22 +245,28 @@ export default class PanelDialog extends UIKitPrototype {
     }
 
     get size() {
-        let width = parseInt(this.panelCtrl.size.width.value);
-        if (isNaN(width)) {
-            width = window.screen.width;
-            this.panelCtrl.size.width.value = `${width}`;
-        }
+        let pixelRatio = window.devicePixelRatio;
+        let width   = pixelRatio * window.screen.width;
+        let height  = pixelRatio * window.screen.height;
 
-        let height = parseInt(this.panelCtrl.size.height.value);
-        if (isNaN(height)) {
-            height = window.screen.height;
-            this.panelCtrl.size.height.value = `${height}`;
-        }
+        if (this.ctrl) {
+            width = parseInt(this.panelCtrl.size.width.value);
+            if (isNaN(width)) {
+                width = window.screen.width;
+                this.panelCtrl.size.width.value = `${width}`;
+            }
 
-        let pixelRatio = parseFloat(this.panelCtrl.size.pixelRatio.value);
-        if (isNaN(pixelRatio)) {
-            pixelRatio = window.devicePixelRatio;
-            this.panelCtrl.size.pixelRatio.value = `${pixelRatio}`;
+            height = parseInt(this.panelCtrl.size.height.value);
+            if (isNaN(height)) {
+                height = window.screen.height;
+                this.panelCtrl.size.height.value = `${height}`;
+            }
+
+            pixelRatio = parseFloat(this.panelCtrl.size.pixelRatio.value);
+            if (isNaN(pixelRatio)) {
+                pixelRatio = window.devicePixelRatio;
+                this.panelCtrl.size.pixelRatio.value = `${pixelRatio}`;
+            }
         }
 
         return {
