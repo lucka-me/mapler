@@ -23,6 +23,7 @@ interface MapKitEvents {
  */
 export default class MapKit extends UIKitPrototype {
 
+    container: HTMLElement = null;
     ctrl: mapboxgl.Map = null;
 
     events: MapKitEvents = {
@@ -36,11 +37,11 @@ export default class MapKit extends UIKitPrototype {
     }
 
     render() {
-        const element = Eli.build('div', { cssText: 'flex: 1' });
-        this.parent.append(element);
+        this.container = Eli.build('div', { cssText: 'flex: 1' });
+        this.parent.append(this.container);
 
         this.ctrl = new mapboxgl.Map({
-            container: element,
+            container: this.container,
             style: StyleKit.selectedStyle.uri,
             center: [
                 Preference.get('mapler.camera.lon'),
@@ -49,6 +50,7 @@ export default class MapKit extends UIKitPrototype {
             zoom: Preference.get('mapler.camera.zoom'),
             bearing: Preference.get('mapler.camera.bearing'),
             pitch: Preference.get('mapler.camera.tilt'),
+            preserveDrawingBuffer: true,
         });
         this.ctrl.once('load', () => {
             if (!Preference.get('mapler.display.labels')) {
@@ -128,7 +130,30 @@ export default class MapKit extends UIKitPrototype {
     /**
      * Take snapshot
      */
-    shot(width: number, height: number, pixelRatio: number) {
-
+    shot(width: number, height: number, pixelRatio: number, finished: () => void) {
+        const bounds = this.ctrl.getBounds();
+        this.container.style.cssText = [
+            'position: fixed', 'top: 0', 'left:0;',
+            `width: ${width / pixelRatio}px`,
+            `height: ${height / pixelRatio}px`
+        ].join(';');
+        this.ctrl.resize();
+        this.ctrl.fitBounds(bounds);
+        this.ctrl.once('idle', () => {
+            this.ctrl.getCanvas().toBlob((blob) => {
+                const element = Eli.build('a', {
+                    href: URL.createObjectURL(blob),
+                    download: 'Mapler.png',
+                    cssText: 'display:none'
+                });
+                this.parent.append(element);
+                element.click();
+                this.parent.removeChild(element);
+                this.container.style.cssText = 'flex: 1';
+                this.ctrl.resize();
+                this.ctrl.fitBounds(bounds);
+                finished();
+            });
+        });
     }
 }
