@@ -30,6 +30,12 @@ class PanelControl {
         bearing:    null as MDCTextField,
         tilt:       null as MDCTextField,
     };
+
+    size = {
+        width:      null as MDCTextField,
+        height:     null as MDCTextField,
+        pixelRatio: null as MDCTextField,
+    }
 }
 
 /**
@@ -61,11 +67,11 @@ export default class PanelDialog extends UIKitPrototype {
         contents.push(this.buildHeadline('Camera'));
         const contentsCamera: Array<HTMLElement> = [];
         // Preference: Camera - Location
-        const elementCameraLongitude = this.buildTextfield('Longitude', 'input-pref-camera-lon');
+        const elementCameraLongitude = this.buildTextfield('text', 'decimal', 'Longitude', 'input-pref-camera-lon');
         this.panelCtrl.camera.longitude = new MDCTextField(elementCameraLongitude);
         this.panelCtrl.camera.longitude.value = Preference.get('mapler.camera.lon');
 
-        const elementCameraLatitude = this.buildTextfield('Latitude ', 'input-pref-camera-lat');
+        const elementCameraLatitude = this.buildTextfield('text', 'decimal', 'Latitude ', 'input-pref-camera-lat');
         this.panelCtrl.camera.latitude = new MDCTextField(elementCameraLatitude);
         this.panelCtrl.camera.latitude.value = Preference.get('mapler.camera.lat');
 
@@ -76,15 +82,15 @@ export default class PanelDialog extends UIKitPrototype {
         ]));
 
         // Preference: Camera - Others
-        const elementCameraZoom = this.buildTextfield('Zoom', 'input-pref-camera-zoom');
+        const elementCameraZoom = this.buildTextfield('text', 'decimal', 'Zoom', 'input-pref-camera-zoom');
         this.panelCtrl.camera.zoom = new MDCTextField(elementCameraZoom);
         this.panelCtrl.camera.zoom.value = Preference.get('mapler.camera.zoom');
 
-        const elementCameraBearing = this.buildTextfield('Bearing', 'input-pref-camera-bearing');
+        const elementCameraBearing = this.buildTextfield('text', 'decimal', 'Bearing', 'input-pref-camera-bearing');
         this.panelCtrl.camera.bearing = new MDCTextField(elementCameraBearing);
         this.panelCtrl.camera.bearing.value = Preference.get('mapler.camera.bearing');
 
-        const elementCameraTilt = this.buildTextfield('Tilt', 'input-pref-camera-tilt');
+        const elementCameraTilt = this.buildTextfield('text', 'decimal', 'Tilt', 'input-pref-camera-tilt');
         this.panelCtrl.camera.tilt = new MDCTextField(elementCameraTilt);
         this.panelCtrl.camera.tilt.value = Preference.get('mapler.camera.tilt');
 
@@ -108,6 +114,22 @@ export default class PanelDialog extends UIKitPrototype {
 
         // Preference: Size
         contents.push(this.buildHeadline('Size'));
+        const pixelRatio = window.devicePixelRatio;
+
+        const elementSizeWidth = this.buildTextfield('number', 'numeric', 'Width', 'input-pref-size-width');
+        contents.push(elementSizeWidth);
+        this.panelCtrl.size.width = new MDCTextField(elementSizeWidth);
+        this.panelCtrl.size.width.value = `${window.screen.width * pixelRatio}`;
+
+        const elementSizeHeight = this.buildTextfield('number', 'numeric', 'Height', 'input-pref-size-height');
+        contents.push(elementSizeHeight);
+        this.panelCtrl.size.height = new MDCTextField(elementSizeHeight);
+        this.panelCtrl.size.height.value = `${window.screen.height * pixelRatio}`;
+
+        const elementSizePixelRatio = this.buildTextfield('number', 'numeric', 'Pixel Ratio', 'input-pref-size-pixelRatio');
+        contents.push(elementSizePixelRatio);
+        this.panelCtrl.size.pixelRatio = new MDCTextField(elementSizePixelRatio);
+        this.panelCtrl.size.pixelRatio.value = `${pixelRatio}`;
 
         // Preference: Display
         contents.push(this.buildHeadline('Display'));
@@ -207,16 +229,18 @@ export default class PanelDialog extends UIKitPrototype {
 
     /**
      * Build a MDC textfield element
+     * @param type Type of the `<input>`, like `text` or `number`
+     * @param inputmode Input mode of the `<input>`, like `decimal` or `number`
      * @param label Text displayed in label
      * @param id Id for `<input>` and `<label>`
      * @returns The headline element
      */
-    private buildTextfield(label: string, id: string): HTMLDivElement {
+    private buildTextfield(type: string, inputmode: string, label: string, id: string): HTMLDivElement {
         return Eli.build('div', {
             className: 'mdc-text-field mdc-text-field--outlined margin-v--8 margin-h--4'
         }, [
             Eli.build('input', {
-                type: 'text', inputmode: 'decimal', id: id,
+                type: type, inputmode: inputmode, id: id,
                 className: 'mdc-text-field__input'
             }),
             Eli.build('div', { className: 'mdc-notched-outline' }, [
