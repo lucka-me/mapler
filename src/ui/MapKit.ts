@@ -41,7 +41,7 @@ export default class MapKit extends UIKitPrototype {
 
         this.ctrl = new mapboxgl.Map({
             container: element,
-            style: StyleKit.getFromPreference().uri,
+            style: StyleKit.selectedStyle.uri,
             center: [
                 Preference.get('mapler.location.lon'),
                 Preference.get('mapler.location.lat')
@@ -96,10 +96,10 @@ export default class MapKit extends UIKitPrototype {
 
     /**
      * Set map style
-     * @param uri URI of the style
+     * @param index Index of the style
      */
-    setStyle(uri: string) {
-        this.ctrl.setStyle(uri);
+    setStyle(index: number) {
+        this.ctrl.setStyle(StyleKit.select(index).uri);
         if (!Preference.get('mapler.display.labels')) {
             this.ctrl.once('styledata', _ => {
                 this.setLabels(false);

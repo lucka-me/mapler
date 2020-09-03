@@ -21,6 +21,7 @@ export default class UIKit {
 
         // MapKit
         this.map.init(body);
+        this.appBar.events.selectStyle = (index) => this.map.setStyle(index);
 
         // ShotAction
         this.shotAction.init(body);

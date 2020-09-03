@@ -62,8 +62,11 @@ class StyleMenu extends UIKitPrototype {
         this.ctrl.listen(
             'MDCMenu:selected',
             (event: CustomEvent) => {
-                const index = event.detail.item.dataset.code as number;
-                this.events.selectStyle(index, StyleKit.styles[index].title);
+                const item = event.detail.item as HTMLLIElement;
+                this.events.selectStyle(
+                    parseInt(item.dataset.code),
+                    item.querySelector('span').innerHTML
+                );
             }
         );
     }
@@ -127,7 +130,7 @@ export default class AppBar extends UIKitPrototype {
         // Button: Style
         const elementMenuLabel = Eli.build('span', {
             className: 'mdc-button__label',
-            innerHTML: StyleKit.getFromPreference().title
+            innerHTML: StyleKit.selectedStyle.title
         });
         const elementMenu = Eli.build('button', {
             className: 'mdc-button mdc-button--unelevated',
