@@ -31,4 +31,21 @@ export default class Eli {
         if (children) element.append(...children);
         return element;
     }
+
+    /**
+     * Build a hyper link element
+     * @param href URL 
+     * @param title Title
+     * @param text Text to display
+     * @returns the hyper link element
+     */
+    static link(href: string, title: string, text: string): HTMLAnchorElement {
+        return Eli.build('a', {
+            href: href,
+            title: title,
+            target: '_blank',
+            rel: 'noopener',
+            innerHTML: text,
+        });
+    }
 };
