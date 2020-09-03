@@ -244,6 +244,32 @@ export default class PanelDialog extends UIKitPrototype {
         this.ctrl.open();
     }
 
+    get size() {
+        let width = parseInt(this.panelCtrl.size.width.value);
+        if (isNaN(width)) {
+            width = window.screen.width;
+            this.panelCtrl.size.width.value = `${width}`;
+        }
+
+        let height = parseInt(this.panelCtrl.size.height.value);
+        if (isNaN(height)) {
+            height = window.screen.height;
+            this.panelCtrl.size.height.value = `${height}`;
+        }
+
+        let pixelRatio = parseFloat(this.panelCtrl.size.pixelRatio.value);
+        if (isNaN(pixelRatio)) {
+            pixelRatio = window.devicePixelRatio;
+            this.panelCtrl.size.pixelRatio.value = `${pixelRatio}`;
+        }
+
+        return {
+            width: width,
+            height: height,
+            pixelRatio: pixelRatio,
+        };
+    }
+
     /**
      * Update camera values
      * @param lon Longitude

@@ -24,9 +24,8 @@ export default class UIKit {
         // MapKit
         this.map.init(body);
 
-        // ShotAction
+        // ShotActions
         this.shotAction.init(body);
-        this.shotAction.events.click = () => this.map.shot();
 
         // PanelDialog
         this.panelDialog.init(body);
@@ -34,5 +33,10 @@ export default class UIKit {
 
         this.appBar.events.openPreference = () => this.panelDialog.open();
         this.appBar.events.selectStyle = (index) => this.map.setStyle(index);
+
+        this.shotAction.events.click = () => {
+            const size = this.panelDialog.size;
+            this.map.shot(size.width, size.height, size.pixelRatio);
+        };
     }
 }

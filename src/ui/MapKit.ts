@@ -128,7 +128,7 @@ export default class MapKit extends UIKitPrototype {
     /**
      * Take snapshot
      */
-    shot() {
+    shot(width: number, height: number, pixelRatio: number) {
 
     }
 }
