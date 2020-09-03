@@ -135,7 +135,7 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: 'index.html',
-      inject: false,
+      inject: true,
       scriptLoading: 'defer',
       chunks: [ 'mapler' ],
       filename: 'index.html',

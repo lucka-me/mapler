@@ -4,20 +4,8 @@
 <head>
     <meta charset="utf-8" />
     <title>Mapler</title>
-    <% for (const [name, content] of Object.entries(htmlWebpackPlugin.options.meta)) { %>
-    <meta name="<%= name %>" content="<%= content %>"/>
-    <% } %>
     <link rel="apple-touch-icon" sizes="180x180" href="./assets/icon-180.png" />
     <link rel="manifest" href="./manifest.json" />
-    
-    <!-- CSS -->
-    <% for (const css of htmlWebpackPlugin.files.css) { %>
-    <link href="<%= css %>" rel="stylesheet">
-    <% } %>
-    <!-- Scripts -->
-    <% for (const js of htmlWebpackPlugin.files.js) { %>
-    <script defer src="<%= js %>"></script>
-    <% } %>
 </head>
 
 <body>
