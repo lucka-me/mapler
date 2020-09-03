@@ -6,14 +6,6 @@ const ui = new UIKit();
 ui.init();
 
 /*
-const value = {
-    string: {
-        github: {
-            releaseUrl: 'https://api.github.com/repos/lucka-me/mapler/releases/latest',
-        },
-    },
-};
-
 const ui = {
     dialog: {
         preference: {

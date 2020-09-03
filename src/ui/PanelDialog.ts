@@ -4,6 +4,7 @@ import { MDCRipple } from "@material/ripple";
 import { MDCTextField } from "@material/textfield";
 
 import UIKitPrototype, { Eli } from "./prototype";
+import Preference from "../service/Preference";
 
 /**
  * Events for {@link PanelDialog}
@@ -60,25 +61,37 @@ export default class PanelDialog extends UIKitPrototype {
         contents.push(this.buildHeadline('Camera'));
         const contentsCamera: Array<HTMLElement> = [];
         // Preference: Camera - Location
-        const elementCameraLongitude = this.buildTextfield('Longitude', 'input-pref-location-lon');
+        const elementCameraLongitude = this.buildTextfield('Longitude', 'input-pref-camera-lon');
         this.panelCtrl.camera.longitude = new MDCTextField(elementCameraLongitude);
-        const elementCameraLatitude = this.buildTextfield('Latitude ', 'input-pref-location-lat');
+        this.panelCtrl.camera.longitude.value = Preference.get('mapler.camera.lon');
+
+        const elementCameraLatitude = this.buildTextfield('Latitude ', 'input-pref-camera-lat');
         this.panelCtrl.camera.latitude = new MDCTextField(elementCameraLatitude);
+        this.panelCtrl.camera.latitude.value = Preference.get('mapler.camera.lat');
+
         contentsCamera.push(Eli.build('div', {
             className: 'flex-box-row--nowrap flex-align-items--baseline'
         }, [
             elementCameraLongitude, elementCameraLatitude
         ]));
+
         // Preference: Camera - Others
-        const elementCameraZoom = this.buildTextfield('Zoom', 'input-pref-location-zoom');
+        const elementCameraZoom = this.buildTextfield('Zoom', 'input-pref-camera-zoom');
         this.panelCtrl.camera.zoom = new MDCTextField(elementCameraZoom);
-        const elementCameraBearing = this.buildTextfield('Bearing', 'input-pref-location-bearing');
+        this.panelCtrl.camera.zoom.value = Preference.get('mapler.camera.zoom');
+
+        const elementCameraBearing = this.buildTextfield('Bearing', 'input-pref-camera-bearing');
         this.panelCtrl.camera.bearing = new MDCTextField(elementCameraBearing);
-        const elementCameraTilt = this.buildTextfield('Tilt', 'input-pref-location-tilt');
+        this.panelCtrl.camera.bearing.value = Preference.get('mapler.camera.bearing');
+
+        const elementCameraTilt = this.buildTextfield('Tilt', 'input-pref-camera-tilt');
         this.panelCtrl.camera.tilt = new MDCTextField(elementCameraTilt);
+        this.panelCtrl.camera.tilt.value = Preference.get('mapler.camera.tilt');
+
         contentsCamera.push(
             elementCameraZoom, elementCameraBearing, elementCameraTilt
         );
+
         // Preference: Camera - Set
         const elementSet = Eli.build('button', {
             className: 'mdc-button mdc-button--unelevated margin-v--8 margin-h--4',
