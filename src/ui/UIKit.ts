@@ -34,12 +34,13 @@ export default class UIKit {
         this.appBar.events.openPreference = () => this.panelDialog.open();
         this.appBar.events.selectStyle = (index) => this.map.setStyle(index);
 
+        this.map.events.idle = (...args) => this.panelDialog.updateCamera(...args);
+
         this.shotAction.events.click = () => {
             this.shotAction.hide();
-            const size = this.panelDialog.size;
             this.map.shot(
-                size.width, size.height, size.pixelRatio,
-                () => this.shotAction.show()
+                () => this.shotAction.show(),
+                ...this.panelDialog.size
             );
         };
     }

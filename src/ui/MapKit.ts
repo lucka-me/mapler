@@ -129,8 +129,12 @@ export default class MapKit extends UIKitPrototype {
 
     /**
      * Take snapshot
+     * @param finished Callback triggered when file generated
+     * @param width Width of target device
+     * @param height Height of target device
+     * @param pixelRatio Pixel ratio of target device
      */
-    shot(width: number, height: number, pixelRatio: number, finished: () => void) {
+    shot(finished: () => void, width: number, height: number, pixelRatio: number) {
         const bounds = this.ctrl.getBounds();
         this.container.style.cssText = [
             'position: fixed', 'top: 0', 'left:0;',

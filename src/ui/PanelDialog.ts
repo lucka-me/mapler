@@ -244,7 +244,10 @@ export default class PanelDialog extends UIKitPrototype {
         this.ctrl.open();
     }
 
-    get size() {
+    /**
+     * Get the size values in `[width, height, pixelRatio]`
+     */
+    get size(): [number, number, number] {
         let pixelRatio = window.devicePixelRatio;
         let width   = pixelRatio * window.screen.width;
         let height  = pixelRatio * window.screen.height;
@@ -269,11 +272,7 @@ export default class PanelDialog extends UIKitPrototype {
             }
         }
 
-        return {
-            width: width,
-            height: height,
-            pixelRatio: pixelRatio,
-        };
+        return [width, height, pixelRatio];
     }
 
     /**
@@ -288,6 +287,8 @@ export default class PanelDialog extends UIKitPrototype {
         lon: number, lat: number,
         zoom: number, bearing: number, tilt: number
     ) {
+        if (!this.ctrl) return;
+
         this.panelCtrl.camera.longitude.value   = `${lon}`;
         this.panelCtrl.camera.latitude.value    = `${lat}`;
 
