@@ -1,9 +1,9 @@
 [
-    { "key": "mapler.location.lon", "def": 108.9435278 },
-    { "key": "mapler.location.lat", "def": 34.2651799 },
-    { "key": "mapler.location.zoom", "def": 12 },
-    { "key": "mapler.location.bearing", "def": 0 },
-    { "key": "mapler.location.tilt", "def": 0 },
+    { "key": "mapler.camera.lon", "def": 108.9435278 },
+    { "key": "mapler.camera.lat", "def": 34.2651799 },
+    { "key": "mapler.camera.zoom", "def": 12 },
+    { "key": "mapler.camera.bearing", "def": 0 },
+    { "key": "mapler.camera.tilt", "def": 0 },
     
     { "key": "mapler.display.labels", "def": true },
     

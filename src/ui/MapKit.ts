@@ -43,12 +43,12 @@ export default class MapKit extends UIKitPrototype {
             container: element,
             style: StyleKit.selectedStyle.uri,
             center: [
-                Preference.get('mapler.location.lon'),
-                Preference.get('mapler.location.lat')
+                Preference.get('mapler.camera.lon'),
+                Preference.get('mapler.camera.lat')
             ],
-            zoom: Preference.get('mapler.location.zoom'),
-            bearing: Preference.get('mapler.location.bearing'),
-            pitch: Preference.get('mapler.location.tilt'),
+            zoom: Preference.get('mapler.camera.zoom'),
+            bearing: Preference.get('mapler.camera.bearing'),
+            pitch: Preference.get('mapler.camera.tilt'),
         });
         this.ctrl.once('load', () => {
             if (!Preference.get('mapler.display.labels')) {
@@ -87,11 +87,11 @@ export default class MapKit extends UIKitPrototype {
 
         this.events.idle(center.lng, center.lat, zoom, bearing, tilt);
 
-        Preference.set('mapler.location.lon', center.lng);
-        Preference.set('mapler.location.lat', center.lat);
-        Preference.set('mapler.location.zoom', zoom);
-        Preference.set('mapler.location.bearing', bearing);
-        Preference.set('mapler.location.tilt', tilt);
+        Preference.set('mapler.camera.lon', center.lng);
+        Preference.set('mapler.camera.lat', center.lat);
+        Preference.set('mapler.camera.zoom', zoom);
+        Preference.set('mapler.camera.bearing', bearing);
+        Preference.set('mapler.camera.tilt', tilt);
     }
 
     /**
