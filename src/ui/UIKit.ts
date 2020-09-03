@@ -35,8 +35,12 @@ export default class UIKit {
         this.appBar.events.selectStyle = (index) => this.map.setStyle(index);
 
         this.shotAction.events.click = () => {
+            this.shotAction.hide();
             const size = this.panelDialog.size;
-            this.map.shot(size.width, size.height, size.pixelRatio);
+            this.map.shot(
+                size.width, size.height, size.pixelRatio,
+                () => this.shotAction.show()
+            );
         };
     }
 }

@@ -46,4 +46,12 @@ export default class ShotAction extends UIKitPrototype {
         this.ctrl = new MDCRipple(element);
         this.ctrl.listen('click', () => this.events.click());
     }
+
+    show() {
+        this.ctrl.root.classList.remove('mdc-fab--exited');
+    }
+
+    hide() {
+        this.ctrl.root.classList.add('mdc-fab--exited');
+    }
 }
