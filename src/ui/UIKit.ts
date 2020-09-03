@@ -27,9 +27,7 @@ export default class UIKit {
 
         // ShotAction
         this.shotAction.init(body);
-        this.shotAction.events.click = () => {
-            this.map.shot();
-        }
+        this.shotAction.events.click = () => this.map.shot();
 
         // PanelDialog
         this.panelDialog.init(body);

@@ -1,5 +1,7 @@
 import packageData from "../../package.json";
 import { MDCDialog } from "@material/dialog";
+import { MDCRipple } from "@material/ripple";
+import { MDCTextField } from "@material/textfield";
 
 import UIKitPrototype, { Eli } from "./prototype";
 
@@ -7,7 +9,26 @@ import UIKitPrototype, { Eli } from "./prototype";
  * Events for {@link PanelDialog}
  */
 interface PanelDialogEvents {
-    
+    /**
+     * Triggered when click the set button
+     */
+    setCamera: (
+        lon: number, lat: number,
+        zoom: number, bearing: number, tilt: number
+    ) => void;
+}
+
+/**
+ * Preference components for {@link PanelDialog}
+ */
+class PanelControl {
+    camera = {
+        longitude:  null as MDCTextField,
+        latitude:   null as MDCTextField,
+        zoom:       null as MDCTextField,
+        bearing:    null as MDCTextField,
+        tilt:       null as MDCTextField,
+    };
 }
 
 /**
@@ -15,10 +36,11 @@ interface PanelDialogEvents {
  */
 export default class PanelDialog extends UIKitPrototype {
 
-    ctrl: MDCDialog = null;
+    private ctrl: MDCDialog = null;
+    private panelCtrl = new PanelControl();
 
     events: PanelDialogEvents = {
-
+        setCamera: () => { }
     };
 
     render() {
@@ -36,6 +58,40 @@ export default class PanelDialog extends UIKitPrototype {
 
         // Preference: Camera
         contents.push(this.buildHeadline('Camera'));
+        const contentsCamera: Array<HTMLElement> = [];
+        // Preference: Camera - Location
+        const elementCameraLongitude = this.buildTextfield('Longitude', 'input-pref-location-lon');
+        this.panelCtrl.camera.longitude = new MDCTextField(elementCameraLongitude);
+        const elementCameraLatitude = this.buildTextfield('Latitude ', 'input-pref-location-lat');
+        this.panelCtrl.camera.latitude = new MDCTextField(elementCameraLatitude);
+        contentsCamera.push(Eli.build('div', {
+            className: 'flex-box-row--nowrap flex-align-items--baseline'
+        }, [
+            elementCameraLongitude, elementCameraLatitude
+        ]));
+        // Preference: Camera - Others
+        const elementCameraZoom = this.buildTextfield('Zoom', 'input-pref-location-zoom');
+        this.panelCtrl.camera.zoom = new MDCTextField(elementCameraZoom);
+        const elementCameraBearing = this.buildTextfield('Bearing', 'input-pref-location-bearing');
+        this.panelCtrl.camera.bearing = new MDCTextField(elementCameraBearing);
+        const elementCameraTilt = this.buildTextfield('Tilt', 'input-pref-location-tilt');
+        this.panelCtrl.camera.tilt = new MDCTextField(elementCameraTilt);
+        contentsCamera.push(
+            elementCameraZoom, elementCameraBearing, elementCameraTilt
+        );
+        // Preference: Camera - Set
+        const elementSet = Eli.build('button', {
+            className: 'mdc-button mdc-button--unelevated margin-v--8 margin-h--4',
+        }, [
+            Eli.build('span', { className: 'mdc-button__label', innerHTML: 'Set' })
+        ]);
+        const rippleSet = new MDCRipple(elementSet);
+        rippleSet.listen('click', () => this.onSetCamera());
+
+        // Build Preference: Camera
+        contents.push(Eli.build('div', {
+            className: 'flex-box-row--wrap flex-align-items--center'
+        }, contentsCamera));
 
         // Preference: Size
         contents.push(this.buildHeadline('Size'));
@@ -121,6 +177,10 @@ export default class PanelDialog extends UIKitPrototype {
         
     }
 
+    private onSetCamera() {
+
+    }
+
     /**
      * Build a headline element
      * @param text Text to display
@@ -130,5 +190,32 @@ export default class PanelDialog extends UIKitPrototype {
         return Eli.build('span', {
             className: 'mdc-typography--headline6', innerHTML: text
         });
+    }
+
+    /**
+     * Build a MDC textfield element
+     * @param label Text displayed in label
+     * @param id Id for `<input>` and `<label>`
+     * @returns The headline element
+     */
+    private buildTextfield(label: string, id: string): HTMLDivElement {
+        return Eli.build('div', {
+            className: 'mdc-text-field mdc-text-field--outlined margin-v--8 margin-h--4'
+        }, [
+            Eli.build('input', {
+                type: 'text', inputmode: 'decimal', id: id,
+                className: 'mdc-text-field__input'
+            }),
+            Eli.build('div', { className: 'mdc-notched-outline' }, [
+                Eli.build('div', { className: 'mdc-notched-outline__leading' }),
+                Eli.build('div', { className: 'mdc-notched-outline__notch' }, [
+                    Eli.build('label', {
+                        for: id, innerHTML: label,
+                        className: 'mdc-floating-label'
+                    })
+                ]),
+                Eli.build('div', { className: 'mdc-notched-outline__trailing' }),
+            ])
+        ]);
     }
 }
