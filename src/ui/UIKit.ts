@@ -23,7 +23,6 @@ export default class UIKit {
 
         // MapKit
         this.map.init(body);
-        this.appBar.events.selectStyle = (index) => this.map.setStyle(index);
 
         // ShotAction
         this.shotAction.init(body);
@@ -31,6 +30,9 @@ export default class UIKit {
 
         // PanelDialog
         this.panelDialog.init(body);
+        this.panelDialog.events.setLabels = (display) => this.map.setLabels(display);
+
         this.appBar.events.openPreference = () => this.panelDialog.open();
+        this.appBar.events.selectStyle = (index) => this.map.setStyle(index);
     }
 }

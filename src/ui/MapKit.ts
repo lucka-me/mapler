@@ -66,19 +66,6 @@ export default class MapKit extends UIKitPrototype {
         );
     }
 
-    /**
-     * Show or hide labels
-     * @param display Whether to display labels
-     */
-    setLabels(display: boolean) {
-        Preference.set('mapler.display.labels', display);
-        this.ctrl.getStyle().layers.forEach(layer => {
-            if (layer.type === 'symbol') {
-                this.ctrl.setLayoutProperty(layer.id, 'visibility', display ? 'visible' : 'none');
-            }
-        });
-    }
-
     private onIdle() {
         const center = this.ctrl.getCenter();
         const zoom = this.ctrl.getZoom();
@@ -92,6 +79,19 @@ export default class MapKit extends UIKitPrototype {
         Preference.set('mapler.camera.zoom', zoom);
         Preference.set('mapler.camera.bearing', bearing);
         Preference.set('mapler.camera.tilt', tilt);
+    }
+
+    /**
+     * Show or hide labels
+     * @param display Whether to display labels
+     */
+    setLabels(display: boolean) {
+        Preference.set('mapler.display.labels', display);
+        this.ctrl.getStyle().layers.forEach(layer => {
+            if (layer.type === 'symbol') {
+                this.ctrl.setLayoutProperty(layer.id, 'visibility', display ? 'visible' : 'none');
+            }
+        });
     }
 
     /**

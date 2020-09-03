@@ -1,6 +1,7 @@
 import packageData from "../../package.json";
 import { MDCDialog } from "@material/dialog";
 import { MDCRipple } from "@material/ripple";
+import { MDCSwitch } from "@material/switch";
 import { MDCTextField } from "@material/textfield";
 
 import UIKitPrototype, { Eli } from "./prototype";
@@ -17,6 +18,11 @@ interface PanelDialogEvents {
         lon: number, lat: number,
         zoom: number, bearing: number, tilt: number
     ) => void;
+
+    /**
+     * Triggered when switch the Labels switcher
+     */
+    setLabels: (display: boolean) => void;
 }
 
 /**
@@ -35,7 +41,11 @@ class PanelControl {
         width:      null as MDCTextField,
         height:     null as MDCTextField,
         pixelRatio: null as MDCTextField,
-    }
+    };
+
+    display = {
+        labels: null as MDCSwitch,
+    };
 }
 
 /**
@@ -47,7 +57,8 @@ export default class PanelDialog extends UIKitPrototype {
     private panelCtrl = new PanelControl();
 
     events: PanelDialogEvents = {
-        setCamera: () => { }
+        setCamera: () => { },
+        setLabels: () => { },
     };
 
     render() {
@@ -116,23 +127,59 @@ export default class PanelDialog extends UIKitPrototype {
         contents.push(this.buildHeadline('Size'));
         const pixelRatio = window.devicePixelRatio;
 
+        // Preference: Size - Width
         const elementSizeWidth = this.buildTextfield('number', 'numeric', 'Width', 'input-pref-size-width');
-        contents.push(elementSizeWidth);
+        
         this.panelCtrl.size.width = new MDCTextField(elementSizeWidth);
         this.panelCtrl.size.width.value = `${window.screen.width * pixelRatio}`;
 
+        // Preference: Size - Height
         const elementSizeHeight = this.buildTextfield('number', 'numeric', 'Height', 'input-pref-size-height');
-        contents.push(elementSizeHeight);
         this.panelCtrl.size.height = new MDCTextField(elementSizeHeight);
         this.panelCtrl.size.height.value = `${window.screen.height * pixelRatio}`;
 
+        // Preference: Size - Pixel Ratio
         const elementSizePixelRatio = this.buildTextfield('number', 'numeric', 'Pixel Ratio', 'input-pref-size-pixelRatio');
-        contents.push(elementSizePixelRatio);
         this.panelCtrl.size.pixelRatio = new MDCTextField(elementSizePixelRatio);
         this.panelCtrl.size.pixelRatio.value = `${pixelRatio}`;
 
+        contents.push(elementSizeWidth, elementSizeHeight, elementSizePixelRatio);
+
         // Preference: Display
         contents.push(this.buildHeadline('Display'));
+
+        // Preference: Display - Labels
+        const elementDisplayLabels = Eli.build('div', { className: 'mdc-switch' }, [
+            Eli.build('div', { className: 'mdc-switch__track' }),
+            Eli.build('div', {
+                className: 'mdc-switch__thumb-underlay',
+                id: 'input-pref-display-labels',
+            }, [
+                Eli.build('div', { className: 'mdc-switch__thumb' }, [
+                    Eli.build('input', {
+                        type: 'checkbox',
+                        className: 'mdc-switch__native-control',
+                        role: 'switch',
+                    }),
+                ]),
+            ]),
+        ]);
+        const containerDisplayLabels = Eli.build('div', {
+            className: 'mdc-switch-box margin-h--4',
+        }, [
+            elementDisplayLabels,
+            Eli.build('label', {
+                for: 'input-pref-display-labels',
+                title: 'Labels',
+                innerHTML: 'Labels',
+            })
+        ]);
+        this.panelCtrl.display.labels = new MDCSwitch(elementDisplayLabels);
+        this.panelCtrl.display.labels.checked = Preference.get('mapler.display.labels');
+        this.panelCtrl.display.labels.listen('change', () => {
+            this.events.setLabels(this.panelCtrl.display.labels.checked)
+        });
+        contents.push(containerDisplayLabels);
 
         // About
         contents.push(this.buildHeadline('About'));
