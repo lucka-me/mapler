@@ -3,11 +3,25 @@ import UIKitPrototype, { Eli } from "./prototype";
 import { MDCRipple } from '@material/ripple';
 
 /**
+ * Events for {@link ShotAction}
+ */
+interface ShotActionEvents {
+    /**
+     * Triggered when the action is clicked
+     */
+    click: () => void,
+}
+
+/**
  * Extended Floating Action Button to snapshot map
  */
 export default class ShotAction extends UIKitPrototype {
     
     ctrl: MDCRipple = null;
+
+    events: ShotActionEvents = {
+        click: () => { },
+    }
 
     init(parent: HTMLElement) {
         super.init(parent);
@@ -29,7 +43,7 @@ export default class ShotAction extends UIKitPrototype {
             Eli.build('span', { className: 'mdc-fab__label' }, [ 'Snapshot' ] ),
         ]);
         this.parent.append(element);
-        console.log(element);
         this.ctrl = new MDCRipple(element);
+        this.ctrl.listen('click', () => this.events.click());
     }
 }

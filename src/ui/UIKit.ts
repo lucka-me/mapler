@@ -24,5 +24,8 @@ export default class UIKit {
 
         // ShotAction
         this.shotAction.init(body);
+        this.shotAction.events.click = () => {
+            this.map.shot();
+        }
     }
 }
