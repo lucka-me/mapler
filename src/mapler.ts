@@ -115,14 +115,6 @@ const ui = {
             },
         },
     },
-    init: () => {
-        ui.appBar.init();
-        ui.dialog.preference.init();
-
-        const fabSnapshot = new mdc.ripple.MDCRipple(document.querySelector('#fab-snapshot'));
-        fabSnapshot.unbounded = true;
-        fabSnapshot.listen('click', () => process.snapshot());
-    }
 };
 
 const process = {

@@ -1,5 +1,6 @@
 import AppBar from "./AppBar";
 import MapKit from "./MapKit";
+import PanelDialog from "./PanelDialog";
 import ShotAction from './ShotAction';
 
 /**
@@ -9,6 +10,7 @@ export default class UIKit {
 
     appBar = new AppBar();
     map = new MapKit();
+    panelDialog = new PanelDialog();
     shotAction = new ShotAction();
     
     init() {
@@ -28,5 +30,9 @@ export default class UIKit {
         this.shotAction.events.click = () => {
             this.map.shot();
         }
+
+        // PanelDialog
+        this.panelDialog.init(body);
+        this.appBar.events.openPreference = () => this.panelDialog.open();
     }
 }
