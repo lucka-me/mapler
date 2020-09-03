@@ -282,11 +282,58 @@ export default class PanelDialog extends UIKitPrototype {
         lon: number, lat: number,
         zoom: number, bearing: number, tilt: number
     ) {
-        
+        this.panelCtrl.camera.longitude.value   = `${lon}`;
+        this.panelCtrl.camera.latitude.value    = `${lat}`;
+
+        this.panelCtrl.camera.zoom.value        = `${zoom}`;
+        this.panelCtrl.camera.bearing.value     = `${bearing}`;
+        this.panelCtrl.camera.tilt.value        = `${tilt}`;
     }
 
+    /**
+     * Check the value and pass to event if all correct
+     */
     private onSetCamera() {
+        let correct = true;
 
+        let longitude = parseFloat(this.panelCtrl.camera.longitude.value);
+        if (isNaN(longitude) || longitude < -180 || longitude > 180) {
+            longitude = Preference.get('mapler.camera.lon');;
+            this.panelCtrl.camera.longitude.value = `${longitude}`;
+            correct = false;
+        }
+
+        let latitude = parseFloat(this.panelCtrl.camera.latitude.value);
+        if (isNaN(latitude) || latitude < -90 || latitude > 90) {
+            latitude = Preference.get('mapler.camera.lat');;
+            this.panelCtrl.camera.latitude.value = `${latitude}`;
+            correct = false;
+        }
+
+        let zoom = parseFloat(this.panelCtrl.camera.zoom.value);
+        if (isNaN(zoom) || zoom < 0 || zoom > 20) {
+            zoom = Preference.get('mapler.camera.zoom');;
+            this.panelCtrl.camera.zoom.value = `${zoom}`;
+            correct = false;
+        }
+
+        let bearing = parseFloat(this.panelCtrl.camera.bearing.value);
+        if (isNaN(bearing) || bearing < 0 || bearing > 360) {
+            bearing = Preference.get('mapler.camera.bearing');;
+            this.panelCtrl.camera.bearing.value = `${bearing}`;
+            correct = false;
+        }
+
+        let tilt = parseFloat(this.panelCtrl.camera.tilt.value);
+        if (isNaN(tilt) || tilt < 0 || tilt > 60) {
+            tilt = Preference.get('mapler.camera.tilt');;
+            this.panelCtrl.camera.tilt.value = `${tilt}`;
+            correct = false;
+        }
+
+        if (correct) {
+            this.events.setCamera(longitude, latitude, zoom, bearing, tilt);
+        }
     }
 
     /**
