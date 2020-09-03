@@ -19,10 +19,10 @@ class StyleKit {
      * @returns The style in preference, first style as default
      */
     getFromPreference(): Style {
-        let index = Preference.get('preference.misc.selectedStyle');
+        let index = Preference.get('mapler.misc.selectedStyle');
         if (index < 0 || index > this.styles.length - 1) {
             index = 0;
-            Preference.set('preference.misc.selectedStyle', index);
+            Preference.set('mapler.misc.selectedStyle', index);
         }
         return this.styles[index];
     }
