@@ -12,21 +12,6 @@ const value = {
             releaseUrl: 'https://api.github.com/repos/lucka-me/mapler/releases/latest',
         },
     },
-    preference: {
-        location: {
-            lon: { key: 'mapler.location.lon', def: 108.9435278 },
-            lat: { key: 'mapler.location.lat', def: 34.2651799 },
-            zoom: { key: 'mapler.location.zoom', def: 12 },
-            bearing: { key: 'mapler.location.bearing', def: 0 },
-            tilt: { key: 'mapler.location.tilt', def: 0 },
-        },
-        display: {
-            labels: { key: 'mapler.display.labels', def: true },
-        },
-        misc: {
-            selectedStyle: { key: 'mapler.misc.selectedStyle', def: 0 },
-        }
-    },
 };
 
 const ui = {
@@ -236,14 +221,6 @@ const process = {
         });
     },
 };
-
-const preference = {
-    set: (item, value) => localStorage.setItem(item.key, JSON.stringify(value)),
-    get: (item) => {
-        const value = localStorage.getItem(item.key);
-        return (value === null) ? item.def : JSON.parse(value);
-    }
-}
 
 // For Edge and IE which don't support toBlob()
 //   Ref: https://stackoverflow.com/a/47487073

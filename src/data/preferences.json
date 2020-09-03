@@ -1,0 +1,11 @@
+[
+    { "key": "mapler.location.lon", "def": 108.9435278 },
+    { "key": "mapler.location.lat", "def": 34.2651799 },
+    { "key": "mapler.location.zoom", "def": 12 },
+    { "key": "mapler.location.bearing", "def": 0 },
+    { "key": "mapler.location.tilt", "def": 0 },
+    
+    { "key": "mapler.display.labels", "def": true },
+    
+    { "key": "mapler.misc.selectedStyle", "def": 0 }
+]
