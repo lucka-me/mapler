@@ -1,12 +1,10 @@
 # ![](./assets/banner.svg)
 
-[![Release](https://img.shields.io/github/v/release/lucka-me/mapler)](https://github.com/lucka-me/mapler/releases/latest "Last release") [![Author](https://img.shields.io/website?url=https%3A%2F%2Flucka.moe%2Fmapler)](https://lucka.moe/mapler "Website") [![License](https://img.shields.io/github/license/lucka-me/mapler)](./LICENSE "License")
+[![Release](https://img.shields.io/github/v/release/lucka-me/mapler)](https://github.com/lucka-me/mapler/releases/latest "Last release") [![Website](https://img.shields.io/website?url=https%3A%2F%2Fmapler.lucka.moe)](https://mapler.lucka.moe/ "Website") [![License](https://img.shields.io/github/license/lucka-me/mapler)](./LICENSE "License")
 
 Web app to make map as wallpaper, under development. Native Android app is [available](https://github.com/lucka-me/mapler-android).
 
 Finally I can change my wallpaper again, after two years, [read more](https://lucka.moe/2018/07/23/wallmapper/ "Wallmapper | Lucka") (Chinese).
-
-We are working on migrating to Webpack and TypeScript, the website and old code are available in `legacy` branch.
 
 ## Features
 - Generate image from map in any size, with styles created with [Mapbox Studio](https://www.mapbox.com/mapbox-studio/).
@@ -41,4 +39,4 @@ The source code are [licensed under MIT](./LICENSE).
 
 The default styles included in the application all credit to their designers.
 
-Please notice that the Mapbox Token included in the source code is owned by [Lucka](https://github.com/lucka-me) and **ONLY** for public useage in [the demo pages](http://lucka.moe/mapler/).
+Please notice that the Mapbox Token included in the source code is owned by [Lucka](https://github.com/lucka-me) and **ONLY** for public useage in [the demo pages](http://mapler.lucka.moe/).
