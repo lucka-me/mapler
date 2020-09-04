@@ -1,0 +1,15 @@
+{
+    "name": "Mapler",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#fff",
+    "description": "Make map as wallpaper.",
+    "icons": [
+        {
+            "src": "./src/logo.svg",
+            "sizes": "72x72 96x96 128x128 192x192 256x256 512x512"
+        }
+    ],
+    "scope": ".",
+    "theme_color": "#29b6f6"
+}
