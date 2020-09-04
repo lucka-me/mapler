@@ -97,6 +97,9 @@ interface AppBarEvent {
 export default class AppBar extends UIKitPrototype {
 
     menu = new StyleMenu();
+    
+    elementPreference: HTMLButtonElement = null;
+    elementMenu: HTMLButtonElement = null;
 
     events: AppBarEvent = {
         openPreference: () => { },
@@ -117,13 +120,13 @@ export default class AppBar extends UIKitPrototype {
         });
 
         // Action: Preference
-        const elementPreference = Eli.build('button', {
+        this.elementPreference = Eli.build('button', {
             className: 'mdc-icon-button fa',
             title: 'Preference',
             innerHTML: '&#xf013',
         });
-        sectionActions.append(elementPreference);
-        const ripplePreference = new MDCRipple(elementPreference);
+        sectionActions.append(this.elementPreference);
+        const ripplePreference = new MDCRipple(this.elementPreference);
         ripplePreference.unbounded = true;
         ripplePreference.listen('click', () => this.events.openPreference());
 
@@ -132,11 +135,11 @@ export default class AppBar extends UIKitPrototype {
             className: 'mdc-button__label',
             innerHTML: StyleKit.selectedStyle.title
         });
-        const elementMenu = Eli.build('button', {
+        this.elementMenu = Eli.build('button', {
             className: 'mdc-button mdc-button--unelevated',
         }, [ elementMenuLabel ]);
-        sectionActions.append(elementMenu);
-        const rippleMenu = new MDCRipple(elementMenu);
+        sectionActions.append(this.elementMenu);
+        const rippleMenu = new MDCRipple(this.elementMenu);
 
         // StyleMenu
         this.menu.init(sectionActions);
@@ -173,5 +176,21 @@ export default class AppBar extends UIKitPrototype {
             className: 'mdc-top-app-bar--fixed-adjust'
         }));
         new MDCTopAppBar(elementAppBar);
+    }
+
+    /**
+     * Enable the actions in app bar
+     */
+    enable() {
+        this.elementPreference.disabled = false;
+        this.elementMenu.disabled = false;
+    }
+
+    /**
+     * Disable the actions in app bar
+     */
+    disable() {
+        this.elementPreference.disabled = true;
+        this.elementMenu.disabled = true;
     }
 }

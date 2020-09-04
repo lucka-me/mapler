@@ -37,9 +37,13 @@ export default class UIKit {
         this.map.events.idle = (...args) => this.panelDialog.updateCamera(...args);
 
         this.shotAction.events.click = () => {
+            this.appBar.disable();
             this.shotAction.hide();
             this.map.shot(
-                () => this.shotAction.show(),
+                () => {
+                    this.appBar.enable();
+                    this.shotAction.show();
+                },
                 ...this.panelDialog.size
             );
         };
