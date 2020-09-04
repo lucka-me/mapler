@@ -9,6 +9,7 @@
 ### Changed
 - Build with Webpack
 - Migrate to TypeScript
+- Disable the components when generating image
 ```
 
 ```markdown

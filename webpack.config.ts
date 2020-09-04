@@ -95,21 +95,12 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(),
-    //new BundleAnalyzerPlugin(),
+    new BundleAnalyzerPlugin(),
     new MiniCssExtractPlugin({
       filename: 'css/[name].[contenthash].css',
     }),
     new WebpackCdnPlugin({
       modules: [
-        {
-          name: 'i18next',
-          path: 'i18next.min.js'
-        },
-        {
-          name: 'i18next-browser-languagedetector',
-          var:  'i18nextBrowserLanguageDetector',
-          path: 'i18nextBrowserLanguageDetector.min.js'
-        },
         {
           name:   'mapbox-gl',
           var:    'mapboxgl',
