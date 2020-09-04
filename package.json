@@ -5,7 +5,8 @@
   "main": "src/mapler.ts",
   "scripts": {
     "start": "webpack-dev-server",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "deploy": "gh-pages -d dist -m \"Deploy $(date)\""
   },
   "repository": {
     "type": "git",
