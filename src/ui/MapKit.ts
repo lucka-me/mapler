@@ -135,6 +135,12 @@ export default class MapKit extends UIKitPrototype {
      * @param pixelRatio Pixel ratio of target device
      */
     shot(finished: () => void, width: number, height: number, pixelRatio: number) {
+        // Generate a image to cover the map temporarily
+        const cover = Eli.build('img', {
+            cssText: 'position: fixed; left: 0; bottom: 0; z-index: 5;',
+            src: this.ctrl.getCanvas().toDataURL()
+        });
+        this.parent.append(cover);
         const bounds = this.ctrl.getBounds();
         this.container.style.cssText = [
             'position: fixed', 'top: 0', 'left:0;',
@@ -144,20 +150,34 @@ export default class MapKit extends UIKitPrototype {
         this.ctrl.resize();
         this.ctrl.fitBounds(bounds);
         this.ctrl.once('idle', () => {
-            this.ctrl.getCanvas().toBlob((blob) => {
-                const element = Eli.build('a', {
-                    href: URL.createObjectURL(blob),
-                    download: 'Mapler.png',
-                    cssText: 'display:none'
-                });
-                this.parent.append(element);
-                element.click();
-                this.parent.removeChild(element);
-                this.container.style.cssText = 'flex: 1';
-                this.ctrl.resize();
-                this.ctrl.fitBounds(bounds);
-                finished();
+            const element = Eli.build('a', {
+                href: this.ctrl.getCanvas().toDataURL(),
+                download: 'Mapler.png',
+                cssText: 'display:none'
             });
+            this.parent.append(element);
+            element.click();
+            this.parent.removeChild(element);
+            this.container.style.cssText = 'flex: 1';
+            this.ctrl.resize();
+            this.ctrl.fitBounds(bounds);
+            this.parent.removeChild(cover);
+            finished();
+            // this.ctrl.getCanvas().toBlob((blob) => {
+            //     const element = Eli.build('a', {
+            //         href: URL.createObjectURL(blob),
+            //         download: 'Mapler.png',
+            //         cssText: 'display:none'
+            //     });
+            //     this.parent.append(element);
+            //     element.click();
+            //     this.parent.removeChild(element);
+            //     this.parent.removeChild(cover);
+            //     this.container.style.cssText = 'flex: 1';
+            //     this.ctrl.resize();
+            //     this.ctrl.fitBounds(bounds);
+            //     finished();
+            // });
         });
     }
 }
