@@ -163,21 +163,6 @@ export default class MapKit extends UIKitPrototype {
             this.ctrl.fitBounds(bounds);
             this.parent.removeChild(cover);
             finished();
-            // this.ctrl.getCanvas().toBlob((blob) => {
-            //     const element = Eli.build('a', {
-            //         href: URL.createObjectURL(blob),
-            //         download: 'Mapler.png',
-            //         cssText: 'display:none'
-            //     });
-            //     this.parent.append(element);
-            //     element.click();
-            //     this.parent.removeChild(element);
-            //     this.parent.removeChild(cover);
-            //     this.container.style.cssText = 'flex: 1';
-            //     this.ctrl.resize();
-            //     this.ctrl.fitBounds(bounds);
-            //     finished();
-            // });
         });
     }
 }
