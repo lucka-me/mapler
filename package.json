@@ -14,10 +14,6 @@
   },
   "author": "lucka-me",
   "license": "MIT",
-  "dependencies": {
-    "mapbox-gl": "^1.12.0",
-    "material-components-web": "^7.0.0"
-  },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.14.0",
     "@types/mapbox-gl": "^1.12.1",
@@ -27,6 +23,8 @@
     "css-loader": "^4.3.0",
     "gh-pages": "^3.1.0",
     "html-webpack-plugin": "^4.5.0",
+    "mapbox-gl": "^1.12.0",
+    "material-components-web": "^7.0.0",
     "mini-css-extract-plugin": "^0.11.2",
     "terser-webpack-plugin": "^4.2.2",
     "ts-loader": "^8.0.4",
