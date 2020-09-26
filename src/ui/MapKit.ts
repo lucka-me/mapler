@@ -137,7 +137,7 @@ export default class MapKit extends UIKitPrototype {
     shot(finished: () => void, width: number, height: number, pixelRatio: number) {
         // Generate a image to cover the map temporarily
         const cover = Eli.build('img', {
-            cssText: 'position: fixed; left: 0; bottom: 0; z-index: 5;',
+            cssText: 'position: fixed; left: 0; bottom: 0; right: 0; object-fit: contain; width: 100%; z-index: 5;',
             src: this.ctrl.getCanvas().toDataURL()
         });
         this.parent.append(cover);
