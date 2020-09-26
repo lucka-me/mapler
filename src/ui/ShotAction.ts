@@ -1,5 +1,6 @@
-import UIKitPrototype, { Eli } from "./prototype";
+import UIKitPrototype from "./prototype";
 
+import { eli } from 'ui/eli';
 import { MDCRipple } from '@material/ripple';
 
 /**
@@ -29,7 +30,7 @@ export default class ShotAction extends UIKitPrototype {
     }
 
     render() {
-        const element = Eli.build('button', {
+        const element = eli.build('button', {
             className: 'mdc-fab mdc-fab--extended',
             cssText: [
                 'position: fixed',
@@ -38,9 +39,9 @@ export default class ShotAction extends UIKitPrototype {
                 'transform: translateX(-50%)'
             ].join(';'),
         }, [
-            Eli.build('div', { className: 'mdc-fab__ripple' }),
-            Eli.build('span', { className: 'mdc-fab__icon fa', innerHTML: '&#xf030' }),
-            Eli.build('span', { className: 'mdc-fab__label' }, [ 'Snapshot' ] ),
+            eli.build('div', { className: 'mdc-fab__ripple' }),
+            eli.build('span', { className: 'mdc-fab__icon fa', innerHTML: '&#xf030' }),
+            eli.build('span', { className: 'mdc-fab__label' }, [ 'Snapshot' ] ),
         ]);
         this.parent.append(element);
         this.ctrl = new MDCRipple(element);

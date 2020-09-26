@@ -1,5 +1,3 @@
-import Eli from "./eli";
-
 export default class UIKitPrototype {
     parent: HTMLElement = null;
 
@@ -22,5 +20,3 @@ export default class UIKitPrototype {
      */
     render() { }
 }
-
-export { Eli };
