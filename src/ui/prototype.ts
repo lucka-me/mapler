@@ -1,4 +1,4 @@
-import Eli from "./Eli";
+import Eli from "./eli";
 
 export default class UIKitPrototype {
     parent: HTMLElement = null;
