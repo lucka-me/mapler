@@ -5,7 +5,7 @@ import { MDCSwitch } from "@material/switch";
 import { MDCTextField } from "@material/textfield";
 
 import { eli } from 'ui/eli';
-import UIKitPrototype from "./prototype";
+import UIKitPrototype from "./base";
 import Preference from "../service/Preference";
 
 /**

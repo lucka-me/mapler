@@ -3,7 +3,7 @@ import { MDCRipple } from "@material/ripple";
 import { MDCTopAppBar } from "@material/top-app-bar";
 
 import { eli } from 'ui/eli';
-import UIKitPrototype from './prototype';
+import UIKitPrototype from './base';
 import StyleKit from "../service/StyleKit";
 
 /**

@@ -1,4 +1,4 @@
-import UIKitPrototype from "./prototype";
+import UIKitPrototype from "./base";
 
 import { eli } from 'ui/eli';
 import { MDCRipple } from '@material/ripple';
