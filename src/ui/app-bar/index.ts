@@ -3,8 +3,8 @@ import { MDCRipple } from "@material/ripple";
 import { MDCTopAppBar } from "@material/top-app-bar";
 
 import { eli } from 'ui/eli';
-import UIKitPrototype from './base';
-import StyleKit from "../service/StyleKit";
+import UIKitPrototype from 'ui/base';
+import StyleKit from "service/StyleKit";
 
 /**
  * Events for {@link StyleMenu}

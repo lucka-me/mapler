@@ -1,4 +1,4 @@
-import AppBar from "./AppBar";
+import AppBar from "./app-bar";
 import MapKit from "./MapKit";
 import PanelDialog from "./PanelDialog";
 import ShotAction from './ShotAction';
