@@ -1,7 +1,7 @@
 import AppBar from "./app-bar";
-import MapKit from "./MapKit";
-import PanelDialog from "./PanelDialog";
-import ShotAction from './ShotAction';
+import MapKit from "./map";
+import PanelDialog from "./panel";
+import ShotAction from './shot';
 
 /**
  * The whole user interface

@@ -1,12 +1,12 @@
-import packageData from "../../package.json";
+import packageData from "../../../package.json";
 import { MDCDialog } from "@material/dialog";
 import { MDCRipple } from "@material/ripple";
 import { MDCSwitch } from "@material/switch";
 import { MDCTextField } from "@material/textfield";
 
 import { eli } from 'ui/eli';
-import UIKitPrototype from "./base";
-import Preference from "../service/Preference";
+import UIKitPrototype from "ui/base";
+import Preference from "service/Preference";
 
 /**
  * Events for {@link PanelDialog}

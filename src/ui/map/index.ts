@@ -1,9 +1,9 @@
 import mapboxgl from 'mapbox-gl';
 
 import { eli } from 'ui/eli';
-import Preference from '../service/Preference';
-import StyleKit from '../service/StyleKit';
-import UIKitPrototype from './base';
+import Preference from 'service/Preference';
+import StyleKit from 'service/StyleKit';
+import UIKitPrototype from 'ui/base';
 
 /**
  * Events for {@link MapKit}
