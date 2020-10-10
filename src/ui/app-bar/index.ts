@@ -2,8 +2,9 @@ import { MDCMenu } from "@material/menu";
 import { MDCRipple } from "@material/ripple";
 import { MDCTopAppBar } from "@material/top-app-bar";
 
-import UIKitPrototype, { Eli } from './prototype';
-import StyleKit from "../service/StyleKit";
+import { eli } from 'ui/eli';
+import UIKitPrototype from 'ui/base';
+import StyleKit from "service/StyleKit";
 
 /**
  * Events for {@link StyleMenu}
@@ -29,7 +30,7 @@ class StyleMenu extends UIKitPrototype {
     }
 
     render() {
-        const menuList = Eli.build('ul', {
+        const menuList = eli.build('ul', {
             className: 'mdc-list',
             role: 'menu',
             ariaOrientation: 'vertical',
@@ -37,12 +38,12 @@ class StyleMenu extends UIKitPrototype {
 
         // Build from style data
         for (const index in StyleKit.styles) {
-            const element = Eli.build('li', {
+            const element = eli.build('li', {
                 className: 'mdc-list-item',
                 role: 'menuitem',
                 dataset: { code : parseInt(index) },
             }, [
-                Eli.build('span', {
+                eli.build('span', {
                     className: 'mdc-list-item__text',
                     innerHTML: StyleKit.styles[index].title,
                 }),
@@ -50,10 +51,10 @@ class StyleMenu extends UIKitPrototype {
             menuList.append(element);
         }
 
-        const menuSurface = Eli.build('div', {
+        const menuSurface = eli.build('div', {
             className: 'mdc-menu mdc-menu-surface',
         }, [ menuList ]);
-        const menuAnchor = Eli.build('div', {
+        const menuAnchor = eli.build('div', {
             className: 'mdc-menu-surface--anchor',
         }, [ menuSurface ]);
         this.parent.append(menuAnchor);
@@ -112,7 +113,7 @@ export default class AppBar extends UIKitPrototype {
     }
 
     render() {
-        const sectionActions = Eli.build('section', {
+        const sectionActions = eli.build('section', {
             className: [
                 'mdc-top-app-bar__section',
                 'mdc-top-app-bar__section--align-end'
@@ -120,7 +121,7 @@ export default class AppBar extends UIKitPrototype {
         });
 
         // Action: Preference
-        this.elementPreference = Eli.build('button', {
+        this.elementPreference = eli.build('button', {
             className: 'mdc-icon-button fa',
             title: 'Preference',
             innerHTML: '&#xf013',
@@ -131,11 +132,11 @@ export default class AppBar extends UIKitPrototype {
         ripplePreference.listen('click', () => this.events.openPreference());
 
         // Button: Style
-        const elementMenuLabel = Eli.build('span', {
+        const elementMenuLabel = eli.build('span', {
             className: 'mdc-button__label',
             innerHTML: StyleKit.selectedStyle.title
         });
-        this.elementMenu = Eli.build('button', {
+        this.elementMenu = eli.build('button', {
             className: 'mdc-button mdc-button--unelevated',
         }, [ elementMenuLabel ]);
         sectionActions.append(this.elementMenu);
@@ -150,19 +151,19 @@ export default class AppBar extends UIKitPrototype {
         rippleMenu.listen('click', () => this.menu.open() );
 
         // App bar
-        const elementAppBar = Eli.build('header', {
+        const elementAppBar = eli.build('header', {
             className: 'mdc-top-app-bar',
         }, [
-            Eli.build('div', {
+            eli.build('div', {
                 className: 'mdc-top-app-bar__row',
             }, [
-                Eli.build('section', {
+                eli.build('section', {
                     className: [
                         'mdc-top-app-bar__section',
                         'mdc-top-app-bar__section--align-start'
                     ].join(' '),
                 }, [
-                    Eli.build('span', {
+                    eli.build('span', {
                         className: 'mdc-top-app-bar__title',
                         innerHTML: 'Mapler',
                     }),
@@ -172,7 +173,7 @@ export default class AppBar extends UIKitPrototype {
         ]);
 
         this.parent.append(elementAppBar);
-        this.parent.append(Eli.build('div', {
+        this.parent.append(eli.build('div', {
             className: 'mdc-top-app-bar--fixed-adjust'
         }));
         new MDCTopAppBar(elementAppBar);

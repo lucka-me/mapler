@@ -1,4 +1,4 @@
-import UIKit from "./ui/UIKit";
+import UIKit from "ui";
 
 import './css/extended.css'
 

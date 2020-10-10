@@ -1,8 +1,9 @@
 import mapboxgl from 'mapbox-gl';
 
-import Preference from '../service/Preference';
-import StyleKit from '../service/StyleKit';
-import UIKitPrototype, { Eli } from './prototype';
+import { eli } from 'ui/eli';
+import Preference from 'service/Preference';
+import StyleKit from 'service/StyleKit';
+import UIKitPrototype from 'ui/base';
 
 /**
  * Events for {@link MapKit}
@@ -37,7 +38,7 @@ export default class MapKit extends UIKitPrototype {
     }
 
     render() {
-        this.container = Eli.build('div', { cssText: 'flex: 1' });
+        this.container = eli.build('div', { cssText: 'flex: 1' });
         this.parent.append(this.container);
 
         this.ctrl = new mapboxgl.Map({
@@ -136,8 +137,8 @@ export default class MapKit extends UIKitPrototype {
      */
     shot(finished: () => void, width: number, height: number, pixelRatio: number) {
         // Generate a image to cover the map temporarily
-        const cover = Eli.build('img', {
-            cssText: 'position: fixed; left: 0; bottom: 0; z-index: 5;',
+        const cover = eli.build('img', {
+            cssText: 'position: fixed; left: 0; bottom: 0; right: 0; object-fit: contain; width: 100%; z-index: 5;',
             src: this.ctrl.getCanvas().toDataURL()
         });
         this.parent.append(cover);
@@ -150,7 +151,7 @@ export default class MapKit extends UIKitPrototype {
         this.ctrl.resize();
         this.ctrl.fitBounds(bounds);
         this.ctrl.once('idle', () => {
-            const element = Eli.build('a', {
+            const element = eli.build('a', {
                 href: this.ctrl.getCanvas().toDataURL(),
                 download: 'Mapler.png',
                 cssText: 'display:none'

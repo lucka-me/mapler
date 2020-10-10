@@ -1,11 +1,12 @@
-import packageData from "../../package.json";
+import packageData from "../../../package.json";
 import { MDCDialog } from "@material/dialog";
 import { MDCRipple } from "@material/ripple";
 import { MDCSwitch } from "@material/switch";
 import { MDCTextField } from "@material/textfield";
 
-import UIKitPrototype, { Eli } from "./prototype";
-import Preference from "../service/Preference";
+import { eli } from 'ui/eli';
+import UIKitPrototype from "ui/base";
+import Preference from "service/Preference";
 
 /**
  * Events for {@link PanelDialog}
@@ -66,7 +67,7 @@ export default class PanelDialog extends UIKitPrototype {
         const parts: Array<HTMLElement> = [];
 
         // Title
-        parts.push(Eli.build('h2', {
+        parts.push(eli.build('h2', {
             className: 'mdc-dialog__title',
             innerHTML: 'Preference'
         }));
@@ -86,7 +87,7 @@ export default class PanelDialog extends UIKitPrototype {
         this.panelCtrl.camera.latitude = new MDCTextField(elementCameraLatitude);
         this.panelCtrl.camera.latitude.value = Preference.get('mapler.camera.lat');
 
-        contentsCamera.push(Eli.build('div', {
+        contentsCamera.push(eli.build('div', {
             className: 'flex-box-row--nowrap flex-align-items--baseline'
         }, [
             elementCameraLongitude, elementCameraLatitude
@@ -110,16 +111,16 @@ export default class PanelDialog extends UIKitPrototype {
         );
 
         // Preference: Camera - Set
-        const elementSet = Eli.build('button', {
+        const elementSet = eli.build('button', {
             className: 'mdc-button mdc-button--unelevated margin-v--8 margin-h--4',
         }, [
-            Eli.build('span', { className: 'mdc-button__label', innerHTML: 'Set' })
+            eli.build('span', { className: 'mdc-button__label', innerHTML: 'Set' })
         ]);
         const rippleSet = new MDCRipple(elementSet);
         rippleSet.listen('click', () => this.onSetCamera());
 
         // Build Preference: Camera
-        contents.push(Eli.build('div', {
+        contents.push(eli.build('div', {
             className: 'flex-box-row--wrap flex-align-items--center'
         }, contentsCamera));
 
@@ -149,14 +150,14 @@ export default class PanelDialog extends UIKitPrototype {
         contents.push(this.buildHeadline('Display'));
 
         // Preference: Display - Labels
-        const elementDisplayLabels = Eli.build('div', { className: 'mdc-switch' }, [
-            Eli.build('div', { className: 'mdc-switch__track' }),
-            Eli.build('div', {
+        const elementDisplayLabels = eli.build('div', { className: 'mdc-switch' }, [
+            eli.build('div', { className: 'mdc-switch__track' }),
+            eli.build('div', {
                 className: 'mdc-switch__thumb-underlay',
                 id: 'input-pref-display-labels',
             }, [
-                Eli.build('div', { className: 'mdc-switch__thumb' }, [
-                    Eli.build('input', {
+                eli.build('div', { className: 'mdc-switch__thumb' }, [
+                    eli.build('input', {
                         type: 'checkbox',
                         className: 'mdc-switch__native-control',
                         role: 'switch',
@@ -164,11 +165,11 @@ export default class PanelDialog extends UIKitPrototype {
                 ]),
             ]),
         ]);
-        const containerDisplayLabels = Eli.build('div', {
+        const containerDisplayLabels = eli.build('div', {
             className: 'mdc-switch-box margin-h--4',
         }, [
             elementDisplayLabels,
-            Eli.build('label', {
+            eli.build('label', {
                 for: 'input-pref-display-labels',
                 title: 'Labels',
                 innerHTML: 'Labels',
@@ -183,40 +184,40 @@ export default class PanelDialog extends UIKitPrototype {
 
         // About
         contents.push(this.buildHeadline('About'));
-        contents.push(Eli.build('span', {
+        contents.push(eli.build('span', {
             className: 'mdc-typography--body2'
         }, [
-            Eli.link(
+            eli.link(
                 'https://github.com/lucka-me/mapler',
                 'GitHub', 'Repository'
             )
         ]));
-        contents.push(Eli.build('span', {
+        contents.push(eli.build('span', {
             className: 'mdc-typography--body2'
         }, [
-            Eli.link(
+            eli.link(
                 'https://github.com/lucka-me/mapler/blob/master/CHANGELOG.md',
                 'Changelog', packageData.version
             ),
             ' by ',
-            Eli.link(
+            eli.link(
                 'https://lucka.moe', 'Blog', 'Lucka'
             )
         ]));
 
         // Build contents
-        parts.push(Eli.build('div', {
+        parts.push(eli.build('div', {
             className: 'mdc-dialog__content flex-box-col scrollable'
         }, contents));
 
         // Footer
         parts.push(
-            Eli.build('footer', { className: 'mdc-dialog__actions' }, [
-                Eli.build('button', {
+            eli.build('footer', { className: 'mdc-dialog__actions' }, [
+                eli.build('button', {
                     className: 'mdc-button mdc-dialog__button',
                     dataset: { mdcDialogAction: 'close', },
                 }, [
-                    Eli.build('span', {
+                    eli.build('span', {
                         className: 'mdc-button__label', innerHTML: 'Close'
                     }),
                 ])
@@ -224,15 +225,15 @@ export default class PanelDialog extends UIKitPrototype {
         );
 
         // Build dialog
-        const elementDialog = Eli.build('div', {
+        const elementDialog = eli.build('div', {
             className: 'mdc-dialog mdc-dialog--scrollable',
             role: 'dialog',
             ariaModal: true,
         }, [
-            Eli.build('div', { className: 'mdc-dialog__container' }, [
-                Eli.build('div', { className: 'mdc-dialog__surface' }, parts),
+            eli.build('div', { className: 'mdc-dialog__container' }, [
+                eli.build('div', { className: 'mdc-dialog__surface' }, parts),
             ]),
-            Eli.build('div', { className: 'mdc-dialog__scrim' }),
+            eli.build('div', { className: 'mdc-dialog__scrim' }),
         ]);
 
         this.parent.append(elementDialog);
@@ -349,7 +350,7 @@ export default class PanelDialog extends UIKitPrototype {
      * @returns The headline element
      */
     private buildHeadline(text: string): HTMLSpanElement {
-        return Eli.build('span', {
+        return eli.build('span', {
             className: 'mdc-typography--headline6', innerHTML: text
         });
     }
@@ -363,22 +364,22 @@ export default class PanelDialog extends UIKitPrototype {
      * @returns The headline element
      */
     private buildTextfield(type: string, inputmode: string, label: string, id: string): HTMLDivElement {
-        return Eli.build('div', {
+        return eli.build('div', {
             className: 'mdc-text-field mdc-text-field--outlined margin-v--8 margin-h--4'
         }, [
-            Eli.build('input', {
+            eli.build('input', {
                 type: type, inputmode: inputmode, id: id,
                 className: 'mdc-text-field__input'
             }),
-            Eli.build('div', { className: 'mdc-notched-outline' }, [
-                Eli.build('div', { className: 'mdc-notched-outline__leading' }),
-                Eli.build('div', { className: 'mdc-notched-outline__notch' }, [
-                    Eli.build('label', {
+            eli.build('div', { className: 'mdc-notched-outline' }, [
+                eli.build('div', { className: 'mdc-notched-outline__leading' }),
+                eli.build('div', { className: 'mdc-notched-outline__notch' }, [
+                    eli.build('label', {
                         for: id, innerHTML: label,
                         className: 'mdc-floating-label'
                     })
                 ]),
-                Eli.build('div', { className: 'mdc-notched-outline__trailing' }),
+                eli.build('div', { className: 'mdc-notched-outline__trailing' }),
             ])
         ]);
     }

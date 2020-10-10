@@ -1,7 +1,7 @@
 /**
  * A toolkit to build HTML elements
  */
-export default class Eli {
+export namespace eli {
     /**
      * Build a HTML element
      * @param tag Element tag
@@ -9,7 +9,7 @@ export default class Eli {
      * @param children List of children or text string
      * @returns The element
      */
-    static build<K extends keyof HTMLElementTagNameMap>(
+    export function build<K extends keyof HTMLElementTagNameMap>(
         tag: K, options: any, children?: Array<HTMLElement | string>
     ): HTMLElementTagNameMap[K] {
         const element = document.createElement(tag);
@@ -39,8 +39,8 @@ export default class Eli {
      * @param text Text to display
      * @returns the hyper link element
      */
-    static link(href: string, title: string, text: string): HTMLAnchorElement {
-        return Eli.build('a', {
+    export function link(href: string, title: string, text: string): HTMLAnchorElement {
+        return build('a', {
             href: href,
             title: title,
             target: '_blank',
