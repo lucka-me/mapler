@@ -1,8 +1,8 @@
 import mapboxgl from 'mapbox-gl';
 
+import { base } from 'ui/base';
 import { eli } from 'eli/eli';
 import { service } from 'service';
-import UIKitPrototype from 'ui/base';
 
 import './styles.scss';
 
@@ -23,7 +23,7 @@ interface MapKitEvents {
 /**
  * The map component
  */
-export default class MapKit extends UIKitPrototype {
+export default class MapKit extends base.Prototype {
 
     root: HTMLElement = null;
     ctrl: mapboxgl.Map = null;

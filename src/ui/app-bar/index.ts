@@ -2,9 +2,9 @@ import { MDCMenu } from "@material/menu";
 import { MDCRipple } from "@material/ripple";
 import { MDCTopAppBar } from "@material/top-app-bar";
 
+import { base } from "ui/base";
 import { eli } from 'ui/eli';
 import { service } from 'service';
-import UIKitPrototype from 'ui/base';
 
 /**
  * Events for {@link StyleMenu}
@@ -16,7 +16,7 @@ interface StyleMenuEvents {
 /**
  * The style menu component
  */
-class StyleMenu extends UIKitPrototype {
+class StyleMenu extends base.Prototype {
 
     ctrl: MDCMenu = null;
 

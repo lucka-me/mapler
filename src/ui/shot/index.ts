@@ -1,7 +1,7 @@
-import UIKitPrototype from "ui/base";
-
-import { eli } from 'ui/eli';
 import { MDCRipple } from '@material/ripple';
+
+import { base } from "ui/base";
+import { eli } from 'ui/eli';
 
 /**
  * Events for {@link ShotAction}
@@ -16,7 +16,7 @@ interface ShotActionEvents {
 /**
  * Extended Floating Action Button to snapshot map
  */
-export default class ShotAction extends UIKitPrototype {
+export default class ShotAction extends base.Prototype {
     
     ctrl: MDCRipple = null;
 

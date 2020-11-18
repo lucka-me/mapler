@@ -1,22 +1,24 @@
-export default class UIKitPrototype {
-    parent: HTMLElement = null;
-
-    constructor() {
-        Object.defineProperty(this, 'parent', {
-            enumerable: false,
-        });
-    }
+export namespace base {
+    export class Prototype {
+        parent: HTMLElement = null;
     
-    /**
-     * Initiate the Component
-     * @param parent Parent element
-     */
-    init(parent: HTMLElement) {
-        this.parent = parent;
+        constructor() {
+            Object.defineProperty(this, 'parent', {
+                enumerable: false,
+            });
+        }
+        
+        /**
+         * Initiate the Component
+         * @param parent Parent element
+         */
+        init(parent: HTMLElement) {
+            this.parent = parent;
+        }
+    
+        /**
+         * Build element and render
+         */
+        render() { }
     }
-
-    /**
-     * Build element and render
-     */
-    render() { }
 }

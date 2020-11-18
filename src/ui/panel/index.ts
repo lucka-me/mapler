@@ -4,9 +4,9 @@ import { MDCRipple } from "@material/ripple";
 import { MDCSwitch } from "@material/switch";
 import { MDCTextField } from "@material/textfield";
 
+import { base } from "ui/base";
 import { eli } from 'ui/eli';
 import { service } from 'service';
-import UIKitPrototype from "ui/base";
 
 /**
  * Events for {@link PanelDialog}
@@ -52,7 +52,7 @@ class PanelControl {
 /**
  * The preference dialog component
  */
-export default class PanelDialog extends UIKitPrototype {
+export default class PanelDialog extends base.Prototype {
 
     private ctrl: MDCDialog = null;
     private panelCtrl = new PanelControl();
