@@ -7,8 +7,6 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import path from 'path';
 import TerserPlugin from 'terser-webpack-plugin';
 
-const WebpackCdnPlugin = require('webpack-cdn-plugin');
-
 const config: webpack.Configuration = {
     entry: { mapler: './src/mapler.ts' },
     output: {
@@ -24,10 +22,30 @@ const config: webpack.Configuration = {
                 use: 'ts-loader',
             },
             {
+                test: /\.s[ac]ss$/i,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    'css-loader',
+                    'sass-loader',
+                ],
+            },
+            {
                 test: /\.css$/,
                 use: [
                     { loader: MiniCssExtractPlugin.loader },
                     'css-loader',
+                ],
+            },
+            {
+                test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[ext]',
+                            outputPath: 'assets/'
+                        }
+                    }
                 ],
             },
         ],
@@ -66,13 +84,8 @@ const config: webpack.Configuration = {
                     priority: 40,
                 },
                 data: {
-                    test: /[\\/]src[\\/]data[\\/]/,
+                    test: /[\\/]src[\\/](data|locales)[\\/]/,
                     name: 'data',
-                    priority: 30,
-                },
-                locales: {
-                    test: /[\\/]src[\\/]locales[\\/]/,
-                    name: 'locales',
                     priority: 30,
                 },
                 mdc: {
@@ -84,7 +97,7 @@ const config: webpack.Configuration = {
                 modules: {
                     test: /[\\/]node_modules[\\/]/,
                     name: 'modules',
-                    priority: 15,
+                    priority: 10,
                     reuseExistingChunk: true,
                 },
             },
@@ -104,31 +117,6 @@ const config: webpack.Configuration = {
         }),
         new MiniCssExtractPlugin({
             filename: 'css/[name].[contenthash].css',
-        }),
-        new WebpackCdnPlugin({
-            modules: [
-                {
-                    name: 'mapbox-gl',
-                    var: 'mapboxgl',
-                    path: 'mapbox-gl.min.js',
-                    style: 'mapbox-gl.min.css',
-                },
-                {
-                    name: 'material-components-web',
-                    cssOnly: true,
-                    style: 'material-components-web.min.css',
-                },
-                {
-                    name: '@fortawesome/fontawesome-free',
-                    cdn: 'font-awesome',
-                    cssOnly: true,
-                    styles: [
-                        'css/fontawesome.min.css',
-                        'css/solid.min.css'
-                    ],
-                }
-            ],
-            prodUrl: 'https://cdnjs.cloudflare.com/ajax/libs/:name/:version/:path'
         }),
         new HtmlWebpackPlugin({
             template: 'index.html',
