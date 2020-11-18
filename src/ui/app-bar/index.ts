@@ -2,13 +2,14 @@ import { MDCRipple } from "@material/ripple";
 import { MDCTopAppBar } from "@material/top-app-bar";
 
 import { base } from "ui/base";
-import { eli } from 'eli/eli';
 import { eliAppBar } from "eli/app-bar";
+import { eliButton } from "eli/button";
 import { eliIcon } from "eli/icon";
 import { eliIconButton } from "eli/icon-button";
 import { service } from 'service';
 
 import StyleMenu from './style-menu';
+
 
 /**
  * Events for {@link AppBar}
@@ -49,15 +50,8 @@ export default class AppBar extends base.Prototype {
         // Action: Preference
         const elementPreference = eliIconButton(eliIcon.Icon.cog, 'Preference');
 
-        // Button: Style
-        const elementMenu = eli('button', {
-            className: 'mdc-button mdc-button--unelevated',
-        }, [ 
-            eli('span', {
-                className: 'mdc-button__label',
-                innerHTML: service.style.selectedStyle.title
-            })
-         ]);
+        // Button: Style        
+        const elementMenu = eliButton(service.style.selectedStyle.title);
 
         // App bar
         const elementAppBar = eliAppBar('Mapler', [ elementPreference, elementMenu ]);
