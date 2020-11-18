@@ -1,6 +1,6 @@
-import { service } from "service";
-import AppBar from "./app-bar";
-import MapKit from "./map";
+import { service } from 'service';
+import AppBar from './app-bar';
+import MapKit, { Camera } from './map';
 import PanelDialog from "./panel";
 import ShotAction from './shot';
 
@@ -34,7 +34,7 @@ export namespace ui {
             },
             style: service.style.selectedStyle.uri,
             displayLabels: service.preference.get('mapler.display.labels'),
-        }
+        };
         map.init(body);
 
         // ShotActions
@@ -42,22 +42,25 @@ export namespace ui {
 
         // PanelDialog
         panelDialog.init(body);
+        panelDialog.events.setCamera = (lon, lat, zoom, bearing, tilt) => {
+            map.camera = {
+                lon: lon, lat: lat,
+                zoom: zoom, bearing: bearing, tilt: tilt
+            };
+        };
         panelDialog.events.setLabels = (display) => {
             service.preference.set('mapler.display.labels', display);
-            map.setLabels(display);
-        }
+            map.diaplayLabels = display;
+        };
 
         appBar.events.openPreference = () => panelDialog.open();
         appBar.events.selectStyle = (index) => {
-            map.setStyle(
-                service.style.select(index).uri,
-                service.preference.get('mapler.display.labels')
-            );
+            map.style = service.style.select(index).uri;
         };
 
-        map.events.idle = (...args) => {
-            saveCamera(...args);
-            panelDialog.updateCamera(...args);
+        map.events.idle = (camera) => {
+            saveCamera(camera);
+            panelDialog.updateCamera(camera.lon, camera.lat, camera.zoom, camera.bearing, camera.tilt);
         };
 
         shotAction.events.click = () => {
@@ -73,14 +76,11 @@ export namespace ui {
         };
     }
 
-    function saveCamera(
-        lon: number, lat: number,
-        zoom: number, bearing: number, tilt: number
-    ) {
-        service.preference.set('mapler.camera.lon', lon);
-        service.preference.set('mapler.camera.lat', lat);
-        service.preference.set('mapler.camera.zoom', zoom);
-        service.preference.set('mapler.camera.bearing', bearing);
-        service.preference.set('mapler.camera.tilt', tilt);
+    function saveCamera(camera: Camera) {
+        service.preference.set('mapler.camera.lon', camera.lon);
+        service.preference.set('mapler.camera.lat', camera.lat);
+        service.preference.set('mapler.camera.zoom', camera.zoom);
+        service.preference.set('mapler.camera.bearing', camera.bearing);
+        service.preference.set('mapler.camera.tilt', camera.tilt);
     }
 }

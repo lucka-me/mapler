@@ -5,7 +5,7 @@ import { eli } from 'eli/eli';
 
 import './styles.scss';
 
-interface Camera {
+export interface Camera {
     lon: number,
     lat: number,
     zoom: number,
@@ -13,7 +13,7 @@ interface Camera {
     tilt: number
 }
 
-interface Configure {
+interface Configures {
     camera: Camera,
     style: string,
     displayLabels: boolean,
@@ -27,10 +27,7 @@ interface MapKitEvents {
     /**
      * Triggered when map idles
      */
-    idle: (
-        lon: number, lat: number,
-        zoom: number, bearing: number, tilt: number
-    ) => void,
+    idle: (camera: Camera) => void,
 }
 
 /**
@@ -38,10 +35,10 @@ interface MapKitEvents {
  */
 export default class MapKit extends base.Prototype {
 
-    root: HTMLElement = null;
-    ctrl: mapboxgl.Map = null;
+    private root: HTMLElement = null;
+    private ctrl: mapboxgl.Map = null;
 
-    defaults: Configure = {
+    private config: Configures = {
         camera: {
             lon: 0,
             lat: 0,
@@ -69,19 +66,19 @@ export default class MapKit extends base.Prototype {
 
         this.ctrl = new mapboxgl.Map({
             container: this.root,
-            style: this.defaults.style,
+            style: this.config.style,
             center: [
-                this.defaults.camera.lon,
-                this.defaults.camera.lat
+                this.config.camera.lon,
+                this.config.camera.lat
             ],
-            zoom: this.defaults.camera.zoom,
-            bearing: this.defaults.camera.bearing,
-            pitch: this.defaults.camera.tilt,
+            zoom: this.config.camera.zoom,
+            bearing: this.config.camera.bearing,
+            pitch: this.config.camera.tilt,
             preserveDrawingBuffer: true,
         });
         this.ctrl.once('load', () => {
-            if (!this.defaults.displayLabels) {
-                this.setLabels(false);
+            if (!this.config.displayLabels) {
+                this.diaplayLabels = false;
             }
             this.ctrl.resize();
         });
@@ -97,18 +94,26 @@ export default class MapKit extends base.Prototype {
 
     private onIdle() {
         const center = this.ctrl.getCenter();
-        const zoom = this.ctrl.getZoom();
-        const bearing = this.ctrl.getBearing();
-        const tilt = this.ctrl.getPitch();
 
-        this.events.idle(center.lng, center.lat, zoom, bearing, tilt);
+        this.events.idle({
+            lon: center.lng,
+            lat: center.lat,
+            zoom: this.ctrl.getZoom(),
+            bearing: this.ctrl.getBearing(),
+            tilt: this.ctrl.getPitch()
+        });
+    }
+
+    set defaults(config: Configures) {
+        this.config = config;
     }
 
     /**
      * Show or hide labels
      * @param display Whether to display labels
      */
-    setLabels(display: boolean) {
+    set diaplayLabels(display: boolean) {
+        this.config.displayLabels = display;
         this.ctrl.getStyle().layers.forEach(layer => {
             if (layer.type === 'symbol') {
                 this.ctrl.setLayoutProperty(layer.id, 'visibility', display ? 'visible' : 'none');
@@ -120,30 +125,21 @@ export default class MapKit extends base.Prototype {
      * Set map style
      * @param index Index of the style
      */
-    setStyle(uri: string, displayLabels: boolean) {
+    set style(uri: string) {
         this.ctrl.setStyle(uri);
-        if (!displayLabels) {
-            this.ctrl.once('styledata', _ => {
-                this.setLabels(false);
-            });
+        if (!this.config.displayLabels) {
+            this.ctrl.once('styledata', () => this.diaplayLabels = false);
         }
     }
 
     /**
      * Set the camera of map
-     * @param lon Longitude
-     * @param lat Latitude
-     * @param zoom Zoom
-     * @param bearing Bearing
-     * @param tilt Tilt
+     * @param camera Camera to set
      */
-    setCamera(
-        lon: number, lat: number,
-        zoom: number, bearing: number, tilt: number
-    ) {
+    set camera(camera: Camera) {
         this.ctrl.flyTo({
-            center: [lon, lat],
-            zoom: zoom, bearing: bearing, pitch: tilt,
+            center: [camera.lon, camera.lat],
+            zoom: camera.zoom, bearing: camera.bearing, pitch: camera.tilt,
         });
     }
 
