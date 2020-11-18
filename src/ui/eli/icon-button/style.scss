@@ -1,0 +1,14 @@
+@use '~@material/icon-button';
+
+@include icon-button.core-styles;
+
+.fa.mdc-icon-button,
+.far.mdc-icon-button {
+    font-size: 18px;
+}
+
+@media (prefers-color-scheme: dark) {
+    .mdc-icon-button::before, .mdc-icon-button::after {
+        background: #FFF !important;
+    }
+}

@@ -22,11 +22,6 @@ export default class StyleMenu extends base.Prototype {
         selectStyle: () => { },
     };
 
-    init(parent: HTMLElement) {
-        super.init(parent);
-        this.render();
-    }
-
     render() {
         const element = eliMenu(service.style.styles.map((style, index) => {
             return eliMenu.item(`${index}`, style.title)
@@ -46,6 +41,7 @@ export default class StyleMenu extends base.Prototype {
     }
 
     open() {
+        if (!this.ctrl) this.render();
         if (!this.ctrl.open) { this.ctrl.open = true; }
     }
 }

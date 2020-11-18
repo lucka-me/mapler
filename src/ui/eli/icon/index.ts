@@ -14,6 +14,7 @@ export namespace eliIcon {
         search: '\uf002',
         thList: '\uf00b',
         times:  '\uf00d',
+        cog:    '\uf013',
         clock:  '\uf017',
         camera: '\uf030',
         edit:   '\uf044',
