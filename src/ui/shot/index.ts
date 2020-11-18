@@ -1,7 +1,10 @@
 import { MDCRipple } from '@material/ripple';
 
 import { base } from "ui/base";
-import { eli } from 'ui/eli';
+import { eliFab } from 'eli/fab';
+import { eliIcon } from 'eli/icon';
+
+import './styles.scss';
 
 /**
  * Events for {@link ShotAction}
@@ -30,19 +33,7 @@ export default class ShotAction extends base.Prototype {
     }
 
     render() {
-        const element = eli.build('button', {
-            className: 'mdc-fab mdc-fab--extended',
-            cssText: [
-                'position: fixed',
-                'bottom: 2rem',
-                'left: 50%',
-                'transform: translateX(-50%)'
-            ].join(';'),
-        }, [
-            eli.build('div', { className: 'mdc-fab__ripple' }),
-            eli.build('span', { className: 'mdc-fab__icon fa', innerHTML: '&#xf030' }),
-            eli.build('span', { className: 'mdc-fab__label' }, [ 'Snapshot' ] ),
-        ]);
+        const element = eliFab('shot', eliIcon.Icon.camera, 'Snapshot');
         this.parent.append(element);
         this.ctrl = new MDCRipple(element);
         this.ctrl.listen('click', () => this.events.click());
