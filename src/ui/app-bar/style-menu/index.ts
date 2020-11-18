@@ -1,9 +1,8 @@
 import { MDCMenu } from "@material/menu";
 
 import { base } from "ui/base";
-import { eli } from 'ui/eli';
+import { eliMenu } from "eli/menu";
 import { service } from 'service';
-
 
 /**
  * Events for {@link StyleMenu}
@@ -17,7 +16,7 @@ interface StyleMenuEvents {
  */
 export default class StyleMenu extends base.Prototype {
 
-    ctrl: MDCMenu = null;
+    private ctrl: MDCMenu = null;
 
     events: StyleMenuEvents = {
         selectStyle: () => { },
@@ -29,36 +28,11 @@ export default class StyleMenu extends base.Prototype {
     }
 
     render() {
-        const menuList = eli.build('ul', {
-            className: 'mdc-list',
-            role: 'menu',
-            ariaOrientation: 'vertical',
-        });
+        const element = eliMenu(service.style.styles.map((style, index) => {
+            return eliMenu.item(`${index}`, style.title)
+        }));
 
-        // Build from style data
-        for (const index in service.style.styles) {
-            const element = eli.build('li', {
-                className: 'mdc-list-item',
-                role: 'menuitem',
-                dataset: { code : parseInt(index) },
-            }, [
-                eli.build('span', {
-                    className: 'mdc-list-item__text',
-                    innerHTML: service.style.styles[index].title,
-                }),
-            ]);
-            menuList.append(element);
-        }
-
-        const menuSurface = eli.build('div', {
-            className: 'mdc-menu mdc-menu-surface',
-        }, [ menuList ]);
-        const menuAnchor = eli.build('div', {
-            className: 'mdc-menu-surface--anchor',
-        }, [ menuSurface ]);
-        this.parent.append(menuAnchor);
-
-        this.ctrl = new MDCMenu(menuSurface);
+        this.ctrl = new MDCMenu(element.querySelector('.mdc-menu'));
         this.ctrl.listen(
             'MDCMenu:selected',
             (event: CustomEvent) => {
