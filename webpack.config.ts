@@ -55,6 +55,7 @@ const config: webpack.Configuration = {
             data: path.join(__dirname, 'src', 'data'),
             service: path.join(__dirname, 'src', 'service'),
             ui: path.join(__dirname, 'src', 'ui'),
+            eli: path.join(__dirname, 'src', 'ui', 'eli'),
         },
         extensions: ['.ts', '.js'],
     },
