@@ -95,7 +95,7 @@ interface AppBarEvent {
 /**
  * The app bar component
  */
-export default class AppBar extends UIKitPrototype {
+export default class AppBar extends base.Prototype {
 
     menu = new StyleMenu();
     
