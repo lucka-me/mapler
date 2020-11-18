@@ -1,4 +1,3 @@
-import UIKit from "ui";
+import { ui } from 'ui';
 
-const ui = new UIKit();
 ui.init();

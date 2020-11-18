@@ -8,45 +8,45 @@ import './styles.scss';
 /**
  * The whole user interface
  */
-export default class UIKit {
+export namespace ui {
 
-    appBar = new AppBar();
-    map = new MapKit();
-    panelDialog = new PanelDialog();
-    shotAction = new ShotAction();
+    const appBar = new AppBar();
+    const map = new MapKit();
+    const panelDialog = new PanelDialog();
+    const shotAction = new ShotAction();
     
-    init() {
+    export function init() {
 
         const body = document.body;
         body.className = 'mdc-typography flex-box-col';
 
         // AppBar
-        this.appBar.init(body);
+        appBar.init(body);
 
         // MapKit
-        this.map.init(body);
+        map.init(body);
 
         // ShotActions
-        this.shotAction.init(body);
+        shotAction.init(body);
 
         // PanelDialog
-        this.panelDialog.init(body);
-        this.panelDialog.events.setLabels = (display) => this.map.setLabels(display);
+        panelDialog.init(body);
+        panelDialog.events.setLabels = (display) => this.map.setLabels(display);
 
-        this.appBar.events.openPreference = () => this.panelDialog.open();
-        this.appBar.events.selectStyle = (index) => this.map.setStyle(index);
+        appBar.events.openPreference = () => this.panelDialog.open();
+        appBar.events.selectStyle = (index) => this.map.setStyle(index);
 
-        this.map.events.idle = (...args) => this.panelDialog.updateCamera(...args);
+        map.events.idle = (...args) => this.panelDialog.updateCamera(...args);
 
-        this.shotAction.events.click = () => {
-            this.appBar.disable();
-            this.shotAction.hide();
-            this.map.shot(
+        shotAction.events.click = () => {
+            appBar.disable();
+            shotAction.hide();
+            map.shot(
                 () => {
-                    this.appBar.enable();
-                    this.shotAction.show();
+                    appBar.enable();
+                    shotAction.show();
                 },
-                ...this.panelDialog.size
+                ...panelDialog.size
             );
         };
     }
