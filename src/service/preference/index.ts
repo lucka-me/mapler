@@ -1,9 +1,9 @@
-import data from "../data/preferences.json";
+import data from "../../data/preferences.json";
 
 /**
  * Save and get preference from Local Storage
  */
-class Preference {
+export default class Preference {
 
     private defaults = new Map<string, any>();
 
@@ -34,5 +34,3 @@ class Preference {
         return null;
     }
 }
-
-export default new Preference();

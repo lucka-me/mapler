@@ -5,8 +5,8 @@ import { MDCSwitch } from "@material/switch";
 import { MDCTextField } from "@material/textfield";
 
 import { eli } from 'ui/eli';
+import { service } from 'service';
 import UIKitPrototype from "ui/base";
-import Preference from "service/Preference";
 
 /**
  * Events for {@link PanelDialog}
@@ -81,11 +81,11 @@ export default class PanelDialog extends UIKitPrototype {
         // Preference: Camera - Location
         const elementCameraLongitude = this.buildTextfield('text', 'decimal', 'Longitude', 'input-pref-camera-lon');
         this.panelCtrl.camera.longitude = new MDCTextField(elementCameraLongitude);
-        this.panelCtrl.camera.longitude.value = Preference.get('mapler.camera.lon');
+        this.panelCtrl.camera.longitude.value = service.preference.get('mapler.camera.lon');
 
         const elementCameraLatitude = this.buildTextfield('text', 'decimal', 'Latitude ', 'input-pref-camera-lat');
         this.panelCtrl.camera.latitude = new MDCTextField(elementCameraLatitude);
-        this.panelCtrl.camera.latitude.value = Preference.get('mapler.camera.lat');
+        this.panelCtrl.camera.latitude.value = service.preference.get('mapler.camera.lat');
 
         contentsCamera.push(eli.build('div', {
             className: 'flex-box-row--nowrap flex-align-items--baseline'
@@ -96,15 +96,15 @@ export default class PanelDialog extends UIKitPrototype {
         // Preference: Camera - Others
         const elementCameraZoom = this.buildTextfield('text', 'decimal', 'Zoom', 'input-pref-camera-zoom');
         this.panelCtrl.camera.zoom = new MDCTextField(elementCameraZoom);
-        this.panelCtrl.camera.zoom.value = Preference.get('mapler.camera.zoom');
+        this.panelCtrl.camera.zoom.value = service.preference.get('mapler.camera.zoom');
 
         const elementCameraBearing = this.buildTextfield('text', 'decimal', 'Bearing', 'input-pref-camera-bearing');
         this.panelCtrl.camera.bearing = new MDCTextField(elementCameraBearing);
-        this.panelCtrl.camera.bearing.value = Preference.get('mapler.camera.bearing');
+        this.panelCtrl.camera.bearing.value = service.preference.get('mapler.camera.bearing');
 
         const elementCameraTilt = this.buildTextfield('text', 'decimal', 'Tilt', 'input-pref-camera-tilt');
         this.panelCtrl.camera.tilt = new MDCTextField(elementCameraTilt);
-        this.panelCtrl.camera.tilt.value = Preference.get('mapler.camera.tilt');
+        this.panelCtrl.camera.tilt.value = service.preference.get('mapler.camera.tilt');
 
         contentsCamera.push(
             elementCameraZoom, elementCameraBearing, elementCameraTilt
@@ -176,7 +176,7 @@ export default class PanelDialog extends UIKitPrototype {
             })
         ]);
         this.panelCtrl.display.labels = new MDCSwitch(elementDisplayLabels);
-        this.panelCtrl.display.labels.checked = Preference.get('mapler.display.labels');
+        this.panelCtrl.display.labels.checked = service.preference.get('mapler.display.labels');
         this.panelCtrl.display.labels.listen('change', () => {
             this.events.setLabels(this.panelCtrl.display.labels.checked)
         });
@@ -306,35 +306,35 @@ export default class PanelDialog extends UIKitPrototype {
 
         let longitude = parseFloat(this.panelCtrl.camera.longitude.value);
         if (isNaN(longitude) || longitude < -180 || longitude > 180) {
-            longitude = Preference.get('mapler.camera.lon');;
+            longitude = service.preference.get('mapler.camera.lon');;
             this.panelCtrl.camera.longitude.value = `${longitude}`;
             correct = false;
         }
 
         let latitude = parseFloat(this.panelCtrl.camera.latitude.value);
         if (isNaN(latitude) || latitude < -90 || latitude > 90) {
-            latitude = Preference.get('mapler.camera.lat');;
+            latitude = service.preference.get('mapler.camera.lat');;
             this.panelCtrl.camera.latitude.value = `${latitude}`;
             correct = false;
         }
 
         let zoom = parseFloat(this.panelCtrl.camera.zoom.value);
         if (isNaN(zoom) || zoom < 0 || zoom > 20) {
-            zoom = Preference.get('mapler.camera.zoom');;
+            zoom = service.preference.get('mapler.camera.zoom');;
             this.panelCtrl.camera.zoom.value = `${zoom}`;
             correct = false;
         }
 
         let bearing = parseFloat(this.panelCtrl.camera.bearing.value);
         if (isNaN(bearing) || bearing < 0 || bearing > 360) {
-            bearing = Preference.get('mapler.camera.bearing');;
+            bearing = service.preference.get('mapler.camera.bearing');;
             this.panelCtrl.camera.bearing.value = `${bearing}`;
             correct = false;
         }
 
         let tilt = parseFloat(this.panelCtrl.camera.tilt.value);
         if (isNaN(tilt) || tilt < 0 || tilt > 60) {
-            tilt = Preference.get('mapler.camera.tilt');;
+            tilt = service.preference.get('mapler.camera.tilt');;
             this.panelCtrl.camera.tilt.value = `${tilt}`;
             correct = false;
         }

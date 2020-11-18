@@ -1,12 +1,12 @@
-import data from "../data/styles.json";
-import Preference from "./Preference";
+import data from 'data/styles.json';
+import { service } from 'service';
 
 class Style {
     uri: string;
     title: string;
 }
 
-class StyleKit {
+export default class StyleKit {
 
     styles = new Array<Style>();
 
@@ -19,10 +19,10 @@ class StyleKit {
      * @returns The style in preference, first style as default
      */
     get selectedStyle(): Style {
-        let index = Preference.get('mapler.misc.selectedStyle');
+        let index = service.preference.get('mapler.misc.selectedStyle');
         if (index < 0 || index > this.styles.length - 1) {
             index = 0;
-            Preference.set('mapler.misc.selectedStyle', index);
+            service.preference.set('mapler.misc.selectedStyle', index);
         }
         return this.styles[index];
     }
@@ -35,9 +35,7 @@ class StyleKit {
         if (index < 0 || index > this.styles.length - 1) {
             index = 0;
         }
-        Preference.set('mapler.misc.selectedStyle', index);
+        service.preference.set('mapler.misc.selectedStyle', index);
         return this.styles[index];
     }
 }
-
-export default new StyleKit();

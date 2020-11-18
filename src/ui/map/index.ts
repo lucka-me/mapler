@@ -1,8 +1,7 @@
 import mapboxgl from 'mapbox-gl';
 
 import { eli } from 'ui/eli';
-import Preference from 'service/Preference';
-import StyleKit from 'service/StyleKit';
+import { service } from 'service';
 import UIKitPrototype from 'ui/base';
 
 /**
@@ -43,18 +42,18 @@ export default class MapKit extends UIKitPrototype {
 
         this.ctrl = new mapboxgl.Map({
             container: this.container,
-            style: StyleKit.selectedStyle.uri,
+            style: service.style.selectedStyle.uri,
             center: [
-                Preference.get('mapler.camera.lon'),
-                Preference.get('mapler.camera.lat')
+                service.preference.get('mapler.camera.lon'),
+                service.preference.get('mapler.camera.lat')
             ],
-            zoom: Preference.get('mapler.camera.zoom'),
-            bearing: Preference.get('mapler.camera.bearing'),
-            pitch: Preference.get('mapler.camera.tilt'),
+            zoom: service.preference.get('mapler.camera.zoom'),
+            bearing: service.preference.get('mapler.camera.bearing'),
+            pitch: service.preference.get('mapler.camera.tilt'),
             preserveDrawingBuffer: true,
         });
         this.ctrl.once('load', () => {
-            if (!Preference.get('mapler.display.labels')) {
+            if (!service.preference.get('mapler.display.labels')) {
                 this.setLabels(false);
             }
             this.ctrl.resize();
@@ -77,11 +76,11 @@ export default class MapKit extends UIKitPrototype {
 
         this.events.idle(center.lng, center.lat, zoom, bearing, tilt);
 
-        Preference.set('mapler.camera.lon', center.lng);
-        Preference.set('mapler.camera.lat', center.lat);
-        Preference.set('mapler.camera.zoom', zoom);
-        Preference.set('mapler.camera.bearing', bearing);
-        Preference.set('mapler.camera.tilt', tilt);
+        service.preference.set('mapler.camera.lon', center.lng);
+        service.preference.set('mapler.camera.lat', center.lat);
+        service.preference.set('mapler.camera.zoom', zoom);
+        service.preference.set('mapler.camera.bearing', bearing);
+        service.preference.set('mapler.camera.tilt', tilt);
     }
 
     /**
@@ -89,7 +88,7 @@ export default class MapKit extends UIKitPrototype {
      * @param display Whether to display labels
      */
     setLabels(display: boolean) {
-        Preference.set('mapler.display.labels', display);
+        service.preference.set('mapler.display.labels', display);
         this.ctrl.getStyle().layers.forEach(layer => {
             if (layer.type === 'symbol') {
                 this.ctrl.setLayoutProperty(layer.id, 'visibility', display ? 'visible' : 'none');
@@ -102,8 +101,8 @@ export default class MapKit extends UIKitPrototype {
      * @param index Index of the style
      */
     setStyle(index: number) {
-        this.ctrl.setStyle(StyleKit.select(index).uri);
-        if (!Preference.get('mapler.display.labels')) {
+        this.ctrl.setStyle(service.style.select(index).uri);
+        if (!service.preference.get('mapler.display.labels')) {
             this.ctrl.once('styledata', _ => {
                 this.setLabels(false);
             });

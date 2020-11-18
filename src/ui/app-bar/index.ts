@@ -3,8 +3,8 @@ import { MDCRipple } from "@material/ripple";
 import { MDCTopAppBar } from "@material/top-app-bar";
 
 import { eli } from 'ui/eli';
+import { service } from 'service';
 import UIKitPrototype from 'ui/base';
-import StyleKit from "service/StyleKit";
 
 /**
  * Events for {@link StyleMenu}
@@ -37,7 +37,7 @@ class StyleMenu extends UIKitPrototype {
         });
 
         // Build from style data
-        for (const index in StyleKit.styles) {
+        for (const index in service.style.styles) {
             const element = eli.build('li', {
                 className: 'mdc-list-item',
                 role: 'menuitem',
@@ -45,7 +45,7 @@ class StyleMenu extends UIKitPrototype {
             }, [
                 eli.build('span', {
                     className: 'mdc-list-item__text',
-                    innerHTML: StyleKit.styles[index].title,
+                    innerHTML: service.style.styles[index].title,
                 }),
             ]);
             menuList.append(element);
@@ -134,7 +134,7 @@ export default class AppBar extends UIKitPrototype {
         // Button: Style
         const elementMenuLabel = eli.build('span', {
             className: 'mdc-button__label',
-            innerHTML: StyleKit.selectedStyle.title
+            innerHTML: service.style.selectedStyle.title
         });
         this.elementMenu = eli.build('button', {
             className: 'mdc-button mdc-button--unelevated',
