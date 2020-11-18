@@ -3,6 +3,8 @@ import MapKit from "./map";
 import PanelDialog from "./panel";
 import ShotAction from './shot';
 
+import './styles.scss';
+
 /**
  * The whole user interface
  */
