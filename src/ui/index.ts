@@ -18,7 +18,6 @@ export namespace ui {
     export function init() {
 
         const body = document.body;
-        body.className = 'mdc-typography flex-box-col';
 
         // AppBar
         appBar.init(body);

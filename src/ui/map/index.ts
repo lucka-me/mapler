@@ -1,8 +1,10 @@
 import mapboxgl from 'mapbox-gl';
 
-import { eli } from 'ui/eli';
+import { eli } from 'eli/eli';
 import { service } from 'service';
 import UIKitPrototype from 'ui/base';
+
+import './styles.scss';
 
 /**
  * Events for {@link MapKit}
@@ -23,7 +25,7 @@ interface MapKitEvents {
  */
 export default class MapKit extends UIKitPrototype {
 
-    container: HTMLElement = null;
+    root: HTMLElement = null;
     ctrl: mapboxgl.Map = null;
 
     events: MapKitEvents = {
@@ -37,11 +39,11 @@ export default class MapKit extends UIKitPrototype {
     }
 
     render() {
-        this.container = eli.build('div', { cssText: 'flex: 1' });
-        this.parent.append(this.container);
+        this.root = eli('div', { className: 'map' });
+        this.parent.append(this.root);
 
         this.ctrl = new mapboxgl.Map({
-            container: this.container,
+            container: this.root,
             style: service.style.selectedStyle.uri,
             center: [
                 service.preference.get('mapler.camera.lon'),
@@ -136,21 +138,19 @@ export default class MapKit extends UIKitPrototype {
      */
     shot(finished: () => void, width: number, height: number, pixelRatio: number) {
         // Generate a image to cover the map temporarily
-        const cover = eli.build('img', {
-            cssText: 'position: fixed; left: 0; bottom: 0; right: 0; object-fit: contain; width: 100%; z-index: 5;',
+        const cover = eli('img', {
+            className: 'cover',
             src: this.ctrl.getCanvas().toDataURL()
         });
         this.parent.append(cover);
         const bounds = this.ctrl.getBounds();
-        this.container.style.cssText = [
-            'position: fixed', 'top: 0', 'left:0;',
-            `width: ${width / pixelRatio}px`,
-            `height: ${height / pixelRatio}px`
-        ].join(';');
+        this.root.classList.add('producing');
+        this.root.style.width = `${width / pixelRatio}px`;
+        this.root.style.height = `${height / pixelRatio}px`;
         this.ctrl.resize();
         this.ctrl.fitBounds(bounds);
         this.ctrl.once('idle', () => {
-            const element = eli.build('a', {
+            const element = eli('a', {
                 href: this.ctrl.getCanvas().toDataURL(),
                 download: 'Mapler.png',
                 cssText: 'display:none'
@@ -158,7 +158,8 @@ export default class MapKit extends UIKitPrototype {
             this.parent.append(element);
             element.click();
             this.parent.removeChild(element);
-            this.container.style.cssText = 'flex: 1';
+            this.root.classList.remove('producing');
+            this.root.style.cssText = '';
             this.ctrl.resize();
             this.ctrl.fitBounds(bounds);
             this.parent.removeChild(cover);
