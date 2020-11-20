@@ -1,4 +1,12 @@
 export namespace base {
+    export interface Camera {
+        lon: number,
+        lat: number,
+        zoom: number,
+        bearing: number,
+        tilt: number
+    }
+
     export class Prototype {
         parent: HTMLElement = null;
     

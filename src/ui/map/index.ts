@@ -5,16 +5,8 @@ import { eli } from 'eli/eli';
 
 import './styles.scss';
 
-export interface Camera {
-    lon: number,
-    lat: number,
-    zoom: number,
-    bearing: number,
-    tilt: number
-}
-
 interface Configures {
-    camera: Camera,
+    camera: base.Camera,
     style: string,
     displayLabels: boolean,
 }
@@ -27,7 +19,7 @@ interface MapKitEvents {
     /**
      * Triggered when map idles
      */
-    idle: (camera: Camera) => void,
+    idle: (camera: base.Camera) => void,
 }
 
 /**
@@ -136,7 +128,7 @@ export default class MapKit extends base.Prototype {
      * Set the camera of map
      * @param camera Camera to set
      */
-    set camera(camera: Camera) {
+    set camera(camera: base.Camera) {
         this.ctrl.flyTo({
             center: [camera.lon, camera.lat],
             zoom: camera.zoom, bearing: camera.bearing, pitch: camera.tilt,

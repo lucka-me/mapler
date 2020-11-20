@@ -15,10 +15,7 @@ interface PanelDialogEvents {
     /**
      * Triggered when click the set button
      */
-    setCamera: (
-        lon: number, lat: number,
-        zoom: number, bearing: number, tilt: number
-    ) => void;
+    setCamera: (camera: base.Camera) => void;
 
     /**
      * Triggered when switch the Labels switcher
@@ -340,7 +337,13 @@ export default class PanelDialog extends base.Prototype {
         }
 
         if (correct) {
-            this.events.setCamera(longitude, latitude, zoom, bearing, tilt);
+            this.events.setCamera({
+                lon: longitude,
+                lat: latitude,
+                zoom: zoom,
+                bearing: bearing,
+                tilt: tilt
+            });
         }
     }
 

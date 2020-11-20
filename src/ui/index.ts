@@ -1,6 +1,8 @@
+import { base } from './base';
 import { service } from 'service';
+
 import AppBar from './app-bar';
-import MapKit, { Camera } from './map';
+import MapKit from './map';
 import PanelDialog from "./panel";
 import ShotAction from './shot';
 
@@ -42,11 +44,8 @@ export namespace ui {
 
         // PanelDialog
         panelDialog.init(body);
-        panelDialog.events.setCamera = (lon, lat, zoom, bearing, tilt) => {
-            map.camera = {
-                lon: lon, lat: lat,
-                zoom: zoom, bearing: bearing, tilt: tilt
-            };
+        panelDialog.events.setCamera = (camera) => {
+            map.camera = camera;
         };
         panelDialog.events.setLabels = (display) => {
             service.preference.set('mapler.display.labels', display);
@@ -76,7 +75,7 @@ export namespace ui {
         };
     }
 
-    function saveCamera(camera: Camera) {
+    function saveCamera(camera: base.Camera) {
         service.preference.set('mapler.camera.lon', camera.lon);
         service.preference.set('mapler.camera.lat', camera.lat);
         service.preference.set('mapler.camera.zoom', camera.zoom);
