@@ -52,6 +52,7 @@ const config: webpack.Configuration = {
     },
     resolve: {
         alias: {
+            root: path.join(__dirname, 'src', '../'),
             data: path.join(__dirname, 'src', 'data'),
             service: path.join(__dirname, 'src', 'service'),
             ui: path.join(__dirname, 'src', 'ui'),

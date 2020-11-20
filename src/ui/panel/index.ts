@@ -1,4 +1,3 @@
-import packageData from "../../../package.json";
 import { MDCDialog } from "@material/dialog";
 import { MDCRipple } from "@material/ripple";
 import { MDCSwitch } from "@material/switch";
@@ -7,6 +6,7 @@ import { MDCTextField } from "@material/textfield";
 import { base } from "ui/base";
 import { eli } from 'ui/eli';
 import { service } from 'service';
+import { version } from 'root/package.json';
 
 /**
  * Events for {@link PanelDialog}
@@ -24,35 +24,30 @@ interface PanelDialogEvents {
 }
 
 /**
- * Preference components for {@link PanelDialog}
- */
-class PanelControl {
-    camera = {
-        longitude:  null as MDCTextField,
-        latitude:   null as MDCTextField,
-        zoom:       null as MDCTextField,
-        bearing:    null as MDCTextField,
-        tilt:       null as MDCTextField,
-    };
-
-    size = {
-        width:      null as MDCTextField,
-        height:     null as MDCTextField,
-        pixelRatio: null as MDCTextField,
-    };
-
-    display = {
-        labels: null as MDCSwitch,
-    };
-}
-
-/**
  * The preference dialog component
  */
 export default class PanelDialog extends base.Prototype {
 
     private ctrl: MDCDialog = null;
-    private panelCtrl = new PanelControl();
+    private panelCtrl = {
+        camera: {
+            longitude:  null as MDCTextField,
+            latitude:   null as MDCTextField,
+            zoom:       null as MDCTextField,
+            bearing:    null as MDCTextField,
+            tilt:       null as MDCTextField,
+        },
+    
+        size: {
+            width:      null as MDCTextField,
+            height:     null as MDCTextField,
+            pixelRatio: null as MDCTextField,
+        },
+    
+        display: {
+            labels: null as MDCSwitch,
+        },
+    };
 
     events: PanelDialogEvents = {
         setCamera: () => { },
@@ -194,7 +189,7 @@ export default class PanelDialog extends base.Prototype {
         }, [
             eli.link(
                 'https://github.com/lucka-me/mapler/blob/master/CHANGELOG.md',
-                'Changelog', packageData.version
+                'Changelog', version
             ),
             ' by ',
             eli.link(
