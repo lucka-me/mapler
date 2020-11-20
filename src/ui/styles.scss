@@ -48,5 +48,3 @@ body {
     background-color: var(--mdc-theme-background) !important;
     @include typography.base();
 }
-
-a { color: var(--mdc-theme-text-primary-on-light); }

@@ -144,18 +144,14 @@ export default class Panel extends base.Prototype {
 
         // About
         contents.push(eli('span', { className: 'headline', innerHTML: 'About' }));
-        contents.push(eli('span', {
-            className: 'mdc-typography--body2'
-        }, [
+        contents.push(eli('span', { className: 'about' }, [
             eliDialog.link(
                 version,
                 'https://github.com/lucka-me/mapler/blob/master/CHANGELOG.md',
                 'Changelog'
             )
         ]));
-        contents.push(eli('span', {
-            className: 'mdc-typography--body2'
-        }, [
+        contents.push(eli('span', { className: 'about' }, [
             eliDialog.link(
                 'Repository',
                 'https://github.com/lucka-me/mapler',
