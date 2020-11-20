@@ -1,7 +1,1 @@
 @use '~@material/top-app-bar/mdc-top-app-bar';
-
-@media (prefers-color-scheme: dark) {
-    .mdc-top-app-bar {
-        background-color: #272727 !important;   // Elevation: 4dp
-    }
-}

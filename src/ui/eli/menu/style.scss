@@ -1,11 +1,3 @@
 @use '~@material/list/mdc-list';
 @use '~@material/menu-surface/mdc-menu-surface';
 @use '~@material/menu/mdc-menu';
-
-@media (prefers-color-scheme: dark) {
-    .mdc-menu {
-        .mdc-list {
-            color: #FFF !important;
-        }
-    }
-}
