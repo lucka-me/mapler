@@ -5,6 +5,7 @@ import { MDCTextField } from '@material/textfield';
 
 import { base } from 'ui/base';
 import { eli } from 'eli/eli';
+import { eliButton } from 'eli/button';
 import { eliDialog } from 'eli/dialog';
 import { service } from 'service';
 import { version } from 'root/package.json';
@@ -97,11 +98,8 @@ export default class Panel extends base.Prototype {
         );
 
         // Preference: Camera - Set
-        const elementSet = eli('button', {
-            className: 'mdc-button mdc-button--unelevated margin-v--8 margin-h--4',
-        }, [
-            eli('span', { className: 'mdc-button__label', innerHTML: 'Set' })
-        ]);
+        const elementSet = eliButton('Set');
+        contentsCamera.push(elementSet);
         const rippleSet = new MDCRipple(elementSet);
         rippleSet.listen('click', () => this.onSetCamera());
 

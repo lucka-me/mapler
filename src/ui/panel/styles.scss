@@ -13,10 +13,14 @@
             flex-flow: row wrap;
             align-items: center;
 
-            >.location {
+            > .location {
                 display: flex;
                 flex-flow: row nowrap;
                 align-items: baseline;
+            }
+
+            > button {
+                margin: 8px 4px;
             }
         }
     }
