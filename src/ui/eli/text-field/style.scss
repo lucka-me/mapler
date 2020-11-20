@@ -1,0 +1,5 @@
+@use '~@material/floating-label/mdc-floating-label';
+@use '~@material/notched-outline/mdc-notched-outline';
+@use '~@material/textfield';
+
+@include textfield.core-styles;
