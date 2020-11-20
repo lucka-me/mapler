@@ -1,0 +1,10 @@
+@use "@material/button";
+
+.mdc-top-app-bar {
+    .mdc-top-app-bar__title {
+        font-family: 'Lobster';
+    }
+    .mdc-button {
+        @include button.ink-color(#FFF);
+    }
+}

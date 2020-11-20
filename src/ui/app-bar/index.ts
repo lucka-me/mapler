@@ -8,8 +8,9 @@ import { eliIcon } from "eli/icon";
 import { eliIconButton } from "eli/icon-button";
 import { service } from 'service';
 
-import StyleMenu from './style-menu';
+import './styles.scss';
 
+import StyleMenu from './style-menu';
 
 /**
  * Events for {@link AppBar}
@@ -50,7 +51,7 @@ export default class AppBar extends base.Prototype {
         // Action: Preference
         const elementPreference = eliIconButton(eliIcon.Icon.cog, 'Preference');
 
-        // Button: Style        
+        // Button: Style
         const elementMenu = eliButton(service.style.selectedStyle.title);
 
         // App bar
