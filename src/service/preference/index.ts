@@ -1,4 +1,4 @@
-import data from "../../data/preferences.json";
+import data from 'data/preferences.json';
 
 /**
  * Save and get preference from Local Storage

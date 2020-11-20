@@ -1,6 +1,6 @@
 import { MDCRipple } from '@material/ripple';
 
-import { base } from "ui/base";
+import { base } from 'ui/base';
 import { eliFab } from 'eli/fab';
 import { eliIcon } from 'eli/icon';
 

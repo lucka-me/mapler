@@ -1,13 +1,13 @@
-import { MDCDialog } from "@material/dialog";
-import { MDCRipple } from "@material/ripple";
-import { MDCSwitch } from "@material/switch";
-import { MDCTextField } from "@material/textfield";
+import { MDCDialog } from '@material/dialog';
+import { MDCRipple } from '@material/ripple';
+import { MDCSwitch } from '@material/switch';
+import { MDCTextField } from '@material/textfield';
 
-import { base } from "ui/base";
+import { base } from 'ui/base';
 import { eli } from 'ui/eli';
 import { service } from 'service';
 import { version } from 'root/package.json';
-import { eliDialog } from "eli/dialog";
+import { eliDialog } from 'eli/dialog';
 
 /**
  * Events for {@link PanelDialog}

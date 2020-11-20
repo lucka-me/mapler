@@ -1,7 +1,7 @@
-import { MDCMenu } from "@material/menu";
+import { MDCMenu } from '@material/menu';
 
-import { base } from "ui/base";
-import { eliMenu } from "eli/menu";
+import { base } from 'ui/base';
+import { eliMenu } from 'eli/menu';
 import { service } from 'service';
 
 /**
