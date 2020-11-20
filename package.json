@@ -4,7 +4,7 @@
   "description": "Make map as wallpaper",
   "main": "src/mapler.ts",
   "scripts": {
-    "start": "TS_NODE_PROJECT=\"tsconfig-scripts.json\" webpack-dev-server",
+    "start": "TS_NODE_PROJECT=\"tsconfig-scripts.json\" webpack serve",
     "build": "TS_NODE_PROJECT=\"tsconfig-scripts.json\" webpack --mode production",
     "deploy": "gh-pages -d dist -m \"Deploy $(date)\""
   },
