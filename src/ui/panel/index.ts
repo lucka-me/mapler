@@ -12,7 +12,7 @@ import { eliDialog } from "eli/dialog";
 /**
  * Events for {@link PanelDialog}
  */
-interface PanelDialogEvents {
+interface PanelEvents {
     /**
      * Triggered when click the set button
      */
@@ -27,7 +27,7 @@ interface PanelDialogEvents {
 /**
  * The preference dialog component
  */
-export default class PanelDialog extends base.Prototype {
+export default class Panel extends base.Prototype {
 
     private ctrl: MDCDialog = null;
     private items = {
@@ -50,7 +50,7 @@ export default class PanelDialog extends base.Prototype {
         },
     };
 
-    events: PanelDialogEvents = {
+    events: PanelEvents = {
         setCamera: () => { },
         setLabels: () => { },
     };

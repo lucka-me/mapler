@@ -3,7 +3,7 @@ import { service } from 'service';
 
 import AppBar from './app-bar';
 import MapKit from './map';
-import PanelDialog from "./panel";
+import Panel from './panel';
 import ShotAction from './shot';
 
 import './styles.scss';
@@ -15,7 +15,7 @@ export namespace ui {
 
     const appBar = new AppBar();
     const map = new MapKit();
-    const panelDialog = new PanelDialog();
+    const panel = new Panel();
     const shotAction = new ShotAction();
     
     export function init() {
@@ -43,23 +43,23 @@ export namespace ui {
         shotAction.init(body);
 
         // PanelDialog
-        panelDialog.init(body);
-        panelDialog.events.setCamera = (camera) => {
+        panel.init(body);
+        panel.events.setCamera = (camera) => {
             map.camera = camera;
         };
-        panelDialog.events.setLabels = (display) => {
+        panel.events.setLabels = (display) => {
             service.preference.set('mapler.display.labels', display);
             map.diaplayLabels = display;
         };
 
-        appBar.events.openPanel = () => panelDialog.open();
+        appBar.events.openPanel = () => panel.open();
         appBar.events.selectStyle = (index) => {
             map.style = service.style.select(index).uri;
         };
 
         map.events.idle = (camera) => {
             saveCamera(camera);
-            panelDialog.updateCamera(camera.lon, camera.lat, camera.zoom, camera.bearing, camera.tilt);
+            panel.updateCamera(camera.lon, camera.lat, camera.zoom, camera.bearing, camera.tilt);
         };
 
         shotAction.events.click = () => {
@@ -70,7 +70,7 @@ export namespace ui {
                     appBar.enable();
                     shotAction.show();
                 },
-                ...panelDialog.size
+                ...panel.size
             );
         };
     }
