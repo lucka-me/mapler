@@ -1,3 +1,7 @@
 @use "~@material/fab";
 
 @include fab.core-styles;
+
+.mdc-fab {
+    @include fab.icon-size(18px, 18px);
+}
