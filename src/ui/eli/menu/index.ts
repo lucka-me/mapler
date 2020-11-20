@@ -7,6 +7,7 @@ const ClassName = {
     surface: 'mdc-menu mdc-menu-surface',
     list: 'mdc-list',
     item: 'mdc-list-item',
+    itemRipple: 'mdc-list-item__ripple',
     itemText: 'mdc-list-item__text',
 };
 
@@ -34,6 +35,7 @@ export namespace eliMenu {
             role: 'menuitem',
             dataset: { code: code },
         }, [
+            eli('span', { className: ClassName.itemRipple }),
             eli('span', {
                 className: ClassName.itemText,
                 innerHTML: text,
