@@ -26,6 +26,7 @@ export default class StyleMenu extends base.Prototype {
         const element = eliMenu(service.style.styles.map((style, index) => {
             return eliMenu.item(`${index}`, style.title)
         }));
+        this.parent.append(element);
 
         this.ctrl = new MDCMenu(element.querySelector('.mdc-menu'));
         this.ctrl.listen(
