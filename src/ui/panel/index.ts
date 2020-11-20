@@ -126,6 +126,7 @@ export default class Panel extends base.Prototype {
             label: 'Width',
             inputType: 'number',
             inputMode: 'numeric',
+            pattern: '^\d+$',
             required: true,
         });
         // Panel: Size - Height
@@ -134,6 +135,7 @@ export default class Panel extends base.Prototype {
             label: 'Height',
             inputType: 'number',
             inputMode: 'numeric',
+            pattern: '^\d+$',
             required: true,
         });
         // Panel: Size - Pixel Ratio
@@ -142,6 +144,7 @@ export default class Panel extends base.Prototype {
             label: 'Pixel Ratio',
             inputType: 'number',
             inputMode: 'numeric',
+            pattern: '^\d*\.?\d*$',
             required: true,
         });
 
