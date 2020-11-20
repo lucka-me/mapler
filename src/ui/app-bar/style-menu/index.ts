@@ -35,7 +35,7 @@ export default class StyleMenu extends base.Prototype {
                 const item = event.detail.item as HTMLLIElement;
                 this.events.selectStyle(
                     parseInt(item.dataset.code),
-                    item.querySelector('span').innerHTML
+                    item.querySelector('.mdc-list-item__text').innerHTML
                 );
             }
         );
