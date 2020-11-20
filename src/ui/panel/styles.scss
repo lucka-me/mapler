@@ -1,6 +1,23 @@
+@use '@material/typography';
+
 .panel {
     .mdc-dialog__content {
         display: flex;
         flex-flow: column nowrap;
+
+        >.headline {
+            @include typography.typography(headline6);
+        }
+        >.camera {
+            display: flex;
+            flex-flow: row wrap;
+            align-items: center;
+
+            >.location {
+                display: flex;
+                flex-flow: row nowrap;
+                align-items: baseline;
+            }
+        }
     }
 }

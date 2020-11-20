@@ -4,10 +4,12 @@ import { MDCSwitch } from '@material/switch';
 import { MDCTextField } from '@material/textfield';
 
 import { base } from 'ui/base';
-import { eli } from 'ui/eli';
+import { eli } from 'eli/eli';
+import { eliDialog } from 'eli/dialog';
 import { service } from 'service';
 import { version } from 'root/package.json';
-import { eliDialog } from 'eli/dialog';
+
+import './styles.scss';
 
 /**
  * Events for {@link PanelDialog}
@@ -60,7 +62,7 @@ export default class Panel extends base.Prototype {
         const contents: Array<HTMLElement> = [];
 
         // Preference: Camera
-        contents.push(this.buildHeadline('Camera'));
+        contents.push(eli('span', { className: 'headline', innerHTML: 'Camera' }));
         const contentsCamera: Array<HTMLElement> = [];
         // Preference: Camera - Location
         const elementCameraLongitude = this.buildTextfield('text', 'decimal', 'Longitude', 'input-pref-camera-lon');
@@ -71,8 +73,8 @@ export default class Panel extends base.Prototype {
         this.items.camera.latitude = new MDCTextField(elementCameraLatitude);
         this.items.camera.latitude.value = service.preference.get('mapler.camera.lat');
 
-        contentsCamera.push(eli.build('div', {
-            className: 'flex-box-row--nowrap flex-align-items--baseline'
+        contentsCamera.push(eli('div', {
+            className: 'location'
         }, [
             elementCameraLongitude, elementCameraLatitude
         ]));
@@ -95,21 +97,19 @@ export default class Panel extends base.Prototype {
         );
 
         // Preference: Camera - Set
-        const elementSet = eli.build('button', {
+        const elementSet = eli('button', {
             className: 'mdc-button mdc-button--unelevated margin-v--8 margin-h--4',
         }, [
-            eli.build('span', { className: 'mdc-button__label', innerHTML: 'Set' })
+            eli('span', { className: 'mdc-button__label', innerHTML: 'Set' })
         ]);
         const rippleSet = new MDCRipple(elementSet);
         rippleSet.listen('click', () => this.onSetCamera());
 
         // Build Preference: Camera
-        contents.push(eli.build('div', {
-            className: 'flex-box-row--wrap flex-align-items--center'
-        }, contentsCamera));
+        contents.push(eli('div', { className: 'camera' }, contentsCamera));
 
         // Preference: Size
-        contents.push(this.buildHeadline('Size'));
+        contents.push(eli('span', { className: 'headline', innerHTML: 'Size' }));
         const pixelRatio = window.devicePixelRatio;
 
         // Preference: Size - Width
@@ -131,17 +131,17 @@ export default class Panel extends base.Prototype {
         contents.push(elementSizeWidth, elementSizeHeight, elementSizePixelRatio);
 
         // Preference: Display
-        contents.push(this.buildHeadline('Display'));
+        contents.push(eli('span', { className: 'headline', innerHTML: 'Display' }));
 
         // Preference: Display - Labels
-        const elementDisplayLabels = eli.build('div', { className: 'mdc-switch' }, [
-            eli.build('div', { className: 'mdc-switch__track' }),
-            eli.build('div', {
+        const elementDisplayLabels = eli('div', { className: 'mdc-switch' }, [
+            eli('div', { className: 'mdc-switch__track' }),
+            eli('div', {
                 className: 'mdc-switch__thumb-underlay',
                 id: 'input-pref-display-labels',
             }, [
-                eli.build('div', { className: 'mdc-switch__thumb' }, [
-                    eli.build('input', {
+                eli('div', { className: 'mdc-switch__thumb' }, [
+                    eli('input', {
                         type: 'checkbox',
                         className: 'mdc-switch__native-control',
                         role: 'switch',
@@ -149,11 +149,11 @@ export default class Panel extends base.Prototype {
                 ]),
             ]),
         ]);
-        const containerDisplayLabels = eli.build('div', {
+        const containerDisplayLabels = eli('div', {
             className: 'mdc-switch-box margin-h--4',
         }, [
             elementDisplayLabels,
-            eli.build('label', {
+            eli('label', {
                 for: 'input-pref-display-labels',
                 title: 'Labels',
                 innerHTML: 'Labels',
@@ -167,25 +167,22 @@ export default class Panel extends base.Prototype {
         contents.push(containerDisplayLabels);
 
         // About
-        contents.push(this.buildHeadline('About'));
-        contents.push(eli.build('span', {
+        contents.push(eli('span', { className: 'headline', innerHTML: 'About' }));
+        contents.push(eli('span', {
             className: 'mdc-typography--body2'
         }, [
-            eli.link(
-                'https://github.com/lucka-me/mapler',
-                'GitHub', 'Repository'
+            eliDialog.link(
+                version,
+                'https://github.com/lucka-me/mapler/blob/master/CHANGELOG.md',
+                'Changelog'
             )
         ]));
-        contents.push(eli.build('span', {
+        contents.push(eli('span', {
             className: 'mdc-typography--body2'
         }, [
-            eli.link(
-                'https://github.com/lucka-me/mapler/blob/master/CHANGELOG.md',
-                'Changelog', version
-            ),
-            ' by ',
-            eli.link(
-                'https://lucka.moe', 'Blog', 'Lucka'
+            eliDialog.link(
+                'Repository',
+                'https://github.com/lucka-me/mapler',
             )
         ]));
 
@@ -311,17 +308,6 @@ export default class Panel extends base.Prototype {
     }
 
     /**
-     * Build a headline element
-     * @param text Text to display
-     * @returns The headline element
-     */
-    private buildHeadline(text: string): HTMLSpanElement {
-        return eli.build('span', {
-            className: 'mdc-typography--headline6', innerHTML: text
-        });
-    }
-
-    /**
      * Build a MDC textfield element
      * @param type Type of the `<input>`, like `text` or `number`
      * @param inputmode Input mode of the `<input>`, like `decimal` or `number`
@@ -330,22 +316,22 @@ export default class Panel extends base.Prototype {
      * @returns The headline element
      */
     private buildTextfield(type: string, inputmode: string, label: string, id: string): HTMLDivElement {
-        return eli.build('div', {
+        return eli('div', {
             className: 'mdc-text-field mdc-text-field--outlined margin-v--8 margin-h--4'
         }, [
-            eli.build('input', {
+            eli('input', {
                 type: type, inputmode: inputmode, id: id,
                 className: 'mdc-text-field__input'
             }),
-            eli.build('div', { className: 'mdc-notched-outline' }, [
-                eli.build('div', { className: 'mdc-notched-outline__leading' }),
-                eli.build('div', { className: 'mdc-notched-outline__notch' }, [
-                    eli.build('label', {
+            eli('div', { className: 'mdc-notched-outline' }, [
+                eli('div', { className: 'mdc-notched-outline__leading' }),
+                eli('div', { className: 'mdc-notched-outline__notch' }, [
+                    eli('label', {
                         for: id, innerHTML: label,
                         className: 'mdc-floating-label'
                     })
                 ]),
-                eli.build('div', { className: 'mdc-notched-outline__trailing' }),
+                eli('div', { className: 'mdc-notched-outline__trailing' }),
             ])
         ]);
     }
