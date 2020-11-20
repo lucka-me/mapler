@@ -138,12 +138,10 @@ export default class MapKit extends base.Prototype {
 
     /**
      * Take snapshot
+     * @param size Size of target device
      * @param finished Callback triggered when file generated
-     * @param width Width of target device
-     * @param height Height of target device
-     * @param pixelRatio Pixel ratio of target device
      */
-    shot(finished: () => void, width: number, height: number, pixelRatio: number) {
+    shot(size: base.Size, finished: () => void) {
         // Generate a image to cover the map temporarily
         const cover = eli('img', {
             className: 'cover',
@@ -152,8 +150,8 @@ export default class MapKit extends base.Prototype {
         this.parent.append(cover);
         const bounds = this.ctrl.getBounds();
         this.root.classList.add('producing');
-        this.root.style.width = `${width / pixelRatio}px`;
-        this.root.style.height = `${height / pixelRatio}px`;
+        this.root.style.width = `${size.width / size.pixelRatio}px`;
+        this.root.style.height = `${size.height / size.pixelRatio}px`;
         this.ctrl.resize();
         this.ctrl.fitBounds(bounds);
         this.ctrl.once('idle', () => {

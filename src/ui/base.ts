@@ -7,6 +7,12 @@ export namespace base {
         tilt: number
     }
 
+    export interface Size {
+        width: number,
+        height: number,
+        pixelRatio: number,
+    }
+
     export class Prototype {
         parent: HTMLElement = null;
     

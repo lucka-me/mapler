@@ -227,54 +227,45 @@ export default class Panel extends base.Prototype {
     /**
      * Get the size values in `[width, height, pixelRatio]`
      */
-    get size(): [number, number, number] {
-        let pixelRatio = window.devicePixelRatio;
-        let width   = pixelRatio * window.screen.width;
-        let height  = pixelRatio * window.screen.height;
+    get size(): base.Size {
+        const size: base.Size = {
+            width: window.devicePixelRatio * window.screen.width,
+            height: window.devicePixelRatio * window.screen.height,
+            pixelRatio: window.devicePixelRatio,
+        }
 
         if (this.ctrl) {
-            pixelRatio = parseFloat(this.items.size.pixelRatio.value);
-            if (isNaN(pixelRatio)) {
-                pixelRatio = window.devicePixelRatio;
-                this.items.size.pixelRatio.value = `${pixelRatio}`;
+            size.pixelRatio = parseFloat(this.items.size.pixelRatio.value);
+            if (isNaN(size.pixelRatio)) {
+                size.pixelRatio = window.devicePixelRatio;
+                this.items.size.pixelRatio.value = `${size.pixelRatio}`;
             }
 
-            width = parseInt(this.items.size.width.value);
-            if (isNaN(width) || width < 1) {
-                width = pixelRatio * window.screen.width;
-                this.items.size.width.value = `${width}`;
+            size.width = parseInt(this.items.size.width.value);
+            if (isNaN(size.width) || size.width < 1) {
+                size.width = size.pixelRatio * window.screen.width;
+                this.items.size.width.value = `${size.width}`;
             }
 
-            height = parseInt(this.items.size.height.value);
-            if (isNaN(height) || height < 1) {
-                height = pixelRatio * window.screen.height;
-                this.items.size.height.value = `${height}`;
+            size.height = parseInt(this.items.size.height.value);
+            if (isNaN(size.height) || size.height < 1) {
+                size.height = size.pixelRatio * window.screen.height;
+                this.items.size.height.value = `${size.height}`;
             }
         }
 
-        return [width, height, pixelRatio];
+        return size;
     }
 
-    /**
-     * Update camera values
-     * @param lon Longitude
-     * @param lat Latitude
-     * @param zoom Zoom
-     * @param bearing Bearing
-     * @param tilt Tile
-     */
-    updateCamera(
-        lon: number, lat: number,
-        zoom: number, bearing: number, tilt: number
-    ) {
+    set camera(camera: base.Camera) {
         if (!this.ctrl) return;
 
-        this.items.camera.longitude.value   = `${lon}`;
-        this.items.camera.latitude.value    = `${lat}`;
+        this.items.camera.longitude.value   = `${camera.lon}`;
+        this.items.camera.latitude.value    = `${camera.lat}`;
 
-        this.items.camera.zoom.value        = `${zoom}`;
-        this.items.camera.bearing.value     = `${bearing}`;
-        this.items.camera.tilt.value        = `${tilt}`;
+        this.items.camera.zoom.value        = `${camera.zoom}`;
+        this.items.camera.bearing.value     = `${camera.bearing}`;
+        this.items.camera.tilt.value        = `${camera.tilt}`;
     }
 
     /**

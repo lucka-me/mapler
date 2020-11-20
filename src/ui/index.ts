@@ -59,18 +59,18 @@ export namespace ui {
 
         map.events.idle = (camera) => {
             saveCamera(camera);
-            panel.updateCamera(camera.lon, camera.lat, camera.zoom, camera.bearing, camera.tilt);
+            panel.camera = camera;
         };
 
         shotAction.events.click = () => {
             appBar.disable();
             shotAction.hide();
             map.shot(
+                panel.size,
                 () => {
                     appBar.enable();
                     shotAction.show();
-                },
-                ...panel.size
+                }
             );
         };
     }
