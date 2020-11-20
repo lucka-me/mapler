@@ -1,0 +1,11 @@
+@use '~@material/dialog';
+
+@include dialog.core-styles;
+
+@media (prefers-color-scheme: dark) {
+    .mdc-dialog {
+        .mdc-dialog__content, .mdc-dialog__title {
+            color: #FFF !important;
+        }
+    }
+}

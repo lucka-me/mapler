@@ -7,6 +7,7 @@ import { base } from "ui/base";
 import { eli } from 'ui/eli';
 import { service } from 'service';
 import { version } from 'root/package.json';
+import { eliDialog } from "eli/dialog";
 
 /**
  * Events for {@link PanelDialog}
@@ -29,7 +30,7 @@ interface PanelDialogEvents {
 export default class PanelDialog extends base.Prototype {
 
     private ctrl: MDCDialog = null;
-    private panelCtrl = {
+    private items = {
         camera: {
             longitude:  null as MDCTextField,
             latitude:   null as MDCTextField,
@@ -55,15 +56,6 @@ export default class PanelDialog extends base.Prototype {
     };
 
     render() {
-
-        const parts: Array<HTMLElement> = [];
-
-        // Title
-        parts.push(eli.build('h2', {
-            className: 'mdc-dialog__title',
-            innerHTML: 'Preference'
-        }));
-        
         // Contents
         const contents: Array<HTMLElement> = [];
 
@@ -72,12 +64,12 @@ export default class PanelDialog extends base.Prototype {
         const contentsCamera: Array<HTMLElement> = [];
         // Preference: Camera - Location
         const elementCameraLongitude = this.buildTextfield('text', 'decimal', 'Longitude', 'input-pref-camera-lon');
-        this.panelCtrl.camera.longitude = new MDCTextField(elementCameraLongitude);
-        this.panelCtrl.camera.longitude.value = service.preference.get('mapler.camera.lon');
+        this.items.camera.longitude = new MDCTextField(elementCameraLongitude);
+        this.items.camera.longitude.value = service.preference.get('mapler.camera.lon');
 
         const elementCameraLatitude = this.buildTextfield('text', 'decimal', 'Latitude ', 'input-pref-camera-lat');
-        this.panelCtrl.camera.latitude = new MDCTextField(elementCameraLatitude);
-        this.panelCtrl.camera.latitude.value = service.preference.get('mapler.camera.lat');
+        this.items.camera.latitude = new MDCTextField(elementCameraLatitude);
+        this.items.camera.latitude.value = service.preference.get('mapler.camera.lat');
 
         contentsCamera.push(eli.build('div', {
             className: 'flex-box-row--nowrap flex-align-items--baseline'
@@ -87,16 +79,16 @@ export default class PanelDialog extends base.Prototype {
 
         // Preference: Camera - Others
         const elementCameraZoom = this.buildTextfield('text', 'decimal', 'Zoom', 'input-pref-camera-zoom');
-        this.panelCtrl.camera.zoom = new MDCTextField(elementCameraZoom);
-        this.panelCtrl.camera.zoom.value = service.preference.get('mapler.camera.zoom');
+        this.items.camera.zoom = new MDCTextField(elementCameraZoom);
+        this.items.camera.zoom.value = service.preference.get('mapler.camera.zoom');
 
         const elementCameraBearing = this.buildTextfield('text', 'decimal', 'Bearing', 'input-pref-camera-bearing');
-        this.panelCtrl.camera.bearing = new MDCTextField(elementCameraBearing);
-        this.panelCtrl.camera.bearing.value = service.preference.get('mapler.camera.bearing');
+        this.items.camera.bearing = new MDCTextField(elementCameraBearing);
+        this.items.camera.bearing.value = service.preference.get('mapler.camera.bearing');
 
         const elementCameraTilt = this.buildTextfield('text', 'decimal', 'Tilt', 'input-pref-camera-tilt');
-        this.panelCtrl.camera.tilt = new MDCTextField(elementCameraTilt);
-        this.panelCtrl.camera.tilt.value = service.preference.get('mapler.camera.tilt');
+        this.items.camera.tilt = new MDCTextField(elementCameraTilt);
+        this.items.camera.tilt.value = service.preference.get('mapler.camera.tilt');
 
         contentsCamera.push(
             elementCameraZoom, elementCameraBearing, elementCameraTilt
@@ -123,18 +115,18 @@ export default class PanelDialog extends base.Prototype {
         // Preference: Size - Width
         const elementSizeWidth = this.buildTextfield('number', 'numeric', 'Width', 'input-pref-size-width');
         
-        this.panelCtrl.size.width = new MDCTextField(elementSizeWidth);
-        this.panelCtrl.size.width.value = `${window.screen.width * pixelRatio}`;
+        this.items.size.width = new MDCTextField(elementSizeWidth);
+        this.items.size.width.value = `${window.screen.width * pixelRatio}`;
 
         // Preference: Size - Height
         const elementSizeHeight = this.buildTextfield('number', 'numeric', 'Height', 'input-pref-size-height');
-        this.panelCtrl.size.height = new MDCTextField(elementSizeHeight);
-        this.panelCtrl.size.height.value = `${window.screen.height * pixelRatio}`;
+        this.items.size.height = new MDCTextField(elementSizeHeight);
+        this.items.size.height.value = `${window.screen.height * pixelRatio}`;
 
         // Preference: Size - Pixel Ratio
         const elementSizePixelRatio = this.buildTextfield('number', 'numeric', 'Pixel Ratio', 'input-pref-size-pixelRatio');
-        this.panelCtrl.size.pixelRatio = new MDCTextField(elementSizePixelRatio);
-        this.panelCtrl.size.pixelRatio.value = `${pixelRatio}`;
+        this.items.size.pixelRatio = new MDCTextField(elementSizePixelRatio);
+        this.items.size.pixelRatio.value = `${pixelRatio}`;
 
         contents.push(elementSizeWidth, elementSizeHeight, elementSizePixelRatio);
 
@@ -167,10 +159,10 @@ export default class PanelDialog extends base.Prototype {
                 innerHTML: 'Labels',
             })
         ]);
-        this.panelCtrl.display.labels = new MDCSwitch(elementDisplayLabels);
-        this.panelCtrl.display.labels.checked = service.preference.get('mapler.display.labels');
-        this.panelCtrl.display.labels.listen('change', () => {
-            this.events.setLabels(this.panelCtrl.display.labels.checked)
+        this.items.display.labels = new MDCSwitch(elementDisplayLabels);
+        this.items.display.labels.checked = service.preference.get('mapler.display.labels');
+        this.items.display.labels.listen('change', () => {
+            this.events.setLabels(this.items.display.labels.checked)
         });
         contents.push(containerDisplayLabels);
 
@@ -197,36 +189,12 @@ export default class PanelDialog extends base.Prototype {
             )
         ]));
 
-        // Build contents
-        parts.push(eli.build('div', {
-            className: 'mdc-dialog__content flex-box-col scrollable'
-        }, contents));
-
-        // Footer
-        parts.push(
-            eli.build('footer', { className: 'mdc-dialog__actions' }, [
-                eli.build('button', {
-                    className: 'mdc-button mdc-dialog__button',
-                    dataset: { mdcDialogAction: 'close', },
-                }, [
-                    eli.build('span', {
-                        className: 'mdc-button__label', innerHTML: 'Close'
-                    }),
-                ])
-            ])
-        );
-
         // Build dialog
-        const elementDialog = eli.build('div', {
-            className: 'mdc-dialog mdc-dialog--scrollable',
-            role: 'dialog',
-            ariaModal: true,
-        }, [
-            eli.build('div', { className: 'mdc-dialog__container' }, [
-                eli.build('div', { className: 'mdc-dialog__surface' }, parts),
-            ]),
-            eli.build('div', { className: 'mdc-dialog__scrim' }),
-        ]);
+        const elementDialog = eliDialog('panel', {
+            title: 'Panel',
+            contents: contents,
+            actions: [ { action: 'close', text: 'Close' } ],
+        });
 
         this.parent.append(elementDialog);
         this.ctrl = new MDCDialog(elementDialog);
@@ -246,22 +214,22 @@ export default class PanelDialog extends base.Prototype {
         let height  = pixelRatio * window.screen.height;
 
         if (this.ctrl) {
-            pixelRatio = parseFloat(this.panelCtrl.size.pixelRatio.value);
+            pixelRatio = parseFloat(this.items.size.pixelRatio.value);
             if (isNaN(pixelRatio)) {
                 pixelRatio = window.devicePixelRatio;
-                this.panelCtrl.size.pixelRatio.value = `${pixelRatio}`;
+                this.items.size.pixelRatio.value = `${pixelRatio}`;
             }
 
-            width = parseInt(this.panelCtrl.size.width.value);
+            width = parseInt(this.items.size.width.value);
             if (isNaN(width) || width < 1) {
                 width = pixelRatio * window.screen.width;
-                this.panelCtrl.size.width.value = `${width}`;
+                this.items.size.width.value = `${width}`;
             }
 
-            height = parseInt(this.panelCtrl.size.height.value);
+            height = parseInt(this.items.size.height.value);
             if (isNaN(height) || height < 1) {
                 height = pixelRatio * window.screen.height;
-                this.panelCtrl.size.height.value = `${height}`;
+                this.items.size.height.value = `${height}`;
             }
         }
 
@@ -282,12 +250,12 @@ export default class PanelDialog extends base.Prototype {
     ) {
         if (!this.ctrl) return;
 
-        this.panelCtrl.camera.longitude.value   = `${lon}`;
-        this.panelCtrl.camera.latitude.value    = `${lat}`;
+        this.items.camera.longitude.value   = `${lon}`;
+        this.items.camera.latitude.value    = `${lat}`;
 
-        this.panelCtrl.camera.zoom.value        = `${zoom}`;
-        this.panelCtrl.camera.bearing.value     = `${bearing}`;
-        this.panelCtrl.camera.tilt.value        = `${tilt}`;
+        this.items.camera.zoom.value        = `${zoom}`;
+        this.items.camera.bearing.value     = `${bearing}`;
+        this.items.camera.tilt.value        = `${tilt}`;
     }
 
     /**
@@ -296,38 +264,38 @@ export default class PanelDialog extends base.Prototype {
     private onSetCamera() {
         let correct = true;
 
-        let longitude = parseFloat(this.panelCtrl.camera.longitude.value);
+        let longitude = parseFloat(this.items.camera.longitude.value);
         if (isNaN(longitude) || longitude < -180 || longitude > 180) {
             longitude = service.preference.get('mapler.camera.lon');;
-            this.panelCtrl.camera.longitude.value = `${longitude}`;
+            this.items.camera.longitude.value = `${longitude}`;
             correct = false;
         }
 
-        let latitude = parseFloat(this.panelCtrl.camera.latitude.value);
+        let latitude = parseFloat(this.items.camera.latitude.value);
         if (isNaN(latitude) || latitude < -90 || latitude > 90) {
             latitude = service.preference.get('mapler.camera.lat');;
-            this.panelCtrl.camera.latitude.value = `${latitude}`;
+            this.items.camera.latitude.value = `${latitude}`;
             correct = false;
         }
 
-        let zoom = parseFloat(this.panelCtrl.camera.zoom.value);
+        let zoom = parseFloat(this.items.camera.zoom.value);
         if (isNaN(zoom) || zoom < 0 || zoom > 20) {
             zoom = service.preference.get('mapler.camera.zoom');;
-            this.panelCtrl.camera.zoom.value = `${zoom}`;
+            this.items.camera.zoom.value = `${zoom}`;
             correct = false;
         }
 
-        let bearing = parseFloat(this.panelCtrl.camera.bearing.value);
+        let bearing = parseFloat(this.items.camera.bearing.value);
         if (isNaN(bearing) || bearing < 0 || bearing > 360) {
             bearing = service.preference.get('mapler.camera.bearing');;
-            this.panelCtrl.camera.bearing.value = `${bearing}`;
+            this.items.camera.bearing.value = `${bearing}`;
             correct = false;
         }
 
-        let tilt = parseFloat(this.panelCtrl.camera.tilt.value);
+        let tilt = parseFloat(this.items.camera.tilt.value);
         if (isNaN(tilt) || tilt < 0 || tilt > 60) {
             tilt = service.preference.get('mapler.camera.tilt');;
-            this.panelCtrl.camera.tilt.value = `${tilt}`;
+            this.items.camera.tilt.value = `${tilt}`;
             correct = false;
         }
 
