@@ -1,5 +1,7 @@
 .map {
-    &:not(.producing) { flex: 1; }
+    &:not(.producing) {
+        flex: 1 1 0%;
+    }
     &.producing {
         position: fixed;
         top: 0;
