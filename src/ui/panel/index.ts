@@ -7,6 +7,7 @@ import { base } from 'ui/base';
 import { eli } from 'eli/eli';
 import { eliButton } from 'eli/button';
 import { eliDialog } from 'eli/dialog';
+import { eliSwitch } from 'eli/switch';
 import { service } from 'service';
 import { version } from 'root/package.json';
 
@@ -100,8 +101,6 @@ export default class Panel extends base.Prototype {
         // Preference: Camera - Set
         const elementSet = eliButton('Set');
         contentsCamera.push(elementSet);
-        const rippleSet = new MDCRipple(elementSet);
-        rippleSet.listen('click', () => this.onSetCamera());
 
         // Build Preference: Camera
         contents.push(eli('div', { className: 'camera' }, contentsCamera));
@@ -132,37 +131,16 @@ export default class Panel extends base.Prototype {
         contents.push(eli('span', { className: 'headline', innerHTML: 'Display' }));
 
         // Preference: Display - Labels
-        const elementDisplayLabels = eli('div', { className: 'mdc-switch' }, [
-            eli('div', { className: 'mdc-switch__track' }),
-            eli('div', {
-                className: 'mdc-switch__thumb-underlay',
-                id: 'input-pref-display-labels',
-            }, [
-                eli('div', { className: 'mdc-switch__thumb' }, [
-                    eli('input', {
-                        type: 'checkbox',
-                        className: 'mdc-switch__native-control',
-                        role: 'switch',
-                    }),
-                ]),
-            ]),
-        ]);
-        const containerDisplayLabels = eli('div', {
-            className: 'mdc-switch-box margin-h--4',
+        const elementDisplayLabels = eliSwitch('input-panel-display-labels');
+        contents.push(eli('div', {
+            className: 'switch',
         }, [
             elementDisplayLabels,
             eli('label', {
-                for: 'input-pref-display-labels',
-                title: 'Labels',
+                for: 'nput-panel-display-labels',
                 innerHTML: 'Labels',
             })
-        ]);
-        this.items.display.labels = new MDCSwitch(elementDisplayLabels);
-        this.items.display.labels.checked = service.preference.get('mapler.display.labels');
-        this.items.display.labels.listen('change', () => {
-            this.events.setLabels(this.items.display.labels.checked)
-        });
-        contents.push(containerDisplayLabels);
+        ]));
 
         // About
         contents.push(eli('span', { className: 'headline', innerHTML: 'About' }));
@@ -193,6 +171,15 @@ export default class Panel extends base.Prototype {
 
         this.parent.append(elementDialog);
         this.ctrl = new MDCDialog(elementDialog);
+
+        const rippleSet = new MDCRipple(elementSet);
+        rippleSet.listen('click', () => this.onSetCamera());
+
+        this.items.display.labels = new MDCSwitch(elementDisplayLabels);
+        this.items.display.labels.checked = service.preference.get('mapler.display.labels');
+        this.items.display.labels.listen('change', () => {
+            this.events.setLabels(this.items.display.labels.checked)
+        });
     }
 
     open() {

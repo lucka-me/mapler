@@ -50,18 +50,3 @@ body {
 }
 
 a { color: var(--mdc-theme-text-primary-on-light); }
-
-/* Switch */
-.mdc-switch-box {
-    padding: 4px 0px;
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-}
-
-.mdc-switch-box > label {
-    margin-left: 1em;
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-}

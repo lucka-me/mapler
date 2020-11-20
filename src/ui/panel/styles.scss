@@ -5,10 +5,15 @@
         display: flex;
         flex-flow: column nowrap;
 
-        >.headline {
+        > * {
+            flex-shrink: 0;
+        }
+
+        > .headline {
             @include typography.typography(headline6);
         }
-        >.camera {
+
+        > .camera {
             display: flex;
             flex-flow: row wrap;
             align-items: center;
@@ -21,6 +26,21 @@
 
             > button {
                 margin: 8px 4px;
+            }
+        }
+
+        .switch {
+            margin: unset 4px;
+            padding: 4px 0px;
+            display: flex;
+            flex-flow: row nowrap;
+            align-items: center;
+
+            > label {
+                margin-left: 1em;
+                display: flex;
+                flex-flow: row nowrap;
+                align-items: center;
             }
         }
     }
