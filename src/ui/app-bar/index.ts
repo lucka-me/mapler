@@ -18,7 +18,7 @@ interface AppBarEvent {
     /**
      * Triggered when click the preference button
      */
-    openPreference: () => void,
+    openPanel: () => void,
     /**
      * Triggered when style selected
      * @param index The index of selected style
@@ -33,11 +33,11 @@ export default class AppBar extends base.Prototype {
 
     private menu = new StyleMenu();
     
-    private actionPreference: MDCRipple = null;
+    private actionPanel: MDCRipple = null;
     private actionMenu: MDCRipple = null;
 
     events: AppBarEvent = {
-        openPreference: () => { },
+        openPanel: () => { },
         selectStyle:    () => { },
     };
 
@@ -64,9 +64,9 @@ export default class AppBar extends base.Prototype {
             this.events.selectStyle(index);
         };
 
-        this.actionPreference = new MDCRipple(elementPreference);
-        this.actionPreference.unbounded = true;
-        this.actionPreference.listen('click', () => this.events.openPreference());
+        this.actionPanel = new MDCRipple(elementPreference);
+        this.actionPanel.unbounded = true;
+        this.actionPanel.listen('click', () => this.events.openPanel());
 
         this.actionMenu = new MDCRipple(elementMenu);
         this.actionMenu.listen('click', () => this.menu.open());
@@ -79,7 +79,7 @@ export default class AppBar extends base.Prototype {
      * Enable the actions in app bar
      */
     enable() {
-        this.actionPreference.disabled = false;
+        this.actionPanel.disabled = false;
         this.actionMenu.disabled = false;
     }
 
@@ -87,7 +87,7 @@ export default class AppBar extends base.Prototype {
      * Disable the actions in app bar
      */
     disable() {
-        this.actionPreference.disabled = true;
+        this.actionPanel.disabled = true;
         this.actionMenu.disabled = true;
     }
 }

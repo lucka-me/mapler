@@ -53,7 +53,7 @@ export namespace ui {
             map.diaplayLabels = display;
         };
 
-        appBar.events.openPreference = () => panelDialog.open();
+        appBar.events.openPanel = () => panelDialog.open();
         appBar.events.selectStyle = (index) => {
             map.style = service.style.select(index).uri;
         };
