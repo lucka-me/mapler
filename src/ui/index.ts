@@ -1,12 +1,12 @@
 import { base } from './base';
 import { service } from 'service';
 
+import './styles.scss';
+
 import AppBar from './app-bar';
 import MapKit from './map';
 import Panel from './panel';
 import ShotAction from './shot';
-
-import './styles.scss';
 
 /**
  * The whole user interface
