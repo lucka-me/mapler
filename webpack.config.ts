@@ -121,11 +121,7 @@ const config: webpack.Configuration = {
             filename: 'css/[name].[contenthash].css',
         }),
         new HtmlWebpackPlugin({
-<<<<<<< HEAD
-            template: './src/templates/potori.tpl',
-=======
             template: './src/templates/mapler.tpl',
->>>>>>> 582fb0aab7134c283e5275aa537a8d148dc726a3
             inject: true,
             scriptLoading: 'defer',
             chunks: [ 'mapler' ],
