@@ -1,11 +1,11 @@
 import * as webpack from 'webpack';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
-import CopyPlugin from 'copy-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import path from 'path';
 import TerserPlugin from 'terser-webpack-plugin';
+import WebpackPwaManifest from 'webpack-pwa-manifest';
 
 const config: webpack.Configuration = {
     entry: { mapler: './src/mapler.ts' },
@@ -121,7 +121,11 @@ const config: webpack.Configuration = {
             filename: 'css/[name].[contenthash].css',
         }),
         new HtmlWebpackPlugin({
+<<<<<<< HEAD
             template: './src/templates/potori.tpl',
+=======
+            template: './src/templates/mapler.tpl',
+>>>>>>> 582fb0aab7134c283e5275aa537a8d148dc726a3
             inject: true,
             scriptLoading: 'defer',
             chunks: [ 'mapler' ],
@@ -129,16 +133,41 @@ const config: webpack.Configuration = {
             meta: {
                 'description': 'Make map as wallpaper',
                 'viewport': 'width=device-width, height=device-height, initial-scale=1',
-                'theme-color': '#29b6f6',
-
-                'apple-mobile-web-app-capable': 'yes',
-                'apple-mobile-web-app-status-bar-style': 'dark',
             },
         }),
-        new CopyPlugin({
-            patterns: [
-                { from: 'assets', to: 'assets' },
-                { from: 'manifest.json' },
+        new WebpackPwaManifest({
+            name: 'Mapler',
+            description: 'Make map as wallpaper',
+            filename: 'manifest.webmanifest',
+            fingerprints: true,
+            orientation: 'any',
+            start_url: '/',
+            scope: '/',
+            background_color: '#FFF',
+            theme_color: '#29B6F6',
+            ios: {
+                'apple-mobile-web-app-status-bar-style': 'black'
+            },
+            icons: [
+                {
+                    src: path.resolve('src/assets/logo.svg'),
+                    size: 512,
+                    destination: path.join('assets'),
+                    purpose: 'maskable',
+                },
+                {
+                    src: path.resolve('src/assets/logo.svg'),
+                    size: 512,
+                    destination: path.join('assets'),
+                    purpose: 'any',
+                },
+                {
+                    src: path.resolve('src/assets/icon-180.png'),
+                    size: 180,
+                    destination: path.join('assets'),
+                    purpose: 'maskable',
+                    ios: true,
+                },
             ],
         }),
     ],
