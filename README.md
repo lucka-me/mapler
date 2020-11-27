@@ -1,4 +1,4 @@
-# ![](./assets/banner.svg)
+# ![](./src/assets/banner.svg)
 
 [![Release](https://img.shields.io/github/v/release/lucka-me/mapler)](https://github.com/lucka-me/mapler/releases/latest "Last release") [![Website](https://img.shields.io/website?url=https%3A%2F%2Fmapler.lucka.moe)](https://mapler.lucka.moe/ "Website") [![License](https://img.shields.io/github/license/lucka-me/mapler)](./LICENSE "License")
 
