@@ -1,6 +1,6 @@
 {
   "name": "mapler",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Make map as wallpaper",
   "main": "src/mapler.ts",
   "scripts": {
