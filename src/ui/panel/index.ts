@@ -4,7 +4,7 @@ import { MDCSwitch } from '@material/switch';
 import { MDCTextField } from '@material/textfield';
 
 import { base } from 'ui/base';
-import { eli } from 'eli/eli';
+import { eli } from '@lucka-labs/eli';
 import { eliButton } from 'eli/button';
 import { eliDialog } from 'eli/dialog';
 import { eliSwitch } from 'eli/switch';
