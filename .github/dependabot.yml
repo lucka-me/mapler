@@ -9,3 +9,4 @@ updates:
       interval: "weekly"
       day: "sunday"
       time: "21:00" # 05:00 for UTC+8
+    open-pull-requests-limit: 0
